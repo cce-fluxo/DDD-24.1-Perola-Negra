@@ -1,15 +1,15 @@
 import React from "react";
 import Header from "../../../components/Header";
-import CategoriasHeader from "../../../components/CategoriasHeader";
+import CategoriasHeader from "../../../components/CategoriasNav";
 import Produto from "../../../components/Produto";
+import TituloCategoria from "../../../components/TituloCategoria";
+
 const Categoria1 = () => {
   return (
     <div>
       <Header></Header>
       <CategoriasHeader></CategoriasHeader>
-      <div className="pt-52 w-72 py-3 px-7 text-3xl bg-neutral-100 font-semibold flex justify-end">
-        Categoria 1
-      </div>
+      <TituloCategoria titulo="Categoria 1"></TituloCategoria>
       <div className="flex flex-wrap w-11/12">
         <Produto
           nome="Nome"

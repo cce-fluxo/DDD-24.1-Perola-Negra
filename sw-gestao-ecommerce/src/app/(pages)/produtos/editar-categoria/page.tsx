@@ -3,12 +3,17 @@ import Header from "../../../components/Header";
 import CategoriasHeader from "../../../components/CategoriasNav";
 import Produto from "../../../components/Produto";
 import TituloCategoria from "../../../components/TituloCategoria";
-const Categoria3 = () => {
+import EditarCategoriasNav from "../../../components/EditarCategoriasNav";
+
+const EditarCategoria = () => {
   return (
     <div>
       <Header></Header>
       <CategoriasHeader></CategoriasHeader>
-      <TituloCategoria titulo="Categoria 3"></TituloCategoria>
+      <div className="flex row">
+        <TituloCategoria titulo="Categoria 1"></TituloCategoria>
+        <EditarCategoriasNav></EditarCategoriasNav>
+      </div>
 
       <div className="flex flex-wrap w-11/12">
         <Produto
@@ -52,4 +57,4 @@ const Categoria3 = () => {
   );
 };
 
-export default Categoria3;
+export default EditarCategoria;
