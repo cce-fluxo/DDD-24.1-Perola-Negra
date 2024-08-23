@@ -4,16 +4,16 @@ import BtnCinza from "./BtnCinza";
 
 const EditarCategoriasNav: React.FC = () => {
   return (
-    <div className="bg-white w-screen py-8 px-20 flex-row fixed top-28 z-50">
+    <div className="bg-white w-screen flex-row content-center">
       <ul className="flex row gap-16 font-semibold">
         <li>
-          <Link href={"categoria-1"}>Categoria 1</Link>
+          <Link href={""}>Adicionar produto</Link>
         </li>
         <li>
-          <Link href={"categoria-2"}>Categoria 2</Link>
+          <Link href={""}>Editar categorias</Link>
         </li>
         <li>
-          <Link href={"categoria-3"}>Categoria 3</Link>
+          <Link href={""}>Selecionar</Link>
         </li>
       </ul>
     </div>

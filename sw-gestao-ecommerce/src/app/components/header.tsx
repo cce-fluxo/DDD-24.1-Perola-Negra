@@ -35,7 +35,9 @@ const Header: React.FC = () => {
           className="object-none cursor-pointer"
           onClick={() => router.back()}
         ></Image>
-        <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
+        <Link href={"/home"}>
+          <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
+        </Link>
       </div>
     </div>
   );

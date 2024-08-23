@@ -21,7 +21,7 @@ const CategoriasHeader: React.FC = () => {
         <li>
           <Link href={"categoria-5"}>Categoria 5</Link>
         </li>
-        <BtnCinza texto="Editar Categoria" rota="editar-categoria"></BtnCinza>
+        <BtnCinza texto="Editar Categoria" rota={"editar-categoria"}></BtnCinza>
       </ul>
     </div>
   );
