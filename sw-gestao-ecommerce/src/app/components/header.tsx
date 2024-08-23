@@ -10,16 +10,16 @@ const Header: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-white w-screen py-5 px-10 justify-end">
+    <div className="bg-white w-screen py-5 px-10 justify-end fixed z-50">
       <ul className="flex row gap-8 font-semibold justify-end">
         <li>
-          <Link href={"banner"}>Banner</Link>
+          <Link href={"/banner"}>Banner</Link>
         </li>
         <li>
-          <Link href={"produtos"}>Produtos</Link>
+          <Link href={"/produtos/categoria-1"}>Produtos</Link>
         </li>
         <li>
-          <Link href={"fluxo-pedidos"}>Fluxo de Pedidos</Link>
+          <Link href={"/fluxo-pedidos"}>Fluxo de Pedidos</Link>
         </li>
         <li>
           <Link href={"controle-estoque"}>Controle de Estoques</Link>
@@ -35,7 +35,9 @@ const Header: React.FC = () => {
           className="object-none cursor-pointer"
           onClick={() => router.back()}
         ></Image>
-        <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
+        <Link href={"/home"}>
+          <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
+        </Link>
       </div>
     </div>
   );
