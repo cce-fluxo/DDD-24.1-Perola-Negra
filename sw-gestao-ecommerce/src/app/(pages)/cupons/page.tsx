@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '@/app/components/Header';
 
 function Cupons() {
   return (
-    <div>Cupons</div>
+    <div>
+        <Header></Header>
+    </div>
   )
 }
 
