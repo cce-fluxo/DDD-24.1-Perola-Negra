@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           src={leftChevron}
           alt=""
           className="object-none cursor-pointer"
-          onClick={() => router.back()}
+          onClick={() => router.push("/home")}
         ></Image>
         <Link href={"/home"}>
           <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
