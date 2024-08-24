@@ -6,7 +6,7 @@ interface Props{
 }
 
 {/*Defina o link ativo passando o número correspondente de activeLink (1 para o primeiro, 2 para o segundo, etc.)*/ }
-function AbasCupom({activeLink}: Props) {
+function NavegacaoCupons({activeLink}: Props) {
   return (
     <div className='w-full h-[8vh] bg-white flex justify-evenly items-center rounded-2xl'>
 
@@ -21,4 +21,4 @@ function AbasCupom({activeLink}: Props) {
   );
 };
 
-export default AbasCupom;
+export default NavegacaoCupons;
