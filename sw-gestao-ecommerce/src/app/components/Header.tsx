@@ -22,10 +22,10 @@ const Header: React.FC = () => {
           <Link href={"/fluxo-pedidos"}>Fluxo de Pedidos</Link>
         </li>
         <li>
-          <Link href={"controle-estoque"}>Controle de Estoques</Link>
+          <Link href={"/controle-estoque"}>Controle de Estoques</Link>
         </li>
         <li>
-          <Link href={"cupons"}>Cupons</Link>
+          <Link href={"/cupons"}>Cupons</Link>
         </li>
       </ul>
       <div className="flex row gap-6">
