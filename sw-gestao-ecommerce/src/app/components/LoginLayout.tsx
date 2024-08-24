@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -47,52 +46,31 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           right: '796px',
           top: '22px',
           bottom: '146px',
-          background: 'white',
+          background: '#F0F0F0',
           borderRadius: '20px',
-          padding: '20px',
-          boxSizing: 'border-box',
         }}
       >
         <div
-          className="align-baseline font-bold text-5xl"
+          className="absolute"
           style={{
-            marginBottom: '140px',
+            width: '450px',
+            height: '150px',
+            left: '85px',
+            top: '120px',
+            color: 'black',
+            fontSize: '48px',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 600,
+            wordWrap: 'break-word',
           }}
         >
           LOGO RESTAURANTE
         </div>
 
-        <div className="flex flex-col space-y-24">
-          <Link href="/banner" className="text-5xl hover:underline font-bold">
-            Banner
-          </Link>
-          <Link href="/produtos" className="text-5xl hover:underline font-bold">
-            Produtos
-          </Link>
-          <Link href="/fluxo-de-pedidos" className="text-5xl hover:underline font-bold">
-            Fluxo de Pedidos
-          </Link>
-          <Link href="/controle-de-estoques" className="text-5xl hover:underline font-bold">
-            Controle de Estoques
-          </Link>
-        </div>
-
         {children}
-      </div>
-
-      <div
-        className="absolute"
-        style={{
-          bottom: '0px',
-          left: '80px',
-          padding: '10px',
-        }}
-      >
-        <a className="text-3xl">Sair</a>
       </div>
     </section>
   );
 };
 
 export default LoginLayout;
-
