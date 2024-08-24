@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '@/app/components/Header';
 import TituloCategoria from '@/app/components/TituloCategoria';
 import Link from 'next/link';
+import CardMobile from '@/app/components/tabela/CardMobile';
 
 
 function Cupons() {
@@ -11,28 +12,15 @@ function Cupons() {
     <div className='flex flex-col justify-around h-[100vh] w-[80vw] py-3'>{/*conteudo da página*/}
   
       <div className='w-full h-[10vh] flex border-solid'>{/*conteudo 1 da página*/}
-        <TituloCategoria titulo='Cupons'></TituloCategoria>{/*Nome da página*/}
+        <TituloCategoria titulo='Cupons Ativos'></TituloCategoria>{/*Nome da página*/}
       </div>
 
       <div className='w-full h-[80vh] overflow-y-auto flex-col my-3'>{/*conteudo 2 da página*/}
 
-        <div className='w-full h-[25vh] flex flex-col justify-evenly my-2 p-4 rounded-xl bg-[#BDBDBD]'>{/*Card-tabela para dispositivos mobile*/}
-
-          <div className='w-full flex justify-around mb-2'>{/*Caixa (Nome + codigo)*/}
-            <div className=' rounded-xl font-extrabold text-lg'>DDDIVOS</div>{/*Nome cupom*/}
-            <div className=' rounded-xl  text-white text-opacity-50'>#12345678</div>{/*Código cupom*/}
-          </div>
-
-          <div className='w-full flex justify-around mb-2'>{/*Caixa (Desconto + Qtd usado)*/}
-            <div className=' rounded-xl font-semibold'>Desconto: 25%</div>{/*Desconto*/}
-            <div className=' rounded-xl  text-black'>Usado: 234x</div>{/*quantidade usado*/}
-          </div>
-
-          <div className='w-full flex justify-around'>{/*Caixa validade*/}
-            <div className=' rounded-xl font-semibold'>Válido até: 12/12/2024</div>{/*Texto validade*/}
-          </div>
-
-        </div>
+        <CardMobile nome = 'CUPOM10' validade = '12/03/2024' desconto = '25' qtdUsada = '29' codigo = '#123123'></CardMobile>
+        <CardMobile></CardMobile>
+        <CardMobile></CardMobile>
+        <CardMobile></CardMobile>
                 
       </div>
   
