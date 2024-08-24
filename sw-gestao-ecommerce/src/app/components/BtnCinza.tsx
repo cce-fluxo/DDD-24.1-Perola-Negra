@@ -10,7 +10,6 @@ interface BtnCinzaProps {
 }
 
 const BtnCinza: React.FC<BtnCinzaProps> = ({ texto, rota }) => {
-  const router = useRouter();
   const currentPath = usePathname();
 
   return (
