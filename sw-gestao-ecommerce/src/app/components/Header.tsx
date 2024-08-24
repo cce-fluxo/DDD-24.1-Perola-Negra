@@ -16,7 +16,7 @@ const Header: React.FC = () => {
           <Link href={"/banner"}>Banner</Link>
         </li>
         <li>
-          <Link href={"/produtos/categoria-1"}>Produtos</Link>
+          <Link href={"/produtos"}>Produtos</Link>
         </li>
         <li>
           <Link href={"/fluxo-pedidos"}>Fluxo de Pedidos</Link>
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           src={leftChevron}
           alt=""
           className="object-none cursor-pointer"
-          onClick={() => router.back()}
+          onClick={() => router.push("/home")}
         ></Image>
         <Link href={"/home"}>
           <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
