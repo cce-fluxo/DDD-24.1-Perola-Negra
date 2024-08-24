@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '@/app/components/Header';
 import TituloCategoria from '@/app/components/TituloCategoria';
-import Link from 'next/link';
 import CardMobile from '@/app/components/tabela/CardMobile';
+import NavegacaoCupons from '@/app/components/tabela/NavegacaoCupons';
 
 
 function Cupons() {
@@ -25,17 +25,7 @@ function Cupons() {
       </div>
   
       <div className='flex'>{/*conteudo 3 da página*/}
-  
-        <ul className='w-full h-[8vh] bg-white flex justify-evenly rounded-xl'>{/*Caixa SubHeader*/}
-          
-          <li className='flex items-center text-black underline'>{/*Caixa link1*/}
-              <Link href={'#'}>Cupons ativos</Link>
-          </li>
-  
-          <li className='flex items-center text-black text-opacity-50'>{/*Caixa link2*/}
-              <Link href={'#'}>Adicionar cupons</Link>
-          </li>
-        </ul>
+       <NavegacaoCupons activeLink={1}></NavegacaoCupons>
   
       </div>
     </div>
