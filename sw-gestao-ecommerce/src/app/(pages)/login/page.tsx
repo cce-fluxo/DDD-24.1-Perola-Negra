@@ -7,7 +7,6 @@ import LoginLayout from "@/app/components/LoginLayout"; // Importando o componen
 const LoginForm: React.FC = () => {
   const router = useRouter();
 
-// Não recarrega a página
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/home"); // Ir para outra página
@@ -17,30 +16,12 @@ const LoginForm: React.FC = () => {
     // Layout do formulário de login
     <LoginLayout>
       <div
-        className="absolute"
-        style={{
-          width: '300px',
-          height: '60px',
-          left: '85px',
-          top: '280px',
-          color: 'black',
-          fontSize: '52px',
-          fontFamily: 'Inter, sans-serif',
-          fontWeight: 600,
-          wordWrap: 'break-word',
-        }}
+        className="absolute w-[300px] h-[60px] left-[85px] top-[280px] text-black text-[52px] font-semibold break-words"
       >
         Entrar
       </div>
 
-      <form onSubmit={handleSubmit} className="absolute flex flex-col items-center justify-center p-8"
-        style={{
-          left: '55px',
-          top: '360px',
-          width: 'calc(100% - 70px)',
-          maxWidth: '500px',
-        }}
-      >
+      <form onSubmit={handleSubmit} className="absolute flex flex-col items-center justify-center p-8 left-[55px] top-[360px] w-[calc(100%-70px)] max-w-[500px]">
         <div className="mb-4 w-full">
           <label className="block text-sm font-bold text-gray-700 mb-2" htmlFor="email">E-mail</label>
           <input
@@ -64,12 +45,7 @@ const LoginForm: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="absolute px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
-          style={{
-            left: '200px',
-            top: '270px',
-            width: '150px'
-          }}
+          className="absolute left-[200px] top-[270px] w-[150px] px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
         >
           Entrar
         </button>
@@ -79,5 +55,6 @@ const LoginForm: React.FC = () => {
 };
 
 export default LoginForm;
+
 
 
