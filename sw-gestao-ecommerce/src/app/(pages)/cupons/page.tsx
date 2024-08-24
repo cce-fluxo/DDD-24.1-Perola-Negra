@@ -15,9 +15,11 @@ function Cupons() {
         <TituloCategoria titulo='Cupons Ativos'></TituloCategoria>{/*Nome da página*/}
       </div>
 
-      <div className='w-full h-[80vh] overflow-y-auto flex-col my-3'>{/*conteudo 2 da página*/}
+      <div className='w-full h-[80vh] overflow-y-auto flex flex-col justify-evenly my-3 border-2 border-black md:flex-row md:flex-wrap'>{/*conteudo 2 da página*/}
 
         <CardMobile nome = 'CUPOM10' validade = '12/03/2024' desconto = '25' qtdUsada = '29' codigo = '#123123'></CardMobile>
+        <CardMobile></CardMobile>
+        <CardMobile></CardMobile>
         <CardMobile></CardMobile>
         <CardMobile></CardMobile>
         <CardMobile></CardMobile>
