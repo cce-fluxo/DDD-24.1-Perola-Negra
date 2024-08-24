@@ -7,7 +7,6 @@ import LoginLayout from "@/app/components/LoginLayout"; // Importando o componen
 const ForgotPassword: React.FC = () => {
   const router = useRouter(); // Ir pra outra página
 
-// Não recarrega a página
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/login/esqueci-minha-senha-2");
@@ -17,31 +16,12 @@ const ForgotPassword: React.FC = () => {
     // Layout do esqueci minha senha 1
     <LoginLayout>
       <div
-        className="absolute"
-        style={{
-          width: '500px',
-          height: '60px',
-          left: '85px',
-          top: '280px',
-          color: 'black',
-          fontSize: '50px',
-          fontFamily: 'Inter, sans-serif',
-          fontWeight: 600,
-          lineHeight: "1.2",
-          wordWrap: 'break-word',
-        }}
+        className="absolute w-[500px] h-[60px] left-[85px] top-[280px] text-black text-[50px] font-semibold leading-[1.2] break-words"
       >
         Esqueci<br /> minha senha
       </div>
       
-      <div className="absolute flex flex-col items-start p-8"
-        style={{
-          left: '55px',
-          top: '400px',
-          width: 'calc(100% - 70px)',
-          maxWidth: '500px',
-        }}
-      >
+      <div className="absolute flex flex-col items-start p-8 left-[55px] top-[400px] w-[calc(100%-70px)] max-w-[500px]">
         <p className="text-left mb-6 text-lg">
           Insira seu e-mail para enviarmos um código de verificação para que você possa alterar a senha
         </p>
@@ -61,12 +41,7 @@ const ForgotPassword: React.FC = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="absolute px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
-          style={{
-            left: '200px',
-            top: '230px',
-            width: '150px'
-          }}
+          className="absolute left-[200px] top-[230px] w-[150px] px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
         >
           Enviar
         </button>
@@ -76,4 +51,5 @@ const ForgotPassword: React.FC = () => {
 };
 
 export default ForgotPassword;
+
 
