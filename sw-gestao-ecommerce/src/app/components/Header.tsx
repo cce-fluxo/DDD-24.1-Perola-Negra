@@ -1,44 +1,64 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import leftChevron from "../../../public/icons/left-chevron.png";
-
+import { usePathname } from "next/navigation";
 const Header: React.FC = () => {
   const router = useRouter();
+  const currentPath = usePathname();
+
+  // Função para verificar se a URL atual contém a string especificada
+  const isActive = (path: string) => currentPath.startsWith(path);
+
+  // Função para determinar o texto e o link a partir do pathname
+  const getLinkText = (path: string) => {
+    switch (path) {
+      case "/produtos":
+        return "Produtos";
+      case "/banner":
+        return "Banner";
+      case "/fluxo-pedidos":
+        return "Fluxo de Pedidos";
+      case "/controle-estoque":
+        return "Controle de Estoque";
+      case "/cupons":
+        return "Cupons";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div className="bg-white w-screen py-5 px-10 justify-end fixed z-50">
-      <ul className="flex row gap-8 font-semibold justify-end">
-        <li>
-          <Link href={"/banner"}>Banner</Link>
-        </li>
-        <li>
-          <Link href={"/produtos"}>Produtos</Link>
-        </li>
-        <li>
-          <Link href={"/fluxo-pedidos"}>Fluxo de Pedidos</Link>
-        </li>
-        <li>
-          <Link href={"/controle-estoque"}>Controle de Estoques</Link>
-        </li>
-        <li>
-          <Link href={"/cupons"}>Cupons</Link>
-        </li>
-      </ul>
-      <div className="flex row gap-6">
+    <div className="bg-white w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-50">
+      <div className="flex items-center gap-4 sm:pt-8 sm:gap-6">
         <Image
           src={leftChevron}
-          alt=""
+          alt="Voltar"
           className="object-none cursor-pointer"
           onClick={() => router.push("/home")}
-        ></Image>
+        />
         <Link href={"/home"}>
-          <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
+          <h1 className="font-bold text-3xl sm:text-5xl">LOGO</h1>
         </Link>
       </div>
+      <ul className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-semibold">
+        {[
+          "/banner",
+          "/produtos",
+          "/fluxo-pedidos",
+          "/controle-estoque",
+          "/cupons",
+        ].map((path) => (
+          <li
+            key={path}
+            className={isActive(path) ? "underline underline-offset-2" : ""}
+          >
+            <Link href={path}>{getLinkText(path)}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -7,16 +7,17 @@ import Link from "next/link";
 interface BtnCinzaProps {
   texto: string;
   rota: string;
+  onClick?: () => void;
 }
 
-const BtnCinza: React.FC<BtnCinzaProps> = ({ texto, rota }) => {
+const BtnCinza: React.FC<BtnCinzaProps> = ({ texto, rota, onClick }) => {
   const currentPath = usePathname();
 
   return (
-    <button>
+    <button onClick={onClick}>
       <Link
         href={`${currentPath}/${rota}`} // Concatena a rota atual com a rota de edição
-        className="bg-neutral-300 font-semibold p-5 rounded-[20px]"
+        className="bg-neutral-300 font-semibold px-5 py-3 rounded-2xl"
       >
         {texto}
       </Link>
