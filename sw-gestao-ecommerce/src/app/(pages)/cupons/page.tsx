@@ -3,6 +3,7 @@ import Header from "@/app/components/Header";
 import TituloCategoria from "@/app/components/TituloCategoria";
 import CardMobile from "@/app/components/tabela/CardMobile";
 import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
+import Tabela from "@/app/components/tabela/Tabela";
 
 function Cupons() {
   {
@@ -21,12 +22,12 @@ function Cupons() {
           {/*Nome da página*/}
         </div>
 
-        <div className="hidden w-[40vw] h-[7vh] lg:flex">
+        <div className="hidden w-[38vw] h-[7vh] lg:flex">
           {/*Navegacao conteúdo LG*/}
           <NavegacaoCupons activeLink={1}></NavegacaoCupons>
         </div>
 
-        <div className="w-full h-[75vh] overflow-y-auto lg:w-[95vw] lg:h-[65vh] lg:mx-auto">
+        <div className="w-full h-[75vh] overflow-y-auto lg:w-[95vw] lg:h-[65vh] lg:mx-auto lg:rounded-t-3xl">{/**rounded-t-3xl impede que as celulas da tabela vazem pela head*/}
           {/* Conteudo 2 da pagina*/}
           <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly lg:hidden">
             {/* Conteúdo mobile até md */}
@@ -45,29 +46,8 @@ function Cupons() {
           </div>
 
           {/* Conteúdo lg e acima */}
-          {/* a1n --> elemento a linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células)*/}
           <div className="hidden lg:flex">
-            <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2]">
-              <thead className="bg-[#BDBDBD] h-[10vh] text-xl text-white">
-                <tr>
-                  <th className="font-light bg-[#BDBDBD] rounded-tl-2xl">Coluna 1</th>{/*a11*/}
-                  <th className="font-light bg-[#BDBDBD]">Coluna 2</th>
-                  <th className="font-light bg-[#BDBDBD] rounded-tr-2xl">Coluna 3</th>{/*a1n*/}
-                </tr>
-              </thead>
-              <tbody className="h-[25vh]">
-                <tr>
-                  <td className="border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td>{/*b11*/}
-                  <td className="border-2 border-[#E0E0E0] border-t-0 bg-white">#123456</td>
-                  <td className="border-2 border-[#E0E0E0] border-t-0 border-r-0 bg-white">25% de<br></br>desconto</td>{/*b1n*/}
-                </tr>
-                <tr>{/*Tem que ser a ultima linha da tabela*/}
-                  <td className="border-2 border-[#E0E0E0] border-b-0 border-l-0 bg-white">Dado 4</td>{/*bn1*/}
-                  <td className="border-2 border-[#E0E0E0] border-b-0 bg-white">Dado 5</td>
-                  <td className="border-2 border-[#E0E0E0] border-b-0 border-r-0 bg-white">Dado 6</td>{/*bnn*/}
-                </tr>
-              </tbody>
-            </table>
+            <Tabela></Tabela>
           </div>
         </div>
 
