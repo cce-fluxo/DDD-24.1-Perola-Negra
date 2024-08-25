@@ -2,15 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import leftChevron from "../../../public/icons/left-chevron.png";
 
-const Header: React.FC = () => {
+const HeaderFluxoDePedidos: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-white w-screen py-5 px-10 justify-end fixed z-50">
+    <div className="bg-gray-100 w-screen py-5 px-10 justify-end fixed z-50">
       <ul className="flex row gap-8 font-semibold justify-end">
         <li>
           <Link href={"/banner"}>Banner</Link>
@@ -29,18 +27,10 @@ const Header: React.FC = () => {
         </li>
       </ul>
       <div className="flex row gap-6">
-        <Image
-          src={leftChevron}
-          alt=""
-          className="object-none cursor-pointer"
-          onClick={() => router.push("/home")}
-        ></Image>
-        <Link href={"/home"}>
-          <h1 className="align-baseline font-bold text-5xl">LOGO</h1>
-        </Link>
+        <h1 className="align-baseline font-bold text-5xl">FLUXO DE PEDIDOS</h1>
       </div>
     </div>
   );
 };
 
-export default Header;
+export default HeaderFluxoDePedidos;
