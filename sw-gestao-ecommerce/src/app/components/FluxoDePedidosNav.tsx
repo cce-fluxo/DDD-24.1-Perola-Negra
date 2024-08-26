@@ -4,7 +4,7 @@ import BtnCinza from "./BtnCinza";
 
 const FluxoDePedidosNav: React.FC = () => {
   return (
-    <div className="bg-white w-screen py-8 px-20 flex-row fixed top-28 z-50">
+    <div className="bg-white w-[100vw] mx-20 py-4 px-6 flex-row fixed top-28 z-50 rounded-lg">
       <ul className="flex row gap-9">
         <li>
           <Link href={"visao-geral"}>Visao Geral</Link>

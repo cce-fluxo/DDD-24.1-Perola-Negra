@@ -8,7 +8,7 @@ const HeaderFluxoDePedidos: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-gray-100 w-screen py-5 px-10 justify-end fixed z-50">
+    <div className="bg-gray-100 w-screen py-5 px-20 justify-end fixed z-50">
       <ul className="flex row gap-8 font-semibold justify-end">
         <li>
           <Link href={"/banner"}>Banner</Link>
