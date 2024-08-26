@@ -17,7 +17,7 @@ function Cupons() {
         {/*Pagina*/}
         
         <HeaderMobile titulo="Cupons"></HeaderMobile>{/**Header de dispositivos mobile + md */}
-        <Header></Header>
+        <div className="hidden lg:flex"><Header></Header></div>
 
         <div className="hidden w-[40vw] h-[7vh] lg:flex lg:ml-3">{/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
           <NavegacaoCupons activeLink={1}></NavegacaoCupons>
