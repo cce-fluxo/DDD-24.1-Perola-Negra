@@ -1,11 +1,11 @@
 "use client"
 
+import React, { useState } from 'react';
 import Link from 'next/link';
-import React, { useState } from 'react'
 
 function MenuMobile() {
 
-    const [isOpen, setIsopen] = useState(true);
+    const [isOpen, setIsopen] = useState(false);
 
     const toggleMenu = () => {
         setIsopen(!isOpen);
@@ -14,39 +14,51 @@ function MenuMobile() {
 
   return (
     
-    <div className='w-full h-full border-2 border-blue-700'>
-        <button onClick={toggleMenu} className='w-full h-full border-2 bg-slate-600'>
+    <div className='h-full w-full'>
+        
+        <button onClick={toggleMenu} className="w-full h-full bg-contain bg-black">
         </button>
-        <div className={`w-full h-[18vh] z-10 flex flex-col p-3 ${isOpen ? '' : 'hidden'}`}>
-            <ul>
-                <li>
-                    <Link href={'#'}>
+        <div className={`flex w-[27vw] ${isOpen ? '' : 'hidden'}`}>
+            <ul className='w-full flex flex-col justify-around items-center bg-white z-10 rounded-b-xl'>
+            <li className='w-full text-center'>
+                    <Link href={'/home'} className='w-full flex justify-center p-3 hover:bg-[#E0E0E0] hover:text-white'>
+                        Home
+                    </Link>
+                </li>
+
+                <li className='w-full text-center'>
+                    <Link href={'/banner'} className='w-full flex justify-center p-3 hover:bg-[#E0E0E0] hover:text-white'>
                         Banner
                     </Link>
                 </li>
 
-                <li>
-                    <Link href={'#'}>
-                        Banner
+                <li className='w-full text-center'>
+                    <Link href={'/produtos'} className='w-full flex justify-center p-3 hover:bg-[#E0E0E0] hover:text-white'>
+                        Produtos
                     </Link>
                 </li>
 
-                <li>
-                    <Link href={'#'}>
-                        Banner
+                <li className='w-full text-center'>
+                    <Link href={'#'} className='w-full flex justify-center p-3  hover:bg-[#E0E0E0] hover:text-white'>
+                        Pedidos
                     </Link>
                 </li>
 
-                <li>
-                    <Link href={'#'}>
-                        Banner
+                <li className='w-full text-center'>
+                    <Link href={'controle-de-estoques'} className='w-full flex justify-center p-3 hover:bg-[#E0E0E0] hover:text-white'>
+                        Estoque
+                    </Link>
+                </li>
+
+                <li className='w-full text-center'>
+                    <Link href={'/cupons'} className='w-full flex justify-center p-3  hover:bg-[#E0E0E0] hover:text-white'>
+                        Cupons
                     </Link>
                 </li>
 
 
             </ul>
         </div>
-        
     </div>
   )
 }
