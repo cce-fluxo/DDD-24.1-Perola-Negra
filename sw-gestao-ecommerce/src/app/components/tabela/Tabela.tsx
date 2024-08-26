@@ -4,13 +4,13 @@ function Tabela() {
   return (
     <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2]">
         {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células)*/}
-              <thead className="sticky top-0 bg-[#BDBDBD] h-[10vh] text-xl text-white">
+              <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
                 <tr>
-                  <th className="font-light bg-[#BDBDBD] rounded-tl-2xl">Cupom</th>{/*a11*/}
+                  <th className="font-light bg-[#BDBDBD]">Cupom</th>{/*a11*/}
                   <th className="font-light bg-[#BDBDBD]">Código</th>
                   <th className="font-light bg-[#BDBDBD]">Detalhes</th>
                   <th className="font-light bg-[#BDBDBD]">Qt. de usos</th>
-                  <th className="font-light bg-[#BDBDBD] rounded-tr-2xl">Válido até</th>{/*a1n*/}
+                  <th className="font-light bg-[#BDBDBD]">Válido até</th>{/*a1n*/}
                 </tr>
               </thead>
               <tbody className="h-[25vh] overflow-y-">
