@@ -13,11 +13,11 @@ function Cupons() {
     <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
       {/*"Body" da página*/}
 
-      <div className="flex flex-col justify-around h-[100vh] w-[80vw] py-3 lg:w-[99vw]">
+      <div className="flex flex-col justify-around h-[100vh] w-[80vw] py-3 lg:w-[100vw]">
         {/*Pagina*/}
         
         <HeaderMobile titulo="Cupons"></HeaderMobile>{/**Header de dispositivos mobile + md */}
-        <div className="hidden lg:flex"><Header></Header></div>
+        <div className="hidden lg:flex"><Header></Header></div>{/**Header para dispositivos lg*/}
 
         <div className="hidden w-[40vw] h-[7vh] lg:flex lg:ml-3">{/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
           <NavegacaoCupons activeLink={1}></NavegacaoCupons>
