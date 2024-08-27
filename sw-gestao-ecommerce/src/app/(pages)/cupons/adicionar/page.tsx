@@ -6,6 +6,7 @@ import CardMobile from "@/app/components/tabela/CardMobile";
 import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
 import Tabela from "@/app/components/tabela/Tabela";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
+import BotaoSalvar from '@/app/components/BotaoSalvar';
 
 function adicionarCupons() {
   return (
@@ -32,19 +33,19 @@ function adicionarCupons() {
 
         <div className="w-full h-[75vh] flex flex-col justify-around border-2 border-black">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
           {/* Conteudo principal*/}
+
           <div className="lg:hidden border-2 border-red-600">
             {/* Conteúdo mobile até md */}
             <CardMobile
-              nome="CUPOM10"
-              validade="12/03/2024"
-              desconto="25"
-              qtdUsada="29"
+              validade="__/__/____"
+              desconto="__"
+              qtdUsada="___"
               codigo="#123123"
             ></CardMobile></div>
 
             <div className='flex justify-around border-2 border-blue-900'>{/**Botao salvar/cancelar*/}
-              <button className='bg-green-700'>Salvar</button>
-              <button className='bg-purple-600'>Cancelar</button>
+              <BotaoSalvar nome='Salvar'></BotaoSalvar>
+              <BotaoSalvar nome='Cancelar'></BotaoSalvar>
             </div>
 
           {/*Conteúdo lg */}
