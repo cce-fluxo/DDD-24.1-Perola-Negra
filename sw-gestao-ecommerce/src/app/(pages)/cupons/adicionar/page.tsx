@@ -34,13 +34,14 @@ function adicionarCupons() {
         <div className="w-full h-[75vh] flex flex-col justify-around border-2 border-black">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
           {/* Conteudo principal*/}
 
-          <div className="lg:hidden border-2 border-red-600">
+          <div className="lg:hidden border-2 border-red-600 flex justify-center">
             {/* Conteúdo mobile até md */}
             <CardMobile
               validade="__/__/____"
               desconto="__"
               qtdUsada="___"
               codigo="#123123"
+              isAdicionar
             ></CardMobile></div>
 
             <div className='flex justify-around border-2 border-blue-900'>{/**Botao salvar/cancelar*/}
