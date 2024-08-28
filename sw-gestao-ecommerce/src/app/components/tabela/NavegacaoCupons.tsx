@@ -10,10 +10,10 @@ function NavegacaoCupons({activeLink}: Props) {
   return (
     <div className='w-full h-full bg-white flex justify-around items-center rounded-2xl lg:rounded-lg'>
 
-      <Link href={'/cupons'} className={`flex items-center text-black md:text-xl lg:text-lg ${activeLink == 1 ? 'underline' : 'text-opacity-50'}`}>Cupons ativos
+      <Link href={'/cupons'} className={`flex items-center text-black md:text-xl lg:text-lg hover:text-black ${activeLink == 1 ? 'underline' : 'text-opacity-50'}`}>Cupons ativos
       </Link>
 
-      <Link href={'/cupons/adicionar'} className={`flex items-center md:text-xl text-black lg:text-lg ${activeLink == 2 ? 'underline' : 'text-opacity-50'}`}>Adicionar cupons
+      <Link href={'/cupons/adicionar'} className={`flex items-center md:text-xl text-black lg:text-lg hover:text-black ${activeLink == 2 ? 'underline' : 'text-opacity-50'}`}>Adicionar cupons
       </Link>
 
       {/* Adicione mais links conforme necessário */}

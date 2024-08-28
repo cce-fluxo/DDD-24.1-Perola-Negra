@@ -23,7 +23,9 @@ function CardMobile({nome = 'Nome',codigo = '#123445678',desconto,qtdUsada,valid
 
           <div className='w-full flex justify-around mb-2'>{/*Caixa (Desconto + Qtd usado)*/}
             <div className=' rounded-xl font-semibold'>Desconto: {desconto}%</div>{/*Desconto*/}
+            {!isAdicionar && (<>
             <div className=' rounded-xl  text-black'>Usado: {qtdUsada}x</div>{/*quantidade usado*/}
+            </>)}
           </div>
 
           <div className='w-full flex justify-around'>{/*Caixa validade*/}
