@@ -31,10 +31,9 @@ function adicionarCupons() {
           <NavegacaoCupons activeLink={2}></NavegacaoCupons>
         </div>
 
-        <div className="w-full h-[75vh] flex flex-col justify-around border-2 border-black">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
+        <div className="w-full h-[75vh] flex flex-col justify-around overflow-y-auto lg:w-[85vw] lg:h-[65vh] lg:justify-normal lg:mx-auto lg:rounded-t-2xl">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
           {/* Conteudo principal*/}
-
-          <div className="lg:hidden border-2 border-red-600 flex justify-center">
+          <div className="lg:hidden md:h-[30vh] border-2 border-red-600 flex justify-center items-center">
             {/* Conteúdo mobile até md */}
             <CardMobile
               validade="__/__/____"
@@ -44,15 +43,16 @@ function adicionarCupons() {
               isAdicionar
             ></CardMobile></div>
 
-            <div className='flex justify-around border-2 border-blue-900'>{/**Botao salvar/cancelar*/}
+          {/*Conteúdo lg */}
+          <div className="hidden lg:flex">
+            <Tabela isAdicionar></Tabela>
+          </div>
+
+          <div className='flex justify-around border-2 border-blue-900 md:text-xl lg:hidden'>{/**Botao salvar/cancelar*/}
               <BotaoSalvar nome='Salvar'></BotaoSalvar>
               <BotaoSalvar nome='Cancelar'></BotaoSalvar>
             </div>
 
-          {/*Conteúdo lg */}
-          <div className="hidden lg:flex">
-            <Tabela></Tabela>
-          </div>
         </div>
 
         <div className="w-full h-[8vh] lg:hidden">{/**Navegacao para dispositivos mobile*/}
