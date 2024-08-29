@@ -29,7 +29,7 @@ function MenuMobile() {
                 <LinkMenu pagina='/banner' nomeLink='Banner'></LinkMenu>
                 <LinkMenu pagina='/produtos' nomeLink='Produtos'></LinkMenu>
                 <LinkMenu pagina='#' nomeLink='Pedidos'></LinkMenu>
-                <LinkMenu pagina='/controle-de-estoque' nomeLink='Estoque'></LinkMenu>
+                <LinkMenu pagina='/controle-estoque' nomeLink='Estoque'></LinkMenu>
                 <LinkMenu pagina='/cupons' nomeLink='Cupons' isUltimo></LinkMenu>
             </ul>
         </div>
