@@ -30,7 +30,7 @@ function Estoque() {
             </form>
             <div className="w-[20%] h-full bg-contain bg-no-repeat bg-left">
               <MenuMobile isMenuLoja></MenuMobile>
-              {/**Pesquisa por lojas*/}
+              {/**Pesquisa por loja*/}
             </div>
           </div>
         </div>
