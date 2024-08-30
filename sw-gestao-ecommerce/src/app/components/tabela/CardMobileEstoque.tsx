@@ -1,35 +1,40 @@
 "use client"
 import React, { useState } from 'react'
+import Image from 'next/image';
 
 interface props{
+  foto?:string;
   nome?:string;
-  codigo?:string;
-  desconto?:string;
-  qtdUsada?:string;
-  validade?:string;
-  isAdicionar?: boolean;
+  qtdEstoque?:string;
+  tamanho?:string;
+  cor?:string;
 
 }
-function CardMobile({nome = 'Nome',codigo = '#123445678',desconto,qtdUsada,validade}: props) {
+function CardMobile({foto = 'Foto', nome = 'nome produto', qtdEstoque = '_', tamanho = 'XX', cor = 'Cor'}: props) {
   return (
 
-    <div className="w-full h-[20vh] flex justify-around p-4 rounded-xl bg-[#BDBDBD]" >{/*Card-tabela para dispositivos mobile*/}
+    <div className="w-full h-[20vh] flex justify-around my-2 p-4 rounded-xl bg-[#F2F2F2]" >{/*Card-tabela para dispositivos mobile*/}
 
-        <div className='bg-red-800 w-[25vw] text-center' >{/**Foto do produto */}
-            Foto
+        <div className= 'bg-white w-[25vw] text-center rounded-lg' >{/**Foto do produto */}
+            {foto}
         </div>
 
-        <div className='border-2 border-white w-[40vw] flex flex-col  justify-around'>{/**Informacoes*/}
-            <div className='border-2 border-black font-bold text-center'>Blusa decotada v</div>{/**Nome*/}
+        <div className='w-[40vw] flex flex-col justify-around rounded-xl'>{/**Informacoes*/}
 
-            <div className='border-2 border-yellow-800 flex justify-around font-medium'>{/**Tamanho+cor */}
-                <div>Amarela</div>
-                <div className='text-white'>M</div>
+            <div className='font-bold text-center'>{nome}</div>{/**Nome*/}
+
+            <div className='flex justify-around font-medium'>{/**Tamanho+cor */}
+                <div>{cor}</div>
+                <div className='font-extrabold'>{tamanho}</div>
             </div>
 
-            <div className='border-2 border-green-800 flex justify-around font-medium'>{/**Quantidade + opcoes */}
-                <div>20x</div>
-                <div className=''>Icones</div>
+            <div className='flex justify-around font-medium'>{/**Quantidade + opcoes */}
+                <div className='font-semibold text-lg w-[2vw]'>{qtdEstoque}x</div>
+                <div className='w-[14vw] flex justify-between sm:w-[10vw] md:w-[8vw]'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>|
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>|
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>
+                </div>
             </div>
 
         </div>           
