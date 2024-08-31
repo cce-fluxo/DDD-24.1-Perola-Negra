@@ -2,6 +2,7 @@ import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 import React from "react";
 import CardMobileEstoque from "@/app/components/tabela/CardMobileEstoque";
 import MenuMobile from "@/app/components/HeaderMobile/MenuMobile";
+import MenuEscolherLoja from "@/app/components/MenuEscolherLoja";
 
 function Estoque() {
   return (
@@ -17,12 +18,12 @@ function Estoque() {
           </header>
 
           <header className="hidden lg:flex">
-            
+
           </header>
 
-          <div className="flex justify-around items-center w-full h-[7vh]  border-2 border-black lg:justify-start lg:gap-10">
+          <div className="flex justify-around items-center w-full h-[8vh] border-2 border-black lg:justify-start lg:gap-10">
             {/**Area de pesquisa*/}
-            <form className="w-[70%] h-full flex bg-[#E0E0E0] p-2 rounded-xl border-2 border-black lg:w-[50%]">
+            <form className="w-[70%] h-full flex bg-[#E0E0E0] p-2 rounded-xl border-2 border-black lg:w-[45%]">
               {/**Barra de pesquisa*/}
               <button className="w-[8vw] bg-[url('/images/lupinha.png')] bg-no-repeat bg-center bg-contain md:w-[6vw] lg:w-[5vw] xl:w-[4vw] "></button>
               {/**Lupinha*/}
@@ -32,25 +33,12 @@ function Estoque() {
               ></input>
               {/**Espaço para digitar o texto*/}
             </form>
-            <div className="w-[20%] h-full bg-contain bg-no-repeat bg-left border-2 border-orange-500 lg:rounded-xl lg:bg-[#E0E0E0] lg:h-[8vh]">
+            <div className="w-[20%] h-full bg-contain bg-no-repeat bg-left lg:rounded-xl lg:bg-[#D9D9D9]">
 
               <div className="w-full h-full lg:hidden">
                 <MenuMobile isMenuLoja></MenuMobile>{/**Menu Mobile*/}
               </div>
-
-              <div className="w-full h-[60vh] hidden flex-col justify-between lg:flex rounded-xl bg-red-800">{/**MenuEscolherLoja lg*/}
-
-                <div className="w-full h-[7vh] flex justify-around border-2 border-black">{/**Setinha+titulo*/}
-                  <div className="border-2 border-gray-600 flex items-center w-[65%]">Escolher loja</div>
-                  <button className="border-2 border-white text-center w-[25%]">Botao</button>
-                </div>
-
-                <div className="w-[25vw] h-[70%] border-2 border-green-600 bg-green-400 rounded-xl"> {/**Menu*/}
-                  Menu
-                </div>
-
-              </div>
-
+              <MenuEscolherLoja></MenuEscolherLoja>
             </div>
           </div>
         </div>
