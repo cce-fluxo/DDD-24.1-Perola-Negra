@@ -3,7 +3,7 @@ import React from 'react'
 function TabelaEstoque() {
   return (
 
-    <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
+    <table className="w-full text-2xl text-center bg-[#F2F2F2] border-collapse">
     {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
     <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
 
