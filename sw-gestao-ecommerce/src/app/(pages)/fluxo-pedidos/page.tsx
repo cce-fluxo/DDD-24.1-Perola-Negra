@@ -6,7 +6,7 @@ const FluxoDePedidos: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("../fluxo-de-pedidos/visao-geral");
+    router.replace("../fluxo-pedidos/visao-geral");
   }, [router]);
 
   return null; // Não há necessidade de renderizar nada, pois estamos redirecionando.

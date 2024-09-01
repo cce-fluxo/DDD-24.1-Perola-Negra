@@ -34,7 +34,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Link href="/produtos" className="text-5xl hover:underline font-bold">
             Produtos
           </Link>
-          <Link href="/fluxo-de-pedidos" className="text-5xl hover:underline font-bold">
+          <Link href="/fluxo-pedidos" className="text-5xl hover:underline font-bold">
             Fluxo de Pedidos
           </Link>
           <Link href="/controle-de-estoques" className="text-5xl hover:underline font-bold">
