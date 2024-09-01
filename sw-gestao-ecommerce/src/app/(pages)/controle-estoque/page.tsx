@@ -2,7 +2,7 @@ import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 import React from "react";
 import CardMobileEstoque from "@/app/components/tabela/CardMobileEstoque";
 import MenuMobile from "@/app/components/HeaderMobile/MenuMobile";
-import MenuEscolherLoja from "@/app/components/MenuEscolherLoja";
+import MenuCheckBox from "@/app/components/MenuCheckBox";
 import AreaPesquisar from "@/app/components/AreaPesquisar";
 import Header from "@/app/components/Header";
 import TabelaEstoque from "@/app/components/tabela/TabelaEstoque";
@@ -20,11 +20,13 @@ function Estoque() {
             <span className="text-center mb-3">Nome Filial</span>{/**Nome da loja selecionada*/}
           </div>
 
-          <div className="hidden lg:flex w-full h-[18vh] border-2 border-green-500">{/**Header para dispositivos lg*/}
+          <div className="hidden lg:flex w-full h-[15vh] border-2 border-green-500">{/**Header para dispositivos lg*/}
             <Header></Header>
+
           </div>
-          <div className="hidden lg:flex text-3xl font-bold lg:mb-3 xl:mb-0 xl:text-4xl ml-20">
-            Controle de estoque
+          <div className="hidden lg:flex items-baseline gap-6 border-2  border-black xl:mb-0 ml-20">
+            <span className="text-center text-3xl font-bold lg:mb-3 xl:text-4xl">Controle de Estoque</span>{/**Nome da loja selecionada*/}
+            <span className="text-center ">Nome Filial Selecionada</span>{/**Nome da loja selecionada*/}
           </div>
           <div className="lg:ml-20">
             <AreaPesquisar></AreaPesquisar>
@@ -43,7 +45,7 @@ function Estoque() {
         </div>
       </div>
 
-        <div className="hidden lg:flex border-2 border-green-500 w-[80vw] mt-8 ml-20">
+        <div className="hidden lg:flex border-2 border-green-500 rounded-t-2xl w-[88vw] mt-4 ml-20 overflow-y-auto overflow-x-hidden justify-center">
           <TabelaEstoque></TabelaEstoque>
         </div>
       </main>

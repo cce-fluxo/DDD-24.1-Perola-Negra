@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-function MenuEscolherLoja() {
+function MenuLoja() {
     const [isOpen, setIisOpen] = useState(false);
     const toggleMenu = ()=>{
         setIisOpen(!isOpen);
@@ -15,7 +15,7 @@ function MenuEscolherLoja() {
                   <div className={`w-[2vw] h-[2vh] ${isOpen ? "bg-[url('/images/setinhaCimaMenuLoja.png')]" : "bg-[url('/images/setinhaBaixoMenuLoja.png')]" } bg-center bg-no-repeat bg-contain`}></div>
                 </button>{/**Setinha*/}
 
-                <div className={`w-[28vw] h-[80%] bg-[#1A1A1A] rounded-xl flex justify-center ${isOpen ? '' : 'hidden'}`}> {/**Menu*/}
+                <div className={`w-[28vw] h-[80%] bg-[#1A1A1A] rounded-xl flex justify-center ${isOpen ? '' : 'hidden'} z-10`}> {/**Menu Links*/}
                   <ul className="w-[80%] flex flex-col justify-around text-white">
                     <li>
                       <label className="inline-flex items-center">
@@ -31,4 +31,4 @@ function MenuEscolherLoja() {
   )
 }
 
-export default MenuEscolherLoja
+export default MenuLoja

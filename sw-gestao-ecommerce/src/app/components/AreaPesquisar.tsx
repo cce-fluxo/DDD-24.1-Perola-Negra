@@ -1,5 +1,5 @@
 import MenuMobile from './HeaderMobile/MenuMobile'
-import MenuEscolherLoja from './MenuEscolherLoja'
+import MenuLoja from './MenuLoja'
 import React from 'react'
 
 function AreaPesquisar() {
@@ -21,7 +21,7 @@ function AreaPesquisar() {
               <div className="w-full h-full lg:hidden">
                 <MenuMobile isMenuLoja></MenuMobile>{/**Menu Mobile*/}
               </div>
-              <MenuEscolherLoja></MenuEscolherLoja>
+              <MenuLoja></MenuLoja>
             </div>
           </div>
   )
