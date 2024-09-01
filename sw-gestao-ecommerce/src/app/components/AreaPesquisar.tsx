@@ -4,9 +4,9 @@ import React from 'react'
 
 function AreaPesquisar() {
   return (
-    <div className="flex justify-around items-center w-full h-[8vh] border-2 border-black lg:justify-start lg:gap-10 lg:mt-6">
+    <div className="flex justify-around items-center w-full h-[6vh] lg:justify-start lg:gap-10 lg:mt-6">
             {/**Area de pesquisa*/}
-            <form className="w-[70%] h-full flex bg-[#E0E0E0] p-2 rounded-xl border-2 border-black lg:w-[45%]">
+            <form className="w-[70%] h-full flex bg-[#E0E0E0] p-2 rounded-xl lg:w-[40%]">
               {/**Barra de pesquisa*/}
               <button className="w-[8vw] bg-[url('/images/lupinha.png')] bg-no-repeat bg-center bg-contain md:w-[6vw] lg:w-[5vw] xl:w-[4vw] "></button>
               {/**Lupinha*/}

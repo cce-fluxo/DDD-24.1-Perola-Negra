@@ -1,16 +1,16 @@
 import React from 'react'
-import MenuCheckBox from '../MenuCheckBox';
+import MenuCheckBox from '../MenuCheckEstoque/MenuCheckBox';
 
 function TabelaEstoque() {
   return (
 
-    <table className="w-full text-2xl text-center bg-[#F2F2F2] border-collapse rounded-t-2xl">
+    <table className="w-full text-2xl text-center bg-[#F2F2F2] border-collapse rounded-t-2xl overflow-y-auto">
     {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
-    <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white ">
+    <thead className="sticky top-0 bg-[#BDBDBD] h-[7vh] text-base text-white z-20">
       <tr>
-        <th className="text-left indent-16 font-semibold border-none bg-[#BDBDBD] rounded-tl-2xl">Produtos</th> {/* a11 */}
-        <th className="font-semibold border-none bg-[#BDBDBD] w-[23vw]">Tamanhos</th>
-        <th className="font-semibold border-none bg-[#BDBDBD]">Cores</th>
+        <th className="font-semibold border-none bg-[#BDBDBD] rounded-tl-2xl">Produtos</th> {/* a11 */}
+        <th className="font-semibold border-none bg-[#BDBDBD]">Tamanhos</th>
+        <th className="font-semibold border-none bg-[#BDBDBD] w-[23vw]">Cores</th>
         <th className="font-semibold border-none bg-[#BDBDBD]">Quantidade</th>
         <th className="font-semibold bg-[#BDBDBD] rounded-tr-2xl">Opções</th> {/* a1n */}
       </tr>
@@ -18,33 +18,179 @@ function TabelaEstoque() {
       
     <tbody>
 
-          <tr> {/* Linhas do meio da tabela */}
-            <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">
-              <div className='flex border-2 border-black w-[23vw] h-[13vh] gap-2'>
-                <div className= 'border-2 border-red-700 text-center rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
-                  Foto
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
                 </div>
-                <div className='border-2 border-black text-left font-medium'>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
                   Blusa <br></br>decotada V
                 </div>
               </div>
               
             </td> {/* b11 */}
-            <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white justify-center">
-              <div className='bg-blue-600 w-[7vw] h-[10vh] mx-auto'><MenuCheckBox></MenuCheckBox></div>
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
             </td>
-            <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-            <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-            <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-          </tr>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
 
-        <tr> {/* Tem que ser a ultima linha da tabela */}
-        <td className="border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white">Insira o nome do cupom</td> {/* bn1 */}
-        <td className= "border-2 px-4 border-[#E0E0E0] border-b-0 bg-white"> Digite o código</td>
-        <td className="border-2 px-4 border-[#E0E0E0] border-b-0 bg-white"> Insira detalhes do cupom</td>
-        <td className="border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white">Defina a validade</td>
-        <td className="border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white">Defina a validade</td> {/* bnn */}
-      </tr>
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td> {/* b1n */}
+          </tr> {/* Fim Linha*/}
+
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
+                </div>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
+                  Blusa <br></br>decotada V
+                </div>
+              </div>
+              
+            </td> {/* b11 */}
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
+            </td>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
+
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td> {/* b1n */}
+          </tr> {/* Fim Linha*/}
+
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
+                </div>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
+                  Blusa <br></br>decotada V
+                </div>
+              </div>
+              
+            </td> {/* b11 */}
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
+            </td>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
+
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td> {/* b1n */}
+          </tr> {/* Fim Linha*/}
+
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
+                </div>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
+                  Blusa <br></br>decotada V
+                </div>
+              </div>
+              
+            </td> {/* b11 */}
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
+            </td>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
+
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td>
+          </tr> {/* Fim Linha*/}
+
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
+                </div>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
+                  Blusa <br></br>decotada V
+                </div>
+              </div>
+              
+            </td> {/* b11 */}
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
+            </td>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
+
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td> {/* b1n */}
+          </tr> {/* Fim Linha*/}
+
+          <tr> {/*Inicio Linha*/}
+            <td className="py-5 bg-[#F2F2F2] border-l-0">{/**Foto+Nome Produto*/}
+              <div className='h-[12vh] flex justify-center gap-2'>
+                <div className= 'rounded-lg lg:w-[7vw] xl:w-[6vw] bg-[#BDBDBD]' >{/**Foto do produto */}
+                  
+                </div>
+                <div className='flex items-center text-left font-medium'>{/**Nome do Produto*/}
+                  Blusa <br></br>decotada V
+                </div>
+              </div>
+              
+            </td> {/* b11 */}
+            <td className="bg-[#F2F2F2]">
+              <MenuCheckBox nome='M' isTamanho></MenuCheckBox>{/**Menu para tamanhos*/}
+            </td>
+            <td className="py-5 bg-[#F2F2F2]">
+              <MenuCheckBox nome='Amarelo' isCor></MenuCheckBox>{/**Menu para Cores*/}
+            </td>
+            <td className="py-5 px-4 bg-[#F2F2F2]">20</td>
+            <td className="py-5 px-4 border-r-0 bg-[#F2F2F2]">
+
+              <div className='flex justify-center items-center w-[60%] mx-auto'>{/**Icones */}
+                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh] "></button>
+                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[3vw] h-[3vh]"></button>
+              </div>
+            </td> {/* b1n */}
+          </tr> {/* Fim Linha*/}
 
     </tbody>
   </table>
