@@ -17,7 +17,7 @@ const HeaderFluxoDePedidos: React.FC = () => {
           <Link href={"/produtos"}>Produtos</Link>
         </li>
         <li>
-          <Link href={"/fluxo-de-pedidos"}>Fluxo de Pedidos</Link>
+          <Link href={"/fluxo-pedidos"}>Fluxo de Pedidos</Link>
         </li>
         <li>
           <Link href={"/controle-estoque"}>Controle de Estoques</Link>
