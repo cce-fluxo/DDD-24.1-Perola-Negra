@@ -4,13 +4,13 @@ import CategoriasNav from "../../../components/CategoriasNav";
 import Produto from "../../../components/Produto";
 import TituloCategoria from "../../../components/TituloCategoria";
 
-const Categoria1 = () => {
+const Categoria5 = () => {
   return (
     <div>
       <Header />
       <CategoriasNav />
       <div className="pt-44">
-        <TituloCategoria titulo="Categoria 1" />
+        <TituloCategoria titulo="Categoria 5" />
         <div className="flex flex-wrap w-11/12 mx-auto justify-center">
           <Produto
             nome="Nome"
@@ -60,4 +60,4 @@ const Categoria1 = () => {
   );
 };
 
-export default Categoria1;
+export default Categoria5;

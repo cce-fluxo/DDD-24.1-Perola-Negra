@@ -7,46 +7,52 @@ import TituloCategoria from "../../../components/TituloCategoria";
 const Categoria2 = () => {
   return (
     <div>
-      <Header></Header>
-      <CategoriasNav></CategoriasNav>
-      <div className="pt-52">
-        <TituloCategoria titulo="Categoria 2"></TituloCategoria>
-        <div className="flex flex-wrap w-11/12">
+      <Header />
+      <CategoriasNav />
+      <div className="pt-44">
+        <TituloCategoria titulo="Categoria 2" />
+        <div className="flex flex-wrap w-11/12 mx-auto justify-center">
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
           <Produto
             nome="Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
+            variant="secondary"
           ></Produto>
         </div>
       </div>
