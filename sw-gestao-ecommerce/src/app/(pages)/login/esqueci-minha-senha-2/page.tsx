@@ -1,11 +1,22 @@
 "use client";
 
-import React from "react";
-import { useRouter } from 'next/navigation';
-import LoginLayout from "@/app/components/LoginLayout"; // Importando o componente do background
+import React, { useRef } from "react";
+import { useRouter } from "next/navigation";
+import LoginLayout from "@/app/components/LoginLayout";
 
 const VerifyCode: React.FC = () => {
   const router = useRouter();
+  
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const handleInputChange = (index: number) => {
+    if (inputRefs.current[index]?.value.length === 1) {
+      // Move o foco para o próximo input, se existir
+      if (index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    }
+  };
 
   const handleSubmit = () => {
     router.push('/login/esqueci-minha-senha-3'); // Ir para outra página
@@ -15,7 +26,7 @@ const VerifyCode: React.FC = () => {
     // Layout do esqueci minha senha 2
     <LoginLayout>
       <div
-        className="absolute w-[500px] h-[60px] left-[85px] top-[280px] text-black text-[48px] font-[Inter] font-semibold leading-[1.2] break-words"
+        className="absolute w-[500px] h-[60px] left-[85px] top-[280px] text-black text-[48px] font-semibold leading-[1.2] break-words"
       >
         Esqueci<br /> minha senha
       </div>
@@ -26,30 +37,17 @@ const VerifyCode: React.FC = () => {
         </p>
 
         <div className="flex space-x-4">
-          <input
-            type="text"
-            maxLength={1}
-            className="w-20 h-20 text-center text-4xl font-bold border border-gray-300 rounded-lg placeholder:text-transparent"
-            placeholder="0"
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="w-20 h-20 text-center text-4xl font-bold border border-gray-300 rounded-lg placeholder:text-transparent"
-            placeholder="0"
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="w-20 h-20 text-center text-4xl font-bold border border-gray-300 rounded-lg placeholder:text-transparent"
-            placeholder="0"
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="w-20 h-20 text-center text-4xl font-bold border border-gray-300 rounded-lg placeholder:text-transparent"
-            placeholder="0"
-          />
+          {Array(4).fill(0).map((_, index) => (
+            <input
+              key={index}
+              ref={(el: HTMLInputElement | null) => { inputRefs.current[index] = el; }}
+              type="text"
+              maxLength={1}
+              className="w-20 h-20 text-center text-4xl font-bold border border-gray-300 rounded-lg placeholder:text-transparent"
+              placeholder="0"
+              onChange={() => handleInputChange(index)}
+            />
+          ))}
         </div>
 
         <button
@@ -65,5 +63,7 @@ const VerifyCode: React.FC = () => {
 };
 
 export default VerifyCode;
+
+
 
 

@@ -1,9 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import PopupConfirm from "@/app/components/PopupConfirm";
 
 const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
+
+  const handleLogoutClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setShowPopup(false);
+    router.push("/pagina-destino");  // Redireciona o usuário após a confirmação
+  };
+
   return (
     <section className="relative h-screen">
       <div
@@ -34,7 +48,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Link href="/produtos" className="text-5xl hover:underline font-bold">
             Produtos
           </Link>
-          <Link href="/fluxo-de-pedidos" className="text-5xl hover:underline font-bold">
+          <Link href="/fluxo-pedidos" className="text-5xl hover:underline font-bold">
             Fluxo de Pedidos
           </Link>
           <Link href="/controle-de-estoques" className="text-5xl hover:underline font-bold">
@@ -45,11 +59,18 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </div>
 
-      <div
-        className="absolute bottom-0 left-[80px] p-2.5"
-      >
-        <a className="text-3xl">Sair</a>
+      <div className="absolute bottom-0 left-[80px] p-2.5">
+        <a className="text-3xl cursor-pointer" onClick={handleLogoutClick}>
+          Sair
+        </a>
       </div>
+
+      {showPopup && ( // Lógica pra fazer alguma coisa Carol please ajeita isso aqui
+        <PopupConfirm
+          onClose={() => setShowPopup(false)}
+          onConfirm={handleConfirmLogout}
+        />
+      )}
     </section>
   );
 };

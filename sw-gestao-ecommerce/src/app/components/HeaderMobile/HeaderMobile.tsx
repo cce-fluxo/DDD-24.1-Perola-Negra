@@ -16,15 +16,15 @@ interface props {
 
 function HeaderMobile({ titulo }: props) {
   return (
-    <div className="w-full h-[8vh] flex justify-between items-center lg:hidden z-40">
+    <div className="w-full h-[8vh] flex justify-between items-center lg:hidden">
       {" "}
       {/**Perceba que essa header some em dispositivos lg*/}
-      <div className="ml-[8vw] font-semibold text-4xl sm:text-6xl">
-        {/*Nome da pagina*/}
-        {titulo}
-      </div>
       <div className="w-[18vw] h-full">
         <MenuMobile></MenuMobile>
+      </div>
+      <div className="ml-[8vw] font-semibold text-4xl sm:text-5xl md:text-6xl">
+        {/*Nome da pagina*/}
+        {titulo}
       </div>
     </div>
   );

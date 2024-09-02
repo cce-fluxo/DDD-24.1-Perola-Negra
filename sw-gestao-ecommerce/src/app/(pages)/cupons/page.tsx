@@ -13,17 +13,24 @@ function Cupons() {
     <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
       {/*"Body" da página*/}
 
-      <div className="flex flex-col justify-around h-[100vh] w-[80vw] py-3 lg:w-[99vw]">
+      <div className="flex flex-col justify-around h-[100vh] w-[80vw] py-3 lg:w-[100vw]">
         {/*Pagina*/}
         
-        <HeaderMobile titulo="Cupons"></HeaderMobile>{/**Header de dispositivos mobile + md */}
-        <div className="hidden lg:flex"><Header></Header></div>
 
-        <div className="hidden w-[40vw] h-[7vh] lg:flex lg:ml-3">{/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
+        <HeaderMobile titulo="Cupons"></HeaderMobile>{/**Header de dispositivos mobile + md */}
+        
+        <div className="hidden lg:flex lg:justify-center w-full h-[18vh] overflow-hidden xl:h-[11vh]">{/**Header para dispositivos lg*/}
+          <Header></Header>
+        </div>
+          <div className="hidden lg:flex text-3xl font-bold ml-20 lg:mb-3 xl:mb-0 xl:text-4xl">
+            Cupons
+          </div>
+
+        <div className="hidden w-[34vw] h-[6vh] lg:flex lg:ml-20 lg:mb-5 xl:mb-0 xl:w-[36vw]">{/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
           <NavegacaoCupons activeLink={1}></NavegacaoCupons>
         </div>
 
-        <div className="w-full h-[75vh] overflow-y-auto lg:w-[85vw] lg:h-[65vh] lg:mx-auto lg:rounded-t-2xl">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
+        <div className="w-full h-[75vh] overflow-y-auto lg:w-[85vw] lg:h-[60vh] lg:mx-auto lg:rounded-t-2xl">{/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
           {/* Conteudo principal*/}
 
           <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly lg:hidden">
