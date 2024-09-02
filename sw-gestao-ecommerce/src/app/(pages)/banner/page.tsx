@@ -9,7 +9,7 @@ function Banner() {
 
         <div className="">
           {/**Header + pesquisar*/}
-          <div className="flex flex-col w-[85vw] lg:hidden">
+          <div className="flex flex-col w-[85vw] lg:hidden pt-8">
             {/**Header Conteudo Mobile*/}
             <HeaderMobile titulo="Banner"></HeaderMobile>
           </div>
@@ -20,7 +20,7 @@ function Banner() {
           </div>
         </div>
 
-        <div className="w-[90vw] h-[70vh] mx-auto rounded-2xl mb-6 flex flex-col justify-around p-6 bg-[#F0F0F0]">{/**Caixa Conteudo Principal*/}
+        <div className="w-[90vw] h-[70vh] mx-auto rounded-2xl my-auto flex flex-col justify-around p-6 bg-[#F0F0F0]">{/**Caixa Conteudo Principal*/}
             <div className="flex gap-6 h-[70%] overflow-x-auto flex-shrink-0">{/**Carrossel Fotos*/}
                 <FotoBanner></FotoBanner>
                 <FotoBanner></FotoBanner>  
