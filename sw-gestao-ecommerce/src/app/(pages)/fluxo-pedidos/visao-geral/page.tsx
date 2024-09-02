@@ -66,7 +66,7 @@ function VisaoGeral() {
         </div>
       </div>
     </div>
-    <PopUpDesconto></PopUpDesconto>
+    <PopUpDesconto isVisible/>
     </Fragment>
   )
 }
