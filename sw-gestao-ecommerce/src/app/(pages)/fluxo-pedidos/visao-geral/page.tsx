@@ -1,11 +1,9 @@
 import React, { Fragment } from "react"
 import HeaderFluxoDePedidos from "../../../components/HeaderFluxoDePedidos"
 import FluxoDePedidosNav from "@/app/components/FluxoDePedidosNav"
-import PopUpDesconto from "../../../components/PopUpDesconto"
 
 function VisaoGeral() {
   return (
-    <Fragment>
     <div className="bg-gray-100 w-screen h-screen">
       <HeaderFluxoDePedidos></HeaderFluxoDePedidos>
       <FluxoDePedidosNav></FluxoDePedidosNav>
@@ -20,9 +18,7 @@ function VisaoGeral() {
                     <div className="text-xl">Mês</div>
                   </div>
                 </div>
-                <div className="flex flex-auto items-center justify-center">
-                  <button className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm rounded-lg px-5 py-2 text-center mr-5">Modal</button>
-                </div>
+                <div className="flex flex-auto items-center justify-center">calendario</div>
               </div>
             </div>
             <div className="bg-white flex-auto h-40 rounded-xl">
@@ -51,7 +47,7 @@ function VisaoGeral() {
             </div>
             <div className="bg-white flex-auto h-72 rounded-xl">
               <div className="flex flex-col h-full px-8 py-4">
-                <div className="flex flex-auto h-36">
+                <div className="flex flex-auto h-36 pb-2 border-b-2">
                   <div className="flex flex-col h-full w-full">
                     <div className="text-gray-400">Gráfico de Vendas</div>
                     <div className="text-2xl text-right">Março de 2023</div>
@@ -66,8 +62,6 @@ function VisaoGeral() {
         </div>
       </div>
     </div>
-    <PopUpDesconto isVisible/>
-    </Fragment>
   )
 }
 
