@@ -15,28 +15,22 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const handleConfirmLogout = () => {
     setShowPopup(false);
-    router.push("/pagina-destino");  // Redireciona o usuário após a confirmação
+    router.push("/login"); // Redireciona o usuário após a confirmação
   };
 
   return (
     <section className="relative h-screen">
-      <div
-        className="absolute w-[670px] h-full left-[1250px] top-0 bg-[#D9D9D9] z-[-1]"
-      />
+      <div className="absolute w-[670px] h-full left-[1250px] top-0 bg-[#D9D9D9] z-[-1]" />
 
-      <div
-        className="absolute left-[calc(100%-1105px)] bottom-0 w-full max-w-[750px] z-[1] flex justify-center"
-      >
-        <img 
-          src="/images/mobilegame.png" 
-          alt="Imagem do Jogo Móvel" 
+      <div className="absolute left-[calc(100%-1105px)] bottom-0 w-full max-w-[750px] z-[1] flex justify-center">
+        <img
+          src="/images/mobilegame.png"
+          alt="Imagem do Jogo Móvel"
           className="w-full h-auto object-contain"
         />
       </div>
 
-      <div
-        className="absolute w-[650px] h-[747px] left-[75px] right-[796px] top-[22px] bottom-[146px] bg-white rounded-[20px] p-5 box-border"
-      >
+      <div className="absolute w-[650px] h-[747px] left-[75px] right-[796px] top-[22px] bottom-[146px] bg-white rounded-[20px] p-5 box-border">
         <div className="align-baseline font-bold text-5xl mb-[140px]">
           LOGO RESTAURANTE
         </div>
@@ -48,10 +42,16 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Link href="/produtos" className="text-5xl hover:underline font-bold">
             Produtos
           </Link>
-          <Link href="/fluxo-pedidos" className="text-5xl hover:underline font-bold">
+          <Link
+            href="/fluxo-pedidos"
+            className="text-5xl hover:underline font-bold"
+          >
             Fluxo de Pedidos
           </Link>
-          <Link href="/controle-de-estoques" className="text-5xl hover:underline font-bold">
+          <Link
+            href="/controle-de-estoques"
+            className="text-5xl hover:underline font-bold"
+          >
             Controle de Estoques
           </Link>
         </div>
@@ -76,4 +76,3 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 export default LoginLayout;
-
