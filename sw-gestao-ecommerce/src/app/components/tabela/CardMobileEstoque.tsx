@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image';
+import OpcoesTabelaEstoque from './OpcoesTabelaEstoque';
 
 interface props{
   foto?:string;
@@ -30,10 +31,8 @@ function CardMobile({foto = 'Foto', nome = 'nome produto', qtdEstoque = '_', tam
 
             <div className='flex justify-around font-medium'>{/**Quantidade + opcoes */}
                 <div className='font-semibold text-lg w-[2vw]'>{qtdEstoque}x</div>
-                <div className='w-[14vw] flex justify-between sm:w-[10vw] md:w-[8vw]'>{/**Icones */}
-                   <button className="bg-[url('/images/iconeMais.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>|
-                   <button className="bg-[url('/images/iconeEditar.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>|
-                   <button className="bg-[url('/images/iconeExcluir.png')] bg-no-repeat bg-center bg-contain w-[5vw]"></button>
+                <div className='flex justify-around md:w-[18vw]'>{/**Icones */}
+                  <OpcoesTabelaEstoque></OpcoesTabelaEstoque>
                 </div>
             </div>
 
