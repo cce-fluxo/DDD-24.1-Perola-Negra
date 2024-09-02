@@ -8,8 +8,6 @@ const EditarProduto: React.FC = () => {
       <Header />
       <div className="pt-40 px-12 justify-center">
         <ProdutoForm></ProdutoForm>
-        <ProdutoForm></ProdutoForm>
-        <ProdutoForm></ProdutoForm>
       </div>
     </div>
   );
