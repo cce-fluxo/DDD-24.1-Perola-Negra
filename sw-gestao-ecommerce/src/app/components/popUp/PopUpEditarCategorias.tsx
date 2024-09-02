@@ -8,8 +8,8 @@ interface props{
 function EditarCategorias({togglePopUp}: props) {
  
   return (
-    <div className="fixed w-[100vw] h-[100vh] inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">{/**Body - aplica efeito de background tapado*/}
-      <div className="w-[80vw] h-[60vh] lg:w-[60vw] lg:h-[55vh] flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
+    <div className="fixed w-full h-full inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">{/**Body - aplica efeito de background tapado*/}
+      <div className="w-[80vw] h-[60vh] lg:w-[60vw] lg:h-[55vh] max-w-4xl max-h-96  flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
         {/*Espaço para o conteudo*/}
         <div className="h-[15%] flex justify-end items-center">
           {/**Titulo*/}
