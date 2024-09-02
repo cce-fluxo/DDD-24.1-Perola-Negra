@@ -1,9 +1,11 @@
-import React from "react"
+import React, { Fragment } from "react"
 import HeaderFluxoDePedidos from "../../../components/HeaderFluxoDePedidos"
 import FluxoDePedidosNav from "@/app/components/FluxoDePedidosNav"
+import PopUpDesconto from "../../../components/PopUpDesconto"
 
 function VisaoGeral() {
   return (
+    <Fragment>
     <div className="bg-gray-100 w-screen h-screen">
       <HeaderFluxoDePedidos></HeaderFluxoDePedidos>
       <FluxoDePedidosNav></FluxoDePedidosNav>
@@ -18,7 +20,9 @@ function VisaoGeral() {
                     <div className="text-xl">Mês</div>
                   </div>
                 </div>
-                <div className="flex flex-auto items-center justify-center">calendario</div>
+                <div className="flex flex-auto items-center justify-center">
+                  <button className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm rounded-lg px-5 py-2 text-center mr-5">Modal</button>
+                </div>
               </div>
             </div>
             <div className="bg-white flex-auto h-40 rounded-xl">
@@ -62,6 +66,8 @@ function VisaoGeral() {
         </div>
       </div>
     </div>
+    <PopUpDesconto></PopUpDesconto>
+    </Fragment>
   )
 }
 
