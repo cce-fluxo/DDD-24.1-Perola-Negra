@@ -12,7 +12,7 @@ function LinkMenu({ nomeLink, pagina, isUltimo = false }: Props) {
     <li className='w-full text-center'>
       <Link 
         href={pagina} 
-        className={`w-full flex justify-center p-3 hover:bg-[#E0E0E0] hover:text-white font-semibold md:text-2xl ${isUltimo ? 'rounded-b-xl' : ''}`}>
+        className={`w-full flex justify-center p-3 bg-white hover:bg-[#E0E0E0] hover:text-white font-semibold md:text-2xl ${isUltimo ? 'rounded-b-xl' : ''}`}>
         {nomeLink}
       </Link>
     </li>
