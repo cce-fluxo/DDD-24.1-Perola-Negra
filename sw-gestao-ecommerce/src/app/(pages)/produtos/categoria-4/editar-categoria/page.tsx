@@ -16,8 +16,8 @@ const EditarCategoria: React.FC = () => {
   return (
     <div>
       <Header />
-      <div className="flex bg-white gap-8 pt-28 fixed top-0 left-0 z-30 w-full justify-center">
-        <TituloCategoria titulo="Categoria 1" />
+      <div className="flex bg-white gap-8 top-28 fixed left-0 z-40 w-full justify-center">
+        <TituloCategoria titulo="Categoria 4" />
         <EditarCategoriasNav
           initialVariant={variant}
           onVariantChange={handleVariantChange}
