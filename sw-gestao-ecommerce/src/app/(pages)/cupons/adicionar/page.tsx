@@ -21,11 +21,11 @@ function adicionarCupons() {
 
         <div className="hidden lg:flex lg:justify-center w-full h-[18vh] overflow-hidden xl:h-[11vh]">
           {/**Header para dispositivos lg*/}
-          <Header></Header>
+          <Header titulo="Cupons" bg="transparent"></Header>
         </div>
-        <div className="hidden lg:flex text-3xl font-bold ml-20 lg:mb-3 xl:mb-0 xl:text-4xl">
+        {/* <div className="hidden lg:flex text-3xl font-bold ml-20 lg:mb-3 xl:mb-0 xl:text-4xl">
           Cupons
-        </div>
+        </div> */}
 
         <div className="hidden w-[34vw] h-[6vh] lg:flex lg:ml-20 lg:mb-5 xl:mb-0 xl:w-[36vw]">
           {/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
@@ -58,7 +58,8 @@ function adicionarCupons() {
           </div>
         </div>
 
-        <div className=" hidden lg:flex justify-end text-sm">{/**Botao Salvar Cancelar telas lg*/}
+        <div className=" hidden lg:flex justify-end text-sm">
+          {/**Botao Salvar Cancelar telas lg*/}
           <div className=" w-[20vw] flex gap-6 mr-10">
             <BotaoSalvar nome="Cancelar"></BotaoSalvar>
             <BotaoSalvar nome="Salvar"></BotaoSalvar>
