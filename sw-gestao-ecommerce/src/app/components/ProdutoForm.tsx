@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import PopupConfirm from "./PopupProduto"; // Importe o PopupConfirm aqui
 
 const ProdutoForm: React.FC = () => {
   const [quantidade, setQuantidade] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [popupVisible, setPopupVisible] = useState(false); // Estado para o Popup
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -30,7 +32,7 @@ const ProdutoForm: React.FC = () => {
           <div className="relative w-48 h-48 bg-neutral-200 rounded-lg">
             {!selectedImage && (
               <Image
-                src="/images/uploadproduto.png" // Substitua pelo caminho correto da sua imagem
+                src="/images/uploadproduto.png"
                 alt="Upload"
                 draggable={false}
                 layout="fill"
@@ -112,15 +114,29 @@ const ProdutoForm: React.FC = () => {
       </div>
 
       <div className="flex flex-row gap-5 mt-6 md:mt-0 place-self-end">
-        <button className="py-1 px-6 bg-neutral-500 text-white rounded-xl">
+        <button
+          onClick={() => setPopupVisible(true)} // Abre o popup ao clicar em "Excluir"
+          className="py-1 px-6 bg-neutral-500 text-white rounded-xl"
+        >
           Excluir
         </button>
         <button className="py-1 px-6 bg-neutral-500 text-white rounded-xl">
           Salvar
         </button>
       </div>
+
+      {popupVisible && (
+        <PopupConfirm
+          onClose={() => setPopupVisible(false)}
+          onConfirm={() => {
+            setPopupVisible(false);
+            // Adicione aqui a lógica de exclusão do produto
+          }}
+        />
+      )}
     </div>
   );
 };
 
 export default ProdutoForm;
+

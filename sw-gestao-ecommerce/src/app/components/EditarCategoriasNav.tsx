@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BtnCinza from "./BtnCinza";
+import PopUpEditarCategorias from "./popUp/PopUpEditarCategorias";
 
 interface EditarCategoriasNavProps {
   initialVariant?: "primary" | "select"; // Define "primary" e "select" como possíveis valores
@@ -24,6 +25,13 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
     onVariantChange("primary");
   };
 
+   //Lida com o PopUp 
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const togglePopUp = () =>
+  {
+    setIsPopUpOpen (!isPopUpOpen);
+  };
+
   return (
     <div className="bg-white w-screen flex-row content-center">
       {initialVariant === "primary" && (
@@ -34,7 +42,10 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
             </Link>
           </li>
           <li>
-            <Link href={""}>Editar categorias</Link>
+            <button onClick={togglePopUp}>Editar categorias</button>{/**Troquei o "Link" por "Button"*/}
+            {isPopUpOpen && (<> {/**Verifica se o PopUp está aberto*/}
+              <PopUpEditarCategorias togglePopUp={togglePopUp}></PopUpEditarCategorias>
+            </>)}
           </li>
           <li>
             <button onClick={handleSelectClick} className="font-semibold">
