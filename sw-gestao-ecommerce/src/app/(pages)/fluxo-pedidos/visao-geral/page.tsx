@@ -1,22 +1,16 @@
 import React, { Fragment } from "react";
-// import HeaderFluxoDePedidos from "../../../components/HeaderFluxoDePedidos";
+import HeaderFluxoDePedidos from "../../../components/HeaderFluxoDePedidos";
 import FluxoDePedidosNav from "@/app/components/FluxoDePedidosNav";
 import Header from "@/app/components/Header";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 
 function VisaoGeral() {
   return (
-    <div className="bg-gray-100 w-full h-screen">
-      <HeaderMobile titulo="PEDIDOS"></HeaderMobile>
-      {/**Header de dispositivos mobile + md */}
-
-      <div className="hidden lg:flex lg:justify-center w-full h-[18vh] overflow-hidden xl:h-[11vh]">
-        {/**Header para dispositivos lg*/}
-        <Header titulo="FLUXO DE PEDIDOS" bg="transparent"></Header>
-      </div>
+    <div className="bg-gray-100 w-screen h-screen">
+      <Header titulo="FLUXO DE PEDIDOS" bg="transparent"></Header>
       <FluxoDePedidosNav></FluxoDePedidosNav>
       <div className="pt-52 h-full pb-8">
-        <div className=" bg-gray-100 flex flex-row flex-auto w-full h-full gap-12 px-20">
+        <div className=" bg-gray-100 flex flex-row flex-auto w-screen h-full gap-12 px-20">
           <div className="flex flex-col flex-auto w-32 gap-8">
             <div className="bg-white flex-auto h-64 rounded-xl border border-gray-300">
               <div className="flex flex-col h-full px-6 py-4">
