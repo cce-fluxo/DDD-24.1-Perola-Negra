@@ -1,55 +1,85 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Header from "../../../../components/Header";
 import Produto from "../../../../components/Produto";
 import TituloCategoria from "../../../../components/TituloCategoria";
 import EditarCategoriasNav from "../../../../components/EditarCategoriasNav";
 
-const EditarCategoria = () => {
+const EditarCategoria: React.FC = () => {
+  const [variant, setVariant] = useState<"primary" | "select">("primary");
+
+  const handleVariantChange = (newVariant: "primary" | "select") => {
+    setVariant(newVariant);
+  };
+
   return (
     <div>
-      <Header></Header>
-      <div className="flex row content-end gap-8 pt-32">
-        <TituloCategoria titulo="Categoria 2"></TituloCategoria>
-        <EditarCategoriasNav></EditarCategoriasNav>
+      <Header />
+      <div className="flex bg-white gap-8 pt-28 fixed top-0 left-0 z-30 w-full justify-center">
+        <TituloCategoria titulo="Categoria 1" />
+        <EditarCategoriasNav
+          initialVariant={variant}
+          onVariantChange={handleVariantChange}
+        />
       </div>
-
-      <div className="flex flex-wrap w-11/12">
+      <div className="flex flex-wrap w-full pt-40 justify-center">
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
         <Produto
           nome="Nome"
           descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
           preco={"50,97"}
           imagem="/images/placeholder.png"
-        ></Produto>
+          variant={variant}
+        />
+        <Produto
+          nome="Nome"
+          descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
+          preco={"50,97"}
+          imagem="/images/placeholder.png"
+          variant={variant}
+        />
+        <Produto
+          nome="Nome"
+          descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
+          preco={"50,97"}
+          imagem="/images/placeholder.png"
+          variant={variant}
+        />
       </div>
     </div>
   );

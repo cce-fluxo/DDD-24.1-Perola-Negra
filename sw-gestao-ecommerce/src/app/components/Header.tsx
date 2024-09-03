@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="bg-white w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-50">
+    <div className="bg-white w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-40">
       <div className="flex items-center gap-4 sm:pt-8 sm:gap-6">
         <Image
           src={leftChevron}

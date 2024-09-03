@@ -5,43 +5,27 @@ import { useRouter } from "next/navigation";
 import LoginLayout from "@/app/components/LoginLayout"; // Importando o componente do background
 
 const ResetPassword: React.FC = () => {
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleSubmit = () => {
-    router.push("/home"); //Ir para outra página
+    router.push("/home"); // Ir para outra página
   };
 
   return (
     // Layout de confirmar nova senha
     <LoginLayout>
       <div
-        className="absolute"
-        style={{
-          width: '500px',
-          height: '60px',
-          left: '85px',
-          top: '280px',
-          color: 'black',
-          fontSize: '48px',
-          fontFamily: 'Inter, sans-serif',
-          fontWeight: 600,
-          lineHeight: "1.2",
-          wordWrap: 'break-word',
-        }}
+        className="absolute w-[500px] h-[60px] left-[85px] top-[280px] text-black text-[48px] font-semibold leading-[1.2] break-words"
       >
         Esqueci<br /> minha senha
       </div>
-      
-      <div className="absolute flex flex-col items-start p-8"
-        style={{
-          left: '55px',
-          top: '370px',
-          width: 'calc(100% - 70px)',
-          maxWidth: '500px',
-        }}
-      >
+
+      <div className="absolute left-[55px] top-[370px] w-[calc(100%-70px)] max-w-[500px] flex flex-col items-start p-8">
         <div className="mb-4 w-full">
-          <label className="block text-sm font-bold text-gray-700 mb-2" htmlFor="new-password">
+          <label
+            className="block text-sm font-semibold text-gray-700 mb-2"
+            htmlFor="new-password"
+          >
             Nova Senha
           </label>
           <input
@@ -52,7 +36,10 @@ const ResetPassword: React.FC = () => {
           />
         </div>
         <div className="mb-4 w-full">
-          <label className="block text-sm font-bold text-gray-700 mb-2" htmlFor="confirm-password">
+          <label
+            className="block text-sm font-semibold text-gray-700 mb-2"
+            htmlFor="confirm-password"
+          >
             Confirmar Nova Senha
           </label>
           <input
@@ -66,12 +53,7 @@ const ResetPassword: React.FC = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="absolute px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
-          style={{
-            left: '200px',
-            top: '260px',
-            width: '150px'
-          }}
+          className="absolute left-[200px] top-[260px] w-[150px] px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100"
         >
           Enviar
         </button>
@@ -81,3 +63,4 @@ const ResetPassword: React.FC = () => {
 };
 
 export default ResetPassword;
+
