@@ -1,50 +1,64 @@
 "use client";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import leftChevron from "../../../public/icons/left-chevron.png";
+import { usePathname } from "next/navigation";
+const Header: React.FC = () => {
+  const router = useRouter();
+  const currentPath = usePathname();
 
-import React, { useState, useEffect } from "react";
-import MenuMobile from "./HeaderMobile/MenuMobile";
-import HeaderLarge from "./HeaderLarge";
+  // Função para verificar se a URL atual contém a string especificada
+  const isActive = (path: string) => currentPath.startsWith(path);
 
-interface Props {
-  titulo?: string;
-}
-
-const Header: React.FC<Props> = ({ titulo }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Função para verificar se a tela é estreita
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); // Definindo como "estreita" telas menores que 1024px
-    };
-
-    // Adiciona o event listener na primeira renderização e remove ao desmontar
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Checa na primeira renderização
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Função para determinar o texto e o link a partir do pathname
+  const getLinkText = (path: string) => {
+    switch (path) {
+      case "/produtos":
+        return "Produtos";
+      case "/banner":
+        return "Banner";
+      case "/fluxo-pedidos":
+        return "Fluxo de Pedidos";
+      case "/controle-estoque":
+        return "Controle de Estoque";
+      case "/cupons":
+        return "Cupons";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div>
-      {/**Header Desktop - Exibido somente em telas largas */}
-      {!isMobile && (
-        <div className="hidden lg:block">
-          <HeaderLarge titulo={titulo} />
-        </div>
-      )}
-
-      {/**Header Mobile, exibido somente se a tela for estreita */}
-      {isMobile && (
-        <div className="w-full h-[8vh] flex justify-between items-center lg:hidden">
-          {/**Perceba que essa header some em dispositivos lg*/}
-          <div className="ml-[8vw] font-semibold text-4xl sm:text-6xl">
-            {titulo}
-          </div>
-          <div className="w-[18vw] h-full">
-            <MenuMobile />
-          </div>
-        </div>
-      )}
+    <div className="bg-white w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-50">
+      <div className="flex items-center gap-4 sm:pt-8 sm:gap-6">
+        <Image
+          src={leftChevron}
+          alt="Voltar"
+          className="object-none cursor-pointer"
+          onClick={() => router.push("/home")}
+        />
+        <Link href={"/home"}>
+          <h1 className="font-bold text-3xl sm:text-5xl">LOGO</h1>
+        </Link>
+      </div>
+      <ul className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-semibold">
+        {[
+          "/banner",
+          "/produtos",
+          "/fluxo-pedidos",
+          "/controle-estoque",
+          "/cupons",
+        ].map((path) => (
+          <li
+            key={path}
+            className={isActive(path) ? "underline underline-offset-2" : ""}
+          >
+            <Link href={path}>{getLinkText(path)}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
