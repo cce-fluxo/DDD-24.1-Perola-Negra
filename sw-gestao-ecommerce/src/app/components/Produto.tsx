@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 interface ProdutoProps {
   nome: string;
@@ -20,7 +22,7 @@ const Produto: React.FC<ProdutoProps> = ({
   variant,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
-
+  const currentPath = usePathname();
   const handleCheckboxClick = () => {
     setIsSelected((prev) => !prev);
   };
@@ -39,9 +41,11 @@ const Produto: React.FC<ProdutoProps> = ({
         </div>
         {variant === "secondary" && (
           <Link href={"/produtos/editar-produto"}>
-            <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-center text-black">
-              Editar produto
-            </div>
+            <Link href={currentPath.concat("/editar-produto")}>
+              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-center text-black">
+                Editar produto
+              </div>
+            </Link>
           </Link>
         )}
         {variant === "select" && (

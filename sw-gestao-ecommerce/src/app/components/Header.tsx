@@ -5,7 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import leftChevron from "../../../public/icons/left-chevron.png";
 import { usePathname } from "next/navigation";
-const Header: React.FC = () => {
+
+interface HeaderProps {
+  titulo?: string;
+  bg?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ titulo = "LOGO", bg = "white" }) => {
   const router = useRouter();
   const currentPath = usePathname();
 
@@ -31,7 +37,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="bg-white w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-50">
+    <div
+      className={`bg-${bg} w-full py-4 px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-start justify-between fixed top-0 z-40`}
+    >
       <div className="flex items-center gap-4 sm:pt-8 sm:gap-6">
         <Image
           src={leftChevron}
@@ -40,7 +48,7 @@ const Header: React.FC = () => {
           onClick={() => router.push("/home")}
         />
         <Link href={"/home"}>
-          <h1 className="font-bold text-3xl sm:text-5xl">LOGO</h1>
+          <h1 className="font-bold text-3xl sm:text-5xl">{titulo}</h1>
         </Link>
       </div>
       <ul className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-semibold">

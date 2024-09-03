@@ -12,7 +12,7 @@ const CategoriasHeader: React.FC = () => {
   const isActive = (path: string) => currentPath === path;
 
   return (
-    <div className="bg-white w-full py-4 px-4 sm:px-10 lg:px-20 flex flex-col sm:flex-row fixed top-[112px] z-40">
+    <div className="bg-white w-full py-4 px-4 sm:px-10 lg:px-20 flex flex-col sm:flex-row fixed top-[112px] z-20">
       <ul className="flex flex-col sm:flex-row gap-4 sm:gap-16 font-semibold w-full">
         {[
           "categoria-1",
