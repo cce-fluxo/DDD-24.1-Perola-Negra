@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BtnCinza from "./BtnCinza";
 import PopUpEditarCategorias from "./popUp/PopUpEditarCategorias";
+import PopUpDesconto from "./PopUpDesconto";
 
 interface EditarCategoriasNavProps {
   initialVariant?: "primary" | "select"; // Define "primary" e "select" como possíveis valores
@@ -25,11 +26,10 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
     onVariantChange("primary");
   };
 
-   //Lida com o PopUp 
+  //Lida com o PopUp
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
-  const togglePopUp = () =>
-  {
-    setIsPopUpOpen (!isPopUpOpen);
+  const togglePopUp = () => {
+    setIsPopUpOpen(!isPopUpOpen);
   };
 
   return (
@@ -42,10 +42,17 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
             </Link>
           </li>
           <li>
-            <button onClick={togglePopUp}>Editar categorias</button>{/**Troquei o "Link" por "Button"*/}
-            {isPopUpOpen && (<> {/**Verifica se o PopUp está aberto*/}
-              <PopUpEditarCategorias togglePopUp={togglePopUp}></PopUpEditarCategorias>
-            </>)}
+            <button onClick={togglePopUp}>Editar categorias</button>
+            {/**Troquei o "Link" por "Button"*/}
+            {isPopUpOpen && (
+              <>
+                {" "}
+                {/**Verifica se o PopUp está aberto*/}
+                <PopUpEditarCategorias
+                  togglePopUp={togglePopUp}
+                ></PopUpEditarCategorias>
+              </>
+            )}
           </li>
           <li>
             <button onClick={handleSelectClick} className="font-semibold">
@@ -56,7 +63,18 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
       )}
       {initialVariant === "select" && (
         <ul className="flex row gap-8 font-semibold">
-          <BtnCinza texto="Aplicar Desconto" rota=""></BtnCinza>
+          <BtnCinza
+            texto="Aplicar Desconto"
+            rota=""
+            onClick={togglePopUp}
+          ></BtnCinza>
+          {isPopUpOpen && (
+            <>
+              {" "}
+              {/**Verifica se o PopUp está aberto*/}
+              <PopUpDesconto togglePopUp={togglePopUp}></PopUpDesconto>
+            </>
+          )}
           <li>
             <BtnCinza
               texto="Cancelar"
