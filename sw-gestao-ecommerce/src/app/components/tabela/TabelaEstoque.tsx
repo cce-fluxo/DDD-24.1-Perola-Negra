@@ -9,7 +9,7 @@ function TabelaEstoque() {
       <thead className="sticky top-0 bg-[#BDBDBD] h-[7vh] text-base text-white z-20">
         <tr>
           <th className="font-semibold border-none bg-[#BDBDBD] rounded-tl-2xl">
-            Produtos
+            Produto
           </th>{" "}
           {/* a11 */}
           <th className="font-semibold border-none bg-[#BDBDBD]">Tamanhos</th>

@@ -7,7 +7,7 @@ import TabelaEstoque from "@/app/components/tabela/TabelaEstoque";
 
 function Estoque() {
   return (
-    <body className="w-[100vw] h-[100vh] bg-white ">
+    <body className="w-screen h-screen bg-white ">
       <main className="h-[100vh] w-[80vw] py-3 flex flex-col mx-auto lg:w-[100vw]">
         {/*Pagina*/}
 
@@ -25,13 +25,13 @@ function Estoque() {
             <Header titulo="Controle de Estoque"></Header>
           </div>
 
-          <div className="lg:ml-20">
+          <div className="lg:ml-20 lg:mt-14 xl:mt-0">
             <AreaPesquisar></AreaPesquisar>
           </div>
         </div>
 
-        <div className="flex flex-col overflow-y-auto justify-between h-full w-full lg:hidden">
-          <div className="lg:hidden">
+        <div className="flex flex-col overflow-y-auto justify-between mt-2 h-full w-full lg:hidden">
+          <div className="lg:hidden ">
             {/**Conteudo principal*/}
             <CardMobileEstoque
               nome="Blusa decotada v"

@@ -1,8 +1,14 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import Link from "next/link"; // Importando Link do Next.js
+import { ErrorMessage, Field, Formik, Form } from "formik";
+import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
 
 const LoginPage: React.FC = () => {
+  const rota = useRouter(); //usado para criar a rota do botao submit
+
   return (
     <div className="flex h-screen bg-white">
       <div className="flex w-full md:w-3/4 bg-white relative z-10">
@@ -15,29 +21,49 @@ const LoginPage: React.FC = () => {
           <div className="flex flex-col items-start mt-8 ml-8">
             <h3 className="text-6xl font-bold mb-4">Entrar</h3>
 
-            <div className="flex flex-col mt-8">
-              <label className="text-lg font-semibold" htmlFor="email">E-mail</label>
-              <input
-                type="email"
-                id="email"
-                className="mt-4 p-2 border border-gray-300 rounded w-full"
-                style={{ minWidth: '450px' }}
-                placeholder="Digite seu e-mail"
-              />
+            <Formik
+              initialValues={{email: '', senha: ''}}
+              validationSchema={Yup.object({
+                email: Yup.string().email('Email inválido').required('Bota o email, mano!'),
+                senha: Yup.string().min(6, 'a senha deve ter no minimo 6 caracteres').required('bota a senha, mano!'),
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log(values);
+                rota.push('/home');
+                setSubmitting(false); // Libera o estado de envio
+              }}
+            >
+              <Form className="flex flex-col mt-8">
+                <label className="text-lg font-semibold" htmlFor="email">E-mail</label>
+                <Field
+                  id = "email"
+                  name="email"
+                  type= "text"
+                  className="mt-4 p-2 border border-gray-300 rounded w-full"
+                  style={{ minWidth: '450px' }}
+                  placeholder="Digite seu e-mail"
+                />
+                <ErrorMessage name = "email" component="div" className="text-red-500 text-sm"/>
 
-              <label className="text-lg font-semibold mt-4" htmlFor="senha">Senha</label>
-              <input
-                type="password"
-                id="senha"
-                className="mt-2 p-2 border border-gray-300 rounded w-full"
-                placeholder="Digite sua senha"
-              />
-              
-              {/* Link "Esqueci minha senha" logo abaixo do input da senha */}
-              <Link href="/recuperar-senha" className="text-gray-500 text-sm mt-1 self-end hover:underline">
-                Esqueci minha senha
-              </Link>
-            </div>
+
+                <label className="text-lg font-semibold mt-4" htmlFor="senha">Senha</label>
+                <Field
+                  id = "senha"
+                  name = "senha"
+                  type = "password"
+                  className="mt-2 p-2 border border-gray-300 rounded w-full"
+                  placeholder="Digite sua senha"
+                />
+                <ErrorMessage name="senha" component="div" className="text-red-500 text-sm"/>
+                {/* Link "Esqueci minha senha" logo abaixo do input da senha */}
+                <Link href="/recuperar-senha" className="text-gray-500 text-sm mt-1 self-end hover:underline">
+                  Esqueci minha senha
+                </Link>
+                <button type="submit" className=" border-2">
+                  Submit</button>
+              </Form>
+            </Formik>
+
           </div>
 
           <div className="flex mt-8 ml-48">
