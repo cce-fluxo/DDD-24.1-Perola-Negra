@@ -1,4 +1,5 @@
 import React from 'react';
+//magica
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
