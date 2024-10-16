@@ -1,12 +1,16 @@
-import React from 'react'
+// src/app/components/BotaoSalvar.tsx
+import React from 'react';
 
-function BotaoSalvar({nome = 'Botao'}: any) {
-  return (
-
-    <button className="py-1 px-6 bg-neutral-500 text-white rounded-xl hover:bg-white hover:text-[#B0B0B0]">
-        {nome}
-  </button>
-  )
+interface BotaoSalvarProps {
+  nome: string; // ou o tipo apropriado que você espera
 }
 
-export default BotaoSalvar
+const BotaoSalvar: React.FC<BotaoSalvarProps> = ({ nome }) => {
+  return (
+    <button type="button">
+      {nome}
+    </button>
+  );
+};
+
+export default BotaoSalvar;
