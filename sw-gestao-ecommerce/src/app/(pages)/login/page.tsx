@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link"; // Importando Link do Next.js
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
 
 const LoginPage: React.FC = () => {
+  const rota = useRouter(); //usado para criar a rota do botao submit
+
   return (
     <div className="flex h-screen bg-white">
       <div className="flex w-full md:w-3/4 bg-white relative z-10">
@@ -24,11 +27,16 @@ const LoginPage: React.FC = () => {
                 email: Yup.string().email('Email inválido').required('Bota o email, mano!'),
                 senha: Yup.string().min(6, 'a senha deve ter no minimo 6 caracteres').required('bota a senha, mano!'),
               })}
-              onSubmit={(values) => console.log("Email e senha:", values)}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log(values);
+                rota.push('/home');
+                setSubmitting(false); // Libera o estado de envio
+              }}
             >
               <Form className="flex flex-col mt-8">
                 <label className="text-lg font-semibold" htmlFor="email">E-mail</label>
                 <Field
+                  id = "email"
                   name="email"
                   type= "text"
                   className="mt-4 p-2 border border-gray-300 rounded w-full"
@@ -40,6 +48,7 @@ const LoginPage: React.FC = () => {
 
                 <label className="text-lg font-semibold mt-4" htmlFor="senha">Senha</label>
                 <Field
+                  id = "senha"
                   name = "senha"
                   type = "password"
                   className="mt-2 p-2 border border-gray-300 rounded w-full"
@@ -50,6 +59,8 @@ const LoginPage: React.FC = () => {
                 <Link href="/recuperar-senha" className="text-gray-500 text-sm mt-1 self-end hover:underline">
                   Esqueci minha senha
                 </Link>
+                <button type="submit" className=" border-2">
+                  Submit</button>
               </Form>
             </Formik>
 
