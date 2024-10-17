@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 interface BtnCinzaProps {
@@ -17,7 +17,7 @@ const BtnCinza: React.FC<BtnCinzaProps> = ({ texto, rota, onClick }) => {
     <button onClick={onClick}>
       <Link
         href={`${currentPath}/${rota}`} // Concatena a rota atual com a rota de edição
-        className="bg-neutral-300 font-semibold px-5 py-3 rounded-2xl"
+        className="bg-neutral-300 font-semibold px-5 py-3 rounded-2xl text-center whitespace-nowrap"
       >
         {texto}
       </Link>
