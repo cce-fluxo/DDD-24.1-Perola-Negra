@@ -1,15 +1,12 @@
 import React from "react";
+//magica
 
 interface Props {
-  cupons: Array<{
-    nome: string;
-    codigo: string;
-    detalhes: string;
-    validade: string;
-  }>;
+  isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
+  nomeCupom: string;
 }
 
-const Tabela: React.FC<Props> = ({ cupons }) => {
+const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
   return (
     <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
       <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
@@ -20,15 +17,87 @@ const Tabela: React.FC<Props> = ({ cupons }) => {
           <th className="font-light bg-[#BDBDBD]">Válido até</th>
         </tr>
       </thead>
-      <tbody>
-        {cupons.map((cupom, index) => (
-          <tr key={index}>
-            <td className="border-2 border-[#E0E0E0] py-5 px-14 bg-white border-l-0">{cupom.nome}</td>
-            <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white">{cupom.codigo}</td>
-            <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white">{cupom.detalhes}</td>
-            <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white border-r-0">{cupom.validade}</td>
-          </tr>
-        ))}
+      <tbody className={`${isAdicionar ? 'h-[15vh]' : ''}`}>
+        {!isAdicionar && (
+          <>
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Linhas do meio da tabela */}
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+            </tr>
+
+            <tr> {/* Tem que ser a ultima linha da tabela */}
+              <td className={`border-2 py-8 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>DDIVOS</td> {/* bn1 */}
+              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>#123456789</td>
+              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>25% de <br></br>desconto</td>
+              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>563</td>
+              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>23/05/2023</td> {/* bnn */}
+            </tr>
+          </>
+        )}
+
+        {isAdicionar && (
+          <>
+          <tr> {/* Tem que ser a ultima linha da tabela */}
+          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>{nomeCupom}</td> {/* bn1 */}
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Digite o código</td>
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Insira detalhes do cupom</td>
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Defina a validade</td> {/* bnn */}
+        </tr>
+          </>
+
+        )}
+
       </tbody>
     </table>
   );

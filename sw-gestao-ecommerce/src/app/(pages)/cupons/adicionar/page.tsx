@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -35,65 +34,43 @@ function AdicionarCupons({ adicionarCupom }: { adicionarCupom: (cupom: Cupom) =>
           <NavegacaoCupons activeLink={2} />
         </div>
 
-        <div className="w-full h-3/4 flex flex-col justify-around overflow-y-auto lg:w-4/5 lg:h-2/5 lg:justify-normal lg:mx-auto lg:rounded-t-2xl">
-          {/* Tabela com Formik */}
-          <Formik
-            initialValues={{
-              nome: "",
-              codigo: "",
-              detalhes: "",
-              validade: "",
-            }}
-            validationSchema={CupomSchema}
-            onSubmit={(values, { resetForm }) => {
-              adicionarCupom(values); // Passa os valores para a página principal
-              resetForm(); // Reseta o formulário após o envio
-            }}
-          >
-            {({ errors, touched }) => (
-              <Form>
-                <table className="w-full text-2xl text-center bg-[#F2F2F2] border-collapse">
-                  <thead className="sticky top-0 bg-[#BDBDBD] h-9 text-xl text-white">
-                    <tr>
-                      <th className="font-light border-none bg-[#BDBDBD]">Cupom</th>
-                      <th className="font-light border-none bg-[#BDBDBD]">Código</th>
-                      <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
-                      <th className="font-light bg-[#BDBDBD]">Válido até</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white border-l-0">
-                        <Field name="nome" className="w-full p-2" placeholder="Insira o nome" />
-                        <ErrorMessage name="nome" component="div" className="text-red-500" />
-                      </td>
-                      <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white">
-                        <Field name="codigo" className="w-full p-2" placeholder="Digite o código" />
-                        <ErrorMessage name="codigo" component="div" className="text-red-500" />
-                      </td>
-                      <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white">
-                        <Field name="detalhes" className="w-full p-2" placeholder="Insira detalhes" />
-                        <ErrorMessage name="detalhes" component="div" className="text-red-500" />
-                      </td>
-                      <td className="border-2 border-[#E0E0E0] py-5 px-4 bg-white border-r-0">
-                        <Field name="validade" type="date" className="w-full p-2" />
-                        <ErrorMessage name="validade" component="div" className="text-red-500" />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="flex justify-end gap-6 mt-4">
-                  <BotaoSalvar nome="Cancelar" />
-                  <button
-                    type="submit"
-                    className="py-1 px-6 bg-neutral-500 text-white rounded-xl hover:bg-white hover:text-[#B0B0B0]"
-                  >
-                    Salvar
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
+        <div className="w-full h-[75vh] flex flex-col justify-around overflow-y-auto lg:w-[85vw] lg:h-[55vh] lg:justify-normal lg:mx-auto lg:rounded-t-2xl">
+          {/**rounded-t-2xl impede que as celulas da tabela vazem pela head ao scrollar*/}
+          {/* Conteudo principal*/}
+          <div className="lg:hidden md:h-[30vh] flex justify-center items-center">
+            {/* Conteúdo mobile até md */}
+            <CardMobile
+              validade="__/__/____"
+              desconto="__"
+              qtdUsada="___"
+              codigo="#123123"
+              isAdicionar
+            ></CardMobile>
+          </div>
+
+          {/*Conteúdo lg */}
+          <div className="hidden lg:flex">
+            <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+          </div>
+
+          <div className="flex justify-around md:text-xl lg:hidden">
+            {/**Botao salvar/cancelar*/}
+            <BotaoSalvar nome="Salvar"></BotaoSalvar>
+            <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+          </div>
+        </div>
+
+        <div className=" hidden lg:flex justify-end text-sm">
+          {/**Botao Salvar Cancelar telas lg*/}
+          <div className=" w-[20vw] flex gap-6 mr-10">
+            <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+            <BotaoSalvar nome="Salvar"></BotaoSalvar>
+          </div>
+        </div>
+
+        <div className="w-full h-[8vh] lg:hidden">
+          {/**Navegacao para dispositivos mobile*/}
+          <NavegacaoCupons activeLink={2}></NavegacaoCupons>
         </div>
       </div>
     </div>
