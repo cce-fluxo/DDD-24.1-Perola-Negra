@@ -3,19 +3,34 @@ import React from "react";
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
-  nomeCupom: string;
+  nomeCupom?: string;
 }
 
 const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
   return (
     <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
+      {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
       <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
+      {!isAdicionar && (
+        <>
         <tr>
-          <th className="font-light border-none bg-[#BDBDBD]">Cupom</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Cupom</th> {/* a11 */}
           <th className="font-light border-none bg-[#BDBDBD]">Código</th>
           <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
-          <th className="font-light bg-[#BDBDBD]">Válido até</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Qt. de usos</th>
+          <th className="font-light bg-[#BDBDBD]">Válido até</th> {/* a1n */}
         </tr>
+        </>)}
+        
+        {isAdicionar && (
+        <>
+        <tr>
+          <th className="font-light border-none bg-[#BDBDBD]">Cupom</th> {/* a11 */}
+          <th className="font-light border-none bg-[#BDBDBD]">Código</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
+          <th className="font-light bg-[#BDBDBD]">Válido até</th> {/* a1n */}
+        </tr>
+        </>)}
       </thead>
       <tbody className={`${isAdicionar ? 'h-[15vh]' : ''}`}>
         {!isAdicionar && (
@@ -101,7 +116,6 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
       </tbody>
     </table>
   );
-};
+}
 
 export default Tabela;
-
