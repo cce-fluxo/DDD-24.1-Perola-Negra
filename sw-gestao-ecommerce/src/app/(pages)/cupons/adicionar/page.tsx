@@ -1,37 +1,34 @@
 "use client";
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import Header from "@/app/components/Header";
+import CardMobile from "@/app/components/tabela/CardMobile";
 import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
+import Tabela from "@/app/components/tabela/Tabela";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 import BotaoSalvar from "@/app/components/BotaoSalvar";
 
-// Definindo o tipo do cupom
-interface Cupom {
-  nome: string;
-  codigo: string;
-  detalhes: string;
-  validade: string;
-}
-
-const CupomSchema = Yup.object().shape({
-  nome: Yup.string().required("Nome é obrigatório"),
-  codigo: Yup.string().required("Código é obrigatório"),
-  detalhes: Yup.string().required("Detalhes são obrigatórios"),
-  validade: Yup.date().required("Validade é obrigatória").nullable(),
-});
-
-function AdicionarCupons({ adicionarCupom }: { adicionarCupom: (cupom: Cupom) => void }) {
+function adicionarCupons() {
   return (
-    <div className="w-full h-full flex justify-center bg-[#F2F2F2]">
-      <div className="flex flex-col justify-around h-full w-4/5 py-full lg:w-full">
-        <HeaderMobile titulo="Cupons" />
-        <div className="hidden lg:flex lg:justify-center w-full h-18 overflow-hidden xl:h-11">
-          <Header titulo="Cupons" bg="transparent" />
+    <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
+      {/*"Body" da página*/}
+
+      <div className="flex flex-col justify-around h-[100vh] w-[80vw] py-3 lg:w-[100vw]">
+        {/*Pagina*/}
+
+        <HeaderMobile titulo="Cupons"></HeaderMobile>
+        {/**Header de dispositivos mobile + md */}
+
+        <div className="hidden lg:flex lg:justify-center w-full h-[18vh] overflow-hidden xl:h-[11vh]">
+          {/**Header para dispositivos lg*/}
+          <Header titulo="Cupons" bg="transparent"></Header>
         </div>
-        <div className="hidden w-1/3 h-6 lg:flex lg:ml-20 lg:mb-5 xl:mb-0 xl:w-1/3">
-          <NavegacaoCupons activeLink={2} />
+        {/* <div className="hidden lg:flex text-3xl font-bold ml-20 lg:mb-3 xl:mb-0 xl:text-4xl">
+          Cupons
+        </div> */}
+
+        <div className="hidden w-[34vw] h-[6vh] lg:flex lg:ml-20 lg:mb-5 xl:mb-0 xl:w-[36vw]">
+          {/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
+          <NavegacaoCupons activeLink={2}></NavegacaoCupons>
         </div>
 
         <div className="w-full h-[75vh] flex flex-col justify-around overflow-y-auto lg:w-[85vw] lg:h-[55vh] lg:justify-normal lg:mx-auto lg:rounded-t-2xl">
@@ -77,4 +74,4 @@ function AdicionarCupons({ adicionarCupom }: { adicionarCupom: (cupom: Cupom) =>
   );
 }
 
-export default AdicionarCupons;
+export default adicionarCupons;
