@@ -4,7 +4,7 @@ import React from "react";
 
 function AreaPesquisar() {
   return (
-    <div className="flex justify-around items-center w-full h-[6vh] lg:justify-start lg:gap-10 lg:mt-6">
+    <div className="flex justify-around items-center w-full h-[6vh] lg:justify-start lg:gap-10">
       {/**Area de pesquisa*/}
       <form className="w-[70%] h-full flex bg-[#E0E0E0] p-2 rounded-xl lg:w-[40%]">
         {/**Barra de pesquisa*/}

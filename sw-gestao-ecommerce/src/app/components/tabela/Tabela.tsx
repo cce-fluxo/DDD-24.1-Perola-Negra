@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
+//magica
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
+  nomeCupom?: string;
 }
 
-const Tabela: React.FC<Props> = ({ isAdicionar = false }) => {
+const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
   return (
     <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
       {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
@@ -102,7 +104,7 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false }) => {
         {isAdicionar && (
           <>
           <tr> {/* Tem que ser a ultima linha da tabela */}
-          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>Insira o nome do cupom</td> {/* bn1 */}
+          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>{nomeCupom}</td> {/* bn1 */}
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Digite o código</td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Insira detalhes do cupom</td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Defina a validade</td> {/* bnn */}

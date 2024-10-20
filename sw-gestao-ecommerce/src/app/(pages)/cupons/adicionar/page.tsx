@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import Header from "@/app/components/Header";
 import CardMobile from "@/app/components/tabela/CardMobile";
@@ -48,7 +47,7 @@ function adicionarCupons() {
 
           {/*Conteúdo lg */}
           <div className="hidden lg:flex">
-            <Tabela isAdicionar></Tabela>
+            <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
           </div>
 
           <div className="flex justify-around md:text-xl lg:hidden">
