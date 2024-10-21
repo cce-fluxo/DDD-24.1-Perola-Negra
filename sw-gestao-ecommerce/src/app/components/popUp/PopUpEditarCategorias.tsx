@@ -63,11 +63,9 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
 
   return (
     <div className="fixed w-screen h-screen inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="lg:w-1/2 h-1/2 w-3/4 flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
+      <div className="lg:w-1/2 h-3/5 w-3/4 flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
         <div className="h-[15%] flex justify-end items-center">
-          <span className="mx-auto font-bold text-xl md:text-4xl">
-            Categorias
-          </span>
+          <p className="mx-auto font-bold text-xl md:text-4xl">Categorias</p>
           <button
             title="Cancelar"
             onClick={togglePopUp}
@@ -77,7 +75,7 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
 
         <form
           onSubmit={formik.handleSubmit}
-          className="h-[65%] grid grid-cols-2 grid-rows-3 grid-flow-col gap-2 mt-3"
+          className="h-full grid  grid-rows-3 grid-flow-col gap-2 mt-3 overflow-x-scroll"
         >
           {formik.values.categorias.map((categoria, index) => (
             <Categorias
