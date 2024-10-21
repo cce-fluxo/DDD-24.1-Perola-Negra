@@ -1,4 +1,6 @@
-import React from "react";
+"use client"; // Certifique-se de que esse componente é client-side
+
+import React, { useState } from "react";
 import Header from "@/app/components/Header";
 import CardMobile from "@/app/components/tabela/CardMobile";
 import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
@@ -6,8 +8,14 @@ import Tabela from "@/app/components/tabela/Tabela";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 
 function Cupons() {
-  {
-  }
+  // Estado local para os cupons
+  const [cupons, setCupons] = useState<{ cupom: string; codigo: string; detalhes: string; validade: string; }[]>([]);
+
+  // Função para adicionar um novo cupom
+  const adicionarCupom = (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => {
+    setCupons([...cupons, novoCupom]); // Adiciona o novo cupom à lista de cupons
+  };
+
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
       {/*"Body" da página*/}
@@ -22,9 +30,6 @@ function Cupons() {
           {/**Header para dispositivos lg*/}
           <Header titulo="Cupons" bg="transparent"></Header>
         </div>
-        {/* <div className="hidden lg:flex text-3xl font-bold ml-20 lg:mb-3 xl:mb-0 xl:text-4xl">
-          Cupons
-        </div> */}
 
         <div className="hidden w-[34vw] h-[6vh] lg:flex lg:ml-20 lg:mb-5 xl:mb-0 xl:w-[36vw]">
           {/*NavegacaoCupom LG --> Só ativa para telas grandes*/}
@@ -44,16 +49,13 @@ function Cupons() {
               qtdUsada="29"
               codigo="#123123"
             ></CardMobile>
-            <CardMobile></CardMobile>
-            <CardMobile></CardMobile>
-            <CardMobile></CardMobile>
-            <CardMobile></CardMobile>
-            <CardMobile></CardMobile>
+            {/* Mais cartões de cupom aqui, se necessário */}
           </div>
 
           {/*Conteúdo lg */}
           <div className="hidden lg:flex">
-            <Tabela></Tabela>
+            {/* Passando a lista de cupons e a função adicionarCupom para o componente Tabela */}
+            <Tabela cupons={cupons} adicionarCupom={adicionarCupom}></Tabela>
           </div>
         </div>
 
@@ -67,3 +69,4 @@ function Cupons() {
 }
 
 export default Cupons;
+
