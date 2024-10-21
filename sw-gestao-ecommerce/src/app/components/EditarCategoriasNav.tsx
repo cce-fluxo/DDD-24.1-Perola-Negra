@@ -33,9 +33,9 @@ const EditarCategoriasNav: React.FC<EditarCategoriasNavProps> = ({
   };
 
   return (
-    <div className="bg-white w-screen flex-row content-center">
+    <div className="bg-white w-screen flex-row content-center z-10">
       {initialVariant === "primary" && (
-        <ul className="flex row gap-16 font-semibold">
+        <ul className="flex row lg:gap-16 gap-8 font-semibold">
           <li>
             <Link href={`${currentPath}/adicionar-produto`}>
               Adicionar produto

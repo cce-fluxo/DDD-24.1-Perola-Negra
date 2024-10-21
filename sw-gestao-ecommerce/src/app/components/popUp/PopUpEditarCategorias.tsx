@@ -15,39 +15,71 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
     { numero: 4, nome: "Categoria 4" },
   ]);
 
-  // Adiciona uma nova categoria com o nome "Nova Categoria" e incrementa o número
+  // Validação do formulário
+  const validationSchema = Yup.object().shape({
+    categorias: Yup.array()
+      .of(
+        Yup.object().shape({
+          nome: Yup.string().required("O nome da categoria é obrigatório"),
+        })
+      )
+      .test(
+        "nome-duplicado",
+        "Nomes de categoria não podem ser duplicados",
+        (value) => {
+          const nomes = value?.map((cat) => cat.nome.toLowerCase());
+          return new Set(nomes).size === nomes?.length;
+        }
+      ),
+  });
+
+  // Configuração do Formik
+  const formik = useFormik({
+    initialValues: {
+      categorias: categorias,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log("Categorias salvas:", values.categorias);
+      togglePopUp(); // Fecha o popup
+    },
+  });
+
   const adicionarCategoria = () => {
-    const novoNumero = categorias.length + 1;
-    setCategorias([
-      ...categorias,
-      { numero: novoNumero, nome: "Nova Categoria" },
+    const novoNumero = formik.values.categorias.length + 1;
+    const novaCategoria = `Nova Categoria ${novoNumero}`;
+    formik.setFieldValue("categorias", [
+      ...formik.values.categorias,
+      { numero: novoNumero, nome: novaCategoria },
     ]);
   };
 
-  // Atualiza o nome da categoria ao editar
   const editarNomeCategoria = (index: number, novoNome: string) => {
-    const novasCategorias = categorias.map((categoria, idx) =>
+    const novasCategorias = formik.values.categorias.map((categoria, idx) =>
       idx === index ? { ...categoria, nome: novoNome } : categoria
     );
-    setCategorias(novasCategorias);
+    formik.setFieldValue("categorias", novasCategorias);
   };
 
   return (
-    <div className="fixed w-[100vw] h-[100vh] inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="w-[80vw] h-[60vh] lg:w-[60vw] lg:h-[55vh] flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
+    <div className="fixed w-screen h-screen inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
+      <div className="lg:w-1/2 h-1/2 w-3/4 flex flex-col justify-between p-6 rounded-xl bg-[#F5F5F5]">
         <div className="h-[15%] flex justify-end items-center">
           <span className="mx-auto font-bold text-xl md:text-4xl">
             Categorias
           </span>
           <button
-            title="btn"
+            title="Cancelar"
             onClick={togglePopUp}
             className='p-5 bg-[url("/icons/iconeX.png")] bg-no-repeat bg-center'
           ></button>
         </div>
 
-        <div className="h-[65%] grid grid-cols-2 grid-rows-3 grid-flow-col gap-2 mt-3">
-          {categorias.map((categoria, index) => (
+        <form
+          onSubmit={formik.handleSubmit}
+          className="h-[65%] grid grid-cols-2 grid-rows-3 grid-flow-col gap-2 mt-3"
+        >
+          {formik.values.categorias.map((categoria, index) => (
             <Categorias
               key={index}
               numero={categoria.numero}
@@ -59,16 +91,25 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
           ))}
 
           <button
+            type="button"
             onClick={adicionarCategoria}
             className="flex justify-start items-center bg-[#D9D9D9] rounded-md p-2 text-sm md:text-xl"
           >
             + Adicionar categoria
           </button>
-        </div>
+        </form>
+
+        {formik.errors.categorias &&
+          typeof formik.errors.categorias === "string" && (
+            <div className="text-red-500 text-center">
+              {formik.errors.categorias}
+            </div>
+          )}
 
         <div className="flex justify-center h-[15%] items-center">
           <button
-            onClick={togglePopUp}
+            type="submit"
+            onClick={formik.handleSubmit}
             className="py-1 px-7 rounded-3xl bg-black text-white mt-4"
           >
             Salvar

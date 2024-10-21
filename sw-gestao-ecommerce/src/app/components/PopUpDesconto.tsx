@@ -1,37 +1,46 @@
-"use client";
-
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 interface props {
   togglePopUp: () => void;
 }
 
 const PopUpDesconto: React.FC<props> = ({ togglePopUp }) => {
-  // Função de formatação de porcentagem
+  const today = new Date();
+  const formattedToday = today.toISOString().slice(0, 10); // Data no formato YYYY-MM-DD
+
+  const validationSchema = Yup.object().shape({
+    desconto: Yup.string().required("A porcentagem é obrigatória"),
+    data: Yup.string()
+      .required("A data é obrigatória")
+      .test(
+        "valid-date",
+        "Data inválida: A data de expiração não pode ser anterior à data atual ou fora do formato dia/mês/ano",
+        function (value) {
+          if (!value) return true;
+          const inputDate = new Date(value.split("/").reverse().join("-"));
+          return inputDate >= new Date(formattedToday);
+        }
+      ),
+  });
+
   const handlePercentageChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setFieldValue: any
   ) => {
-    let value = e.target.value.replace("%", ""); // Remove qualquer % extra
+    let value = e.target.value.replace("%", "");
     const numValue = Number(value);
-
-    if (numValue <= 100) {
-      setFieldValue("desconto", numValue + "%");
-    } else {
-      setFieldValue("desconto", "100%");
-    }
+    setFieldValue("desconto", numValue <= 100 ? numValue + "%" : "100%");
   };
 
-  // Função de formatação de data
   const handleDateChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setFieldValue: any
   ) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere não numérico
+    let value = e.target.value.replace(/\D/g, "");
     if (value.length > 2) value = value.slice(0, 2) + "/" + value.slice(2);
     if (value.length > 5) value = value.slice(0, 5) + "/" + value.slice(5);
-    if (value.length > 10) value = value.slice(0, 10); // não permitir mais de 8 caracteres
     setFieldValue("data", value);
   };
 
@@ -42,8 +51,8 @@ const PopUpDesconto: React.FC<props> = ({ togglePopUp }) => {
           <div className="flex-auto">
             <Formik
               initialValues={{ desconto: "", data: "" }}
+              validationSchema={validationSchema}
               onSubmit={(values) => {
-                // Lógica para salvar os dados
                 console.log("Valores do formulário:", values);
                 togglePopUp();
               }}
@@ -58,29 +67,50 @@ const PopUpDesconto: React.FC<props> = ({ togglePopUp }) => {
                     em todos os produtos da loja até o dia estipulado.
                   </div>
                   <div className="flex flex-row flex-auto gap-16 pb-4">
-                    <Field
-                      name="desconto"
-                      placeholder="0%"
-                      value={values.desconto}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handlePercentageChange(e, setFieldValue)
-                      }
-                      className="bg-gray-300 w-56 rounded font-bold text-3xl text-center p-2"
-                    />
-                    <Field
-                      name="data"
-                      placeholder="dd/mm/yyyy"
-                      value={values.data}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleDateChange(e, setFieldValue)
-                      }
-                      className="bg-gray-300 w-56 rounded font-bold text-3xl text-center p-2"
-                    />
+                    <div>
+                      <Field
+                        name="desconto"
+                        placeholder="0%"
+                        value={values.desconto}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          handlePercentageChange(e, setFieldValue)
+                        }
+                        className="bg-gray-300 w-56 rounded font-bold text-3xl text-center p-2"
+                      />
+                      <ErrorMessage
+                        name="desconto"
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
+                      <div className="flex flex-row flex-auto gap-16 pb-8">
+                        <div className="w-56 text-center text-lg">
+                          Porcentagem
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <Field
+                        name="data"
+                        placeholder="dd/mm/yyyy"
+                        value={values.data}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          handleDateChange(e, setFieldValue)
+                        }
+                        className="bg-gray-300 w-56 rounded font-bold text-3xl text-center p-2"
+                      />
+                      <ErrorMessage
+                        name="data"
+                        component="div"
+                        className="text-red-500 text-sm"
+                      />
+                      <div className="flex flex-row flex-auto gap-16 pb-8">
+                        <div className="w-56 text-center text-lg">
+                          Data de Expiração
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex flex-row flex-auto gap-16 pb-8">
-                    <div className="w-56 text-center text-lg">Porcentagem</div>
-                    <div className="w-56 text-center text-lg">Data</div>
-                  </div>
+
                   <button
                     type="submit"
                     className="bg-black flex-auto w-[7vw] text-white rounded-3xl p-2"
@@ -92,9 +122,12 @@ const PopUpDesconto: React.FC<props> = ({ togglePopUp }) => {
             </Formik>
           </div>
           <div>
-            <button className="font-bold text-3xl px-2" onClick={togglePopUp}>
-              X
-            </button>
+            <button
+              title="Cancelar"
+              type="button"
+              onClick={togglePopUp}
+              className='p-5 bg-[url("/icons/iconeX.png")] bg-no-repeat bg-center'
+            ></button>
           </div>
         </div>
       </div>
