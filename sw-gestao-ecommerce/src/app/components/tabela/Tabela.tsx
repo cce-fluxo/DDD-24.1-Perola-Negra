@@ -12,7 +12,6 @@ interface Props {
   adicionarCupom: (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => void; // Função para adicionar cupons
 }
 
-
 const validationSchema = Yup.object().shape({
   cupom: Yup.string().required("Nome é obrigatório"),
   codigo: Yup.string().required('Código é obrigatório'),
@@ -20,13 +19,17 @@ const validationSchema = Yup.object().shape({
   validade: Yup.date().required('Data de validade é obrigatória'),
 });
 
-const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
+const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => { // Desestruturando adicionarCupom aqui
   return (
     <Formik
       initialValues={{ cupom: "", codigo: "", detalhes: "", validade: "" }}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         console.log(values); // Aqui você pode fazer o que quiser com os valores
+        // Chame a função para adicionar o novo cupom
+        adicionarCupom(values); // Agora está usando a função passada como prop
+        // Limpa os inputs
+        resetForm();
       }}
     >
       {({ errors, touched, submitForm }) => (
