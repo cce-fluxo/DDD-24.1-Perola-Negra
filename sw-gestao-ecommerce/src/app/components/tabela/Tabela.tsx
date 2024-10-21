@@ -3,7 +3,7 @@ import React from "react";
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
-  nomeCupom: string;
+  nomeCupom?: string;
 }
 
 const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
