@@ -1,16 +1,17 @@
-// src/app/components/BotaoSalvar.tsx
 import React from 'react';
 
 interface BotaoSalvarProps {
-  nome: string; // ou o tipo apropriado que você espera
+  nome: string; // Nome do botão
+  onClick?: () => void; // Função onClick, opcional
 }
 
-const BotaoSalvar: React.FC<BotaoSalvarProps> = ({ nome }) => {
+const BotaoSalvar: React.FC<BotaoSalvarProps> = ({ nome, onClick }) => {
   return (
-    <button type="button">
+    <button type="button" onClick={onClick}>
       {nome}
     </button>
   );
 };
 
 export default BotaoSalvar;
+
