@@ -3,13 +3,13 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import BotaoSalvar from "@/app/components/BotaoSalvar"; // Importação do componente BotaoSalvar
+import BotaoSalvar from "@/app/components/BotaoSalvar"; 
 
 interface Props {
-  isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
+  isAdicionar?: boolean;
   nomeCupom?: string;
-  cupons: { cupom: string; codigo: string; detalhes: string; validade: string }[]; // Adiciona a propriedade cupons
-  adicionarCupom: (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => void; // Função para adicionar cupons
+  cupons: { cupom: string; codigo: string; detalhes: string; validade: string }[]; 
+  adicionarCupom: (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => void;
 }
 
 const validationSchema = Yup.object().shape({
@@ -19,15 +19,14 @@ const validationSchema = Yup.object().shape({
   validade: Yup.date().required('Data de validade é obrigatória'),
 });
 
-const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => { // Desestruturando adicionarCupom aqui
+const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => { 
   return (
     <Formik
       initialValues={{ cupom: "", codigo: "", detalhes: "", validade: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values); // Aqui você pode fazer o que quiser com os valores
-        // Chame a função para adicionar o novo cupom
-        adicionarCupom(values); // Agora está usando a função passada como prop
+        console.log(values); 
+        adicionarCupom(values);
         // Limpa os inputs
         resetForm();
       }}
