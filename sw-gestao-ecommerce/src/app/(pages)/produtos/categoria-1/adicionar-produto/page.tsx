@@ -13,7 +13,7 @@ const AdicionarProduto: React.FC = () => {
         {/**Header para dispositivos lg*/}
         <Header titulo="LOGO" bg="white"></Header>
       </div>
-      <div className="pt-40 px-12 justify-center">
+      <div className="pt-10 px-12 justify-center">
         <ProdutoForm></ProdutoForm>
         <ProdutoForm></ProdutoForm>
         <ProdutoForm></ProdutoForm>
