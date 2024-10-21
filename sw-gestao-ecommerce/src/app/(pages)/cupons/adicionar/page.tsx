@@ -6,8 +6,14 @@ import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
 import Tabela from "@/app/components/tabela/Tabela";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 import BotaoSalvar from "@/app/components/BotaoSalvar";
+import { Field, Formik, Form, ErrorMessage, useFormik, useFormikContext } from "formik";
+import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
+
 
 function adicionarCupons() {
+  const router = useRouter();
+  const isSubmiting = useFormikContext();
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
       {/*"Body" da página*/}
@@ -46,23 +52,37 @@ function adicionarCupons() {
           </div>
 
           {/*Conteúdo lg */}
-          <div className="hidden lg:flex">
-            <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
-          </div>
+          <Formik
+            initialValues={{ nomeCupom: "", codigo: "" }}
+            validationSchema={Yup.object({
+              nomeCupom: Yup.string().required("Bota o nome do cupom, lek!"),
+              codigo: Yup.string().required("Epa epa, falta o codigo, colega!"),
+            })}
+            onSubmit={(values) => {
+              console.log(values);
+              router.push("/cupons");
+            }}
+          >
+            <Form>
+              <div className="hidden lg:flex">
+                <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+              </div>
 
-          <div className="flex justify-around md:text-xl lg:hidden">
-            {/**Botao salvar/cancelar*/}
-            <BotaoSalvar nome="Salvar"></BotaoSalvar>
-            <BotaoSalvar nome="Cancelar"></BotaoSalvar>
-          </div>
-        </div>
+              <div className="flex justify-around md:text-xl lg:hidden">
+                {/**Botao salvar/cancelar*/}
+                <BotaoSalvar nome="Salvar"></BotaoSalvar>
+                <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+              </div>
 
-        <div className=" hidden lg:flex justify-end text-sm">
-          {/**Botao Salvar Cancelar telas lg*/}
-          <div className=" w-[20vw] flex gap-6 mr-10">
-            <BotaoSalvar nome="Cancelar"></BotaoSalvar>
-            <BotaoSalvar nome="Salvar"></BotaoSalvar>
-          </div>
+              <div className=" hidden lg:flex justify-end text-sm">
+                {/**Botao Salvar Cancelar telas lg*/}
+                <div className="mt-[25vh] flex gap-6">
+                  <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+                  <BotaoSalvar nome="Salvar" tipo="submit"></BotaoSalvar>
+                </div>
+              </div>
+            </Form>
+          </Formik>
         </div>
 
         <div className="w-full h-[8vh] lg:hidden">

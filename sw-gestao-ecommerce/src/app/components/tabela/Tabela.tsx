@@ -1,3 +1,5 @@
+"use client"
+import { Field, Form, ErrorMessage } from "formik";
 import React from "react";
 //magica
 
@@ -104,8 +106,29 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
         {isAdicionar && (
           <>
           <tr> {/* Tem que ser a ultima linha da tabela */}
-          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>{nomeCupom}</td> {/* bn1 */}
-          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Digite o código</td>
+        
+          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>
+
+            <Field
+              id="nomeCupom"
+              name="nomeCupom"
+              placeholder="digite o nome do cupom"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "nomeCupom" component="div" className="text-red-500 text-sm"/>
+
+          </td> {/* bn1 */}
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+            
+          <Field
+              id="codigo"
+              name="codigo"
+              placeholder="digite o codigo do cupom"
+              className='w-full h-full border-b-2'
+            />
+            <ErrorMessage name = "codigo" component="div" className="text-red-500 text-sm"/>
+
+          </td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Insira detalhes do cupom</td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Defina a validade</td> {/* bnn */}
         </tr>
