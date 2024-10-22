@@ -53,35 +53,41 @@ function adicionarCupons() {
 
           {/*Conteúdo lg */}
           <Formik
-            initialValues={{ nomeCupom: "", codigo: "" }}
+            initialValues={{ nomeCupom: "", codigo: "", detalhes: "", validade: "" }}
             validationSchema={Yup.object({
               nomeCupom: Yup.string().required("Bota o nome do cupom, lek!"),
               codigo: Yup.string().required("Epa epa, falta o codigo, colega!"),
+              detalhes: Yup.number().max(100, 'o valor maximo é 100').min(0, 'o valor minimo é 0').required('Jogador, faltou o desconto'),
+              validade: Yup.date().min(new Date(), 'A data deve ser maior que a data atual, seloko').required('E a data, amigao?'),
+
             })}
-            onSubmit={(values) => {
+            onSubmit={(values, { setSubmitting }) => {
               console.log(values);
-              router.push("/cupons");
-            }}
-          >
-            <Form>
-              <div className="hidden lg:flex">
-                <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
-              </div>
+              console.log(isSubmiting);
+              router.push('/cupons');
+              setSubmitting(false);
+            }}>
 
-              <div className="flex justify-around md:text-xl lg:hidden">
-                {/**Botao salvar/cancelar*/}
-                <BotaoSalvar nome="Salvar"></BotaoSalvar>
-                <BotaoSalvar nome="Cancelar"></BotaoSalvar>
-              </div>
+            {({ resetForm}) => (
+                <Form>
+                  <div className="hidden lg:flex">
+                    <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+                  </div>
 
-              <div className=" hidden lg:flex justify-end text-sm">
-                {/**Botao Salvar Cancelar telas lg*/}
-                <div className="mt-[25vh] flex gap-6">
-                  <BotaoSalvar nome="Cancelar"></BotaoSalvar>
-                  <BotaoSalvar nome="Salvar" tipo="submit"></BotaoSalvar>
-                </div>
-              </div>
-            </Form>
+                  <div className="flex justify-around md:text-xl lg:hidden">
+                    {/**Botao salvar/cancelar*/}
+                    <BotaoSalvar nome="Salvar"></BotaoSalvar>
+                    <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+                  </div>
+
+                  <div className=" hidden lg:flex justify-end text-sm">
+                    {/**Botao Salvar Cancelar telas lg*/}
+                    <div className="mt-[25vh] flex gap-6">
+                      <BotaoSalvar nome="Cancelar" onClick={() => resetForm()}></BotaoSalvar>
+                      <BotaoSalvar nome="Salvar" tipo="submit"></BotaoSalvar>
+                    </div>
+                  </div>
+                </Form>)}
           </Formik>
         </div>
 

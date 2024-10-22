@@ -1,6 +1,7 @@
 "use client"
 import { Field, Form, ErrorMessage } from "formik";
 import React from "react";
+import { date } from "yup";
 //magica
 
 interface Props {
@@ -52,54 +53,6 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
               <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
               <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
             </tr>
-
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
-
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
-
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
-
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
-
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
-
-            <tr> {/* Tem que ser a ultima linha da tabela */}
-              <td className={`border-2 py-8 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>DDIVOS</td> {/* bn1 */}
-              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>#123456789</td>
-              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>25% de <br></br>desconto</td>
-              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>563</td>
-              <td className={`border-2 py-5 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>23/05/2023</td> {/* bnn */}
-            </tr>
           </>
         )}
 
@@ -112,7 +65,7 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
             <Field
               id="nomeCupom"
               name="nomeCupom"
-              placeholder="digite o nome do cupom"
+              placeholder="Nome"
               className='w-full h-full border-b-2 focus:outline-none'
             />
             <ErrorMessage name = "nomeCupom" component="div" className="text-red-500 text-sm"/>
@@ -123,14 +76,31 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
           <Field
               id="codigo"
               name="codigo"
-              placeholder="digite o codigo do cupom"
-              className='w-full h-full border-b-2'
+              placeholder="Código"
+              className='w-full h-full border-b-2 focus:outline-none'
             />
             <ErrorMessage name = "codigo" component="div" className="text-red-500 text-sm"/>
 
           </td>
-          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Insira detalhes do cupom</td>
-          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>Defina a validade</td> {/* bnn */}
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+            
+          <Field
+              id="detalhes"
+              name="detalhes"
+              placeholder="Detalhes"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "detalhes" component="div" className="text-red-500 text-sm"/>
+          </td>
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+          <Field
+              id="validade"
+              name="validade"
+              type="date"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "validade" component="div" className="text-red-500 text-sm"/>  
+          </td> {/* bnn */}
         </tr>
           </>
 
