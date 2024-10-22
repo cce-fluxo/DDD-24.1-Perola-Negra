@@ -56,7 +56,7 @@ function Banner() {
 
               <button
                 onClick={() => removerImagem(index)}
-                className="absolute bg-[url('/images/remover.png')] bg-no-repeat bg-[#F2F2F2] bg-left indent-8 text-[#828282] rounded-lg p-2"
+                className="absolute bg-[url('/images/remover.png')] bg-no-repeat border-4 shadow-zinc-700 shadow-lg border-[#F2F2F2] bg-[#F2F2F2] bg-left indent-8 text-[#828282] rounded-lg p-2"
               >
                 Remover
               </button>
