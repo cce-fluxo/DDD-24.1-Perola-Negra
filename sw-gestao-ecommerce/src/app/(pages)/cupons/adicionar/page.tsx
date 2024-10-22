@@ -5,16 +5,15 @@ import CardMobile from "@/app/components/tabela/CardMobile";
 import NavegacaoCupons from "@/app/components/tabela/NavegacaoCupons";
 import Tabela from "@/app/components/tabela/Tabela";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
+import BotaoSalvar from "@/app/components/BotaoSalvar";
+import { Field, Formik, Form, ErrorMessage, useFormik, useFormikContext } from "formik";
+import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
+
 
 function adicionarCupons() {
-  // Inicialize cupons como um array vazio
-  const [cupons, setCupons] = useState<{ cupom: string; codigo: string; detalhes: string; validade: string }[]>([]);
-
-  // Função para adicionar cupons ao array
-  const adicionarCupom = (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => {
-    setCupons([...cupons, novoCupom]); // Adiciona o novo cupom ao array de cupons
-  };
-
+  const router = useRouter();
+  const isSubmiting = useFormikContext();
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center bg-[#F2F2F2]">
       {/*"Body" da página*/}
@@ -50,9 +49,43 @@ function adicionarCupons() {
           </div>
 
           {/*Conteúdo lg */}
-          <div className="hidden lg:flex">
-            <Tabela isAdicionar nomeCupom="Luciano" cupons={cupons} adicionarCupom={adicionarCupom}></Tabela>
-          </div>
+          <Formik
+            initialValues={{ nomeCupom: "", codigo: "", detalhes: "", validade: "" }}
+            validationSchema={Yup.object({
+              nomeCupom: Yup.string().required("Bota o nome do cupom, lek!"),
+              codigo: Yup.string().required("Epa epa, falta o codigo, colega!"),
+              detalhes: Yup.number().max(100, 'o valor maximo é 100').min(0, 'o valor minimo é 0').required('Jogador, faltou o desconto'),
+              validade: Yup.date().min(new Date(), 'A data deve ser maior que a data atual, seloko').required('E a data, amigao?'),
+
+            })}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log(values);
+              console.log(isSubmiting);
+              router.push('/cupons');
+              setSubmitting(false);
+            }}>
+
+            {({ resetForm}) => (
+                <Form>
+                  <div className="hidden lg:flex">
+                    <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+                  </div>
+
+                  <div className="flex justify-around md:text-xl lg:hidden">
+                    {/**Botao salvar/cancelar*/}
+                    <BotaoSalvar nome="Salvar"></BotaoSalvar>
+                    <BotaoSalvar nome="Cancelar"></BotaoSalvar>
+                  </div>
+
+                  <div className=" hidden lg:flex justify-end text-sm">
+                    {/**Botao Salvar Cancelar telas lg*/}
+                    <div className="mt-[25vh] flex gap-6">
+                      <BotaoSalvar nome="Cancelar" onClick={() => resetForm()}></BotaoSalvar>
+                      <BotaoSalvar nome="Salvar" tipo="submit"></BotaoSalvar>
+                    </div>
+                  </div>
+                </Form>)}
+          </Formik>
         </div>
 
         <div className="w-full h-[8vh] lg:hidden">
