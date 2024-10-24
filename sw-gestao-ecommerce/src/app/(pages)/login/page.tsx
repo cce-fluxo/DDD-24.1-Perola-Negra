@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
            setSubmitting(false);
          }}>
           
-        <Form className="absolute flex flex-col items-center justify-center p-8 left-[55px] top-[360px] w-[calc(100%-70px)] max-w-[500px]">
+        <Form className="flex flex-col items-center justify-center p-8 left-[55px] top-[360px] w-[calc(100%-70px)] max-w-[500px]">
           <div className="mb-4 w-full">
             <label className="block text-sm font-bold text-gray-700 mb-2" htmlFor="email">E-mail</label>
             <Field
