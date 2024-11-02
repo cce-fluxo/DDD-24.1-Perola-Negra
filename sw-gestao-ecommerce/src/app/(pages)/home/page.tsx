@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import PopupConfirm from "@/app/components/PopupConfirm";
+import Image from "next/image";
 
-const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const LoginFormato: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
 
@@ -15,26 +16,18 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const handleConfirmLogout = () => {
     setShowPopup(false);
-    router.push("/login"); // Redireciona o usuário após a confirmação
+    router.push("/login");
   };
 
   return (
-    <section className="relative h-screen">
-      <div className="absolute w-[670px] h-full left-[1250px] top-0 bg-[#D9D9D9] z-[-1]" />
-
-      <div className="absolute left-[calc(100%-1105px)] bottom-0 w-full max-w-[750px] z-[1] flex justify-center">
-        <img
-          src="/images/mobilegame.png"
-          alt="Imagem do Jogo Móvel"
-          className="w-full h-auto object-contain"
-        />
-      </div>
-
-      <div className="absolute w-[650px] h-[747px] left-[75px] right-[796px] top-[22px] bottom-[146px] bg-white rounded-[20px] p-5 box-border">
-        <div className="align-baseline font-bold text-5xl mb-[140px]">
-          LOGO RESTAURANTE
+    <section className="flex justify-around pl-6 gap-72 items-center h-screen bg-white">
+      <div className="flex flex-col w-[35%] h-[85%] rounded-[20px] mb-20 ml-4">
+        <div className="flex flex-col w-[470px] h-[35%] text-black text-[54px] font-semibold">
+          <h1 className="flex items-center text-[90%] mt-12">
+            <span className="mr-2">LOGO</span>
+            <span>RESTAURANTE</span>
+          </h1>
         </div>
-
         <div className="flex flex-col space-y-24">
           <Link href="/banner" className="text-5xl hover:underline font-bold">
             Banner
@@ -55,8 +48,19 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             Controle de Estoques
           </Link>
         </div>
-
         {children}
+      </div>
+
+      <div className="flex w-[45%] h-full bg-[#D9D9D9]"></div>
+
+      <div className="flex items-center -ml-[94%] mt-[14.5%]">
+        <Image
+          src="/images/mobilegame.png"
+          alt="Mobile Game"
+          width={750}
+          height={600}
+          className="object-contain"
+        />
       </div>
 
       <div className="absolute bottom-0 left-[80px] p-2.5">
@@ -65,7 +69,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </a>
       </div>
 
-      {showPopup && ( // Lógica pra fazer alguma coisa Carol please ajeita isso aqui
+      {showPopup && (
         <PopupConfirm
           onClose={() => setShowPopup(false)}
           onConfirm={handleConfirmLogout}
@@ -75,4 +79,4 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default LoginLayout;
+export default LoginFormato;

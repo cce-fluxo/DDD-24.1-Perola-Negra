@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import PopupConfirm from "./PopupProduto"; // Importe o PopupConfirm aqui
+import PopupConfirm from "./PopupProduto";
 
 const ProdutoForm: React.FC = () => {
   const [quantidade, setQuantidade] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [popupVisible, setPopupVisible] = useState(false); // Estado para o Popup
+  const [popupVisible, setPopupVisible] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -26,8 +26,8 @@ const ProdutoForm: React.FC = () => {
   };
 
   return (
-    <div className="mb-4 bg-neutral-100 px-5 py-12 rounded-3xl w-full flex flex-col md:flex-row justify-between md:justify-evenly gap-5 md:gap-[5%]">
-      <div className="flex justify-center items-center">
+    <div className="mb-4 bg-neutral-100 px-5 py-12 rounded-3xl w-full flex flex-col md:flex-row justify-between md:justify-evenly gap-5 md:gap-5">
+      <div className="flex justify-center items-center w-full md:w-1/3">
         <label htmlFor="image-upload" className="cursor-pointer">
           <div className="relative w-48 h-48 bg-neutral-200 rounded-lg">
             {!selectedImage && (
@@ -79,7 +79,7 @@ const ProdutoForm: React.FC = () => {
             type="currency"
           />
         </div>
-        <div className="relative bg-neutral-200 w-11/12 rounded-xl py-1.5 px-3 mt-3 flex justify-between items-center">
+        <div className="relative bg-neutral-200 w-full rounded-xl py-1.5 px-3 mt-3 flex justify-between items-center">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="flex items-center justify-between w-full"
@@ -113,14 +113,14 @@ const ProdutoForm: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-row gap-5 mt-6 md:mt-0 place-self-end">
+      <div className="flex flex-col md:flex-row gap-5 mt-6 md:mt-0 place-self-end w-full md:w-auto">
         <button
-          onClick={() => setPopupVisible(true)} // Abre o popup ao clicar em "Excluir"
-          className="py-1 px-6 bg-neutral-500 text-white rounded-xl"
+          onClick={() => setPopupVisible(true)}
+          className="py-1 px-6 bg-neutral-500 text-white rounded-xl w-full md:w-auto"
         >
           Excluir
         </button>
-        <button className="py-1 px-6 bg-neutral-500 text-white rounded-xl">
+        <button className="py-1 px-6 bg-neutral-500 text-white rounded-xl w-full md:w-auto">
           Salvar
         </button>
       </div>
@@ -130,7 +130,6 @@ const ProdutoForm: React.FC = () => {
           onClose={() => setPopupVisible(false)}
           onConfirm={() => {
             setPopupVisible(false);
-            // Adicione aqui a lógica de exclusão do produto
           }}
         />
       )}
@@ -139,4 +138,3 @@ const ProdutoForm: React.FC = () => {
 };
 
 export default ProdutoForm;
-
