@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import LoginLayout from "@/app/components/LoginLayout"; // Importando o componente do background
 import { Field, Formik, Form, ErrorMessage, useFormik, useFormikContext } from "formik";
 import * as Yup from 'yup';
+import axios from "axios";
+import api from "@/services/axios";
 
 const LoginForm: React.FC = () => {
 
@@ -25,7 +27,7 @@ const LoginForm: React.FC = () => {
            email: Yup.string().email('Email inválido').required('Bota o email, mano!'),
            password: Yup.string().min(6, 'a senha deve ter no minimo 6 caracteres').required('bota a senha, mano!'),
          })}
-         onSubmit={(values, { setSubmitting }) => {
+         onSubmit={(values, { setSubmitting}) => {
            console.log(values);
            console.log(isSubmiting);
            router.push('/home');
@@ -63,6 +65,7 @@ const LoginForm: React.FC = () => {
           <button
             type="submit"
             className="absolute left-[200px] top-[270px] w-[150px] px-12 py-3.5 text-lg font-bold text-center whitespace-nowrap bg-black rounded-3xl text-neutral-100 hover:bg-slate-100 hover:text-black"
+            onClick={getAdministradores}
           >
             Entrar
           </button>
@@ -71,5 +74,21 @@ const LoginForm: React.FC = () => {
     </LoginLayout>
   );
 };
+
+async function getAdministradores (values) {
+  console.log("passei aqui 1");
+  try {
+    const response = await api.post("/administrador", 
+      {
+        email: "email1@gmail.com",
+        hash_senha: "123456",
+      }
+    );
+    console.log('Resposta:', response.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export default LoginForm;
