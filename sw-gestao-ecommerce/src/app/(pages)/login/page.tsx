@@ -5,7 +5,7 @@ import LoginFormato from "@/app/components/LoginFormato";
 import { Field, Formik, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from 'yup';
 import { useAuth } from "@/app/contexts/authContext";
-import api from "@/services/axios";
+import api from "@/services/axios"; // Importando a instância do Axios
 
 interface LoginFormValues {
   email: string;
@@ -19,23 +19,23 @@ interface LoginResponse {
 }
 
 const LoginForm: React.FC = () => {
-  const router = useRouter();
-  const { signIn } = useAuth();
-  const [errorDetails, setErrorDetails] = useState<string>("");
+  const router = useRouter(); // Hook para navegar entre páginas
+  const { signIn } = useAuth(); // Função para autenticar o usuário
+  const [errorDetails, setErrorDetails] = useState<string>(""); // Estado para armazenar detalhes do erro
 
   const extractToken = (responseData: any): string | null => {
     console.log('Estrutura completa da resposta:', responseData);
     
-
-    if (responseData.acess_token) return responseData.acess_token; // Corrigido
-    if (responseData.token) return responseData.token;
-    if (responseData.jwt) return responseData.jwt;
+    // Tentando extrair o token de diferentes formas da resposta
+    if (responseData.acess_token) return responseData.acess_token; // Verifica se há acess_token
+    if (responseData.token) return responseData.token; // Verifica se há token
+    if (responseData.jwt) return responseData.jwt; // Verifica se há jwt
     
     // Se o token estiver em uma estrutura aninhada
     if (responseData.data?.token) return responseData.data.token;
     if (responseData.data?.acess_token) return responseData.data.acess_token;
     
-    return null;
+    return null; // Retorna null se não encontrar nenhum token
   };
 
   return (

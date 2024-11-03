@@ -34,7 +34,6 @@ export default function AuthContextProvider({ children }: { children: ReactNode 
 
   const signIn = useCallback(async (newToken: string) => {
     try {
-      // Não é necessário remover aspas
       localStorage.setItem("@sw-gestao-ecommerce:token", newToken);
       setToken(newToken);
     } catch (error) {
@@ -75,7 +74,7 @@ export default function AuthContextProvider({ children }: { children: ReactNode 
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  console.log(context); // Adicione este log
+  console.log(context);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
