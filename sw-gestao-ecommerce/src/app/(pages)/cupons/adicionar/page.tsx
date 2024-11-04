@@ -73,7 +73,7 @@ function adicionarCupons() {
             {({ resetForm}) => (
                 <Form>
                   <div className="hidden lg:flex">
-                    <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+                    <Tabela isAdicionar></Tabela>
                   </div>
 
                   <div className="flex justify-around md:text-xl lg:hidden">{/*BOTAO DE CELULAR*/}
