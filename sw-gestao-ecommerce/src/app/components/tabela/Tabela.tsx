@@ -2,7 +2,7 @@
 import { Field, Form, ErrorMessage } from "formik";
 import React from "react";
 import { date } from "yup";
-//magica
+import api from "@/services/axios";
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
@@ -63,12 +63,12 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
           <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>
 
             <Field
-              id="nomeCupom"
-              name="nomeCupom"
+              id="nome"
+              name="nome"
               placeholder="Nome"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "nomeCupom" component="div" className="text-red-500 text-sm"/>
+            <ErrorMessage name = "nome" component="div" className="text-red-500 text-sm"/>
 
           </td> {/* bn1 */}
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
@@ -85,21 +85,21 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
             
           <Field
-              id="detalhes"
-              name="detalhes"
-              placeholder="Detalhes"
+              id="PR_desconto"
+              name="PR_desconto"
+              placeholder="Desconto"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "detalhes" component="div" className="text-red-500 text-sm"/>
+            <ErrorMessage name = "PR_desconto" component="div" className="text-red-500 text-sm"/>
           </td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
           <Field
-              id="validade"
-              name="validade"
+              id="DT_validade"
+              name="DT_validade"
               type="date"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "validade" component="div" className="text-red-500 text-sm"/>  
+            <ErrorMessage name = "DT_validade" component="div" className="text-red-500 text-sm"/>  
           </td> {/* bnn */}
         </tr>
           </>
@@ -109,6 +109,15 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, nomeCupom }) => {
       </tbody>
     </table>
   );
+  async function getCupom () {
+    try {
+      const response = await api.get("/cupom");
+      console.log('Resposta:', response.data);
+  
+    } catch (error:any) {
+      console.log("deu errado men: ", error.response.data);
+    }
+  }
 }
 
 export default Tabela;
