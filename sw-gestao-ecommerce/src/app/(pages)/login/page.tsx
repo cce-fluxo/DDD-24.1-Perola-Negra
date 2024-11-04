@@ -30,15 +30,6 @@ const LoginForm: React.FC = () => {
          onSubmit={async (values, { setSubmitting}) => {
            console.log(values);
            console.log(isSubmiting);
-           const resposta = await getAdministradores(values, router);
-           if (resposta == 200)
-           {
-            router.push('/home');
-           } 
-           else if (resposta != 200)
-           {
-            console.log ("nao foi poassivel encontrar admins:", resposta);
-           }
            setSubmitting(false);
          }}>
           
@@ -81,23 +72,6 @@ const LoginForm: React.FC = () => {
     </LoginLayout>
   );
 };
-
-async function getAdministradores (values:any, router:any) {
-  try {
-    const response = await api.get("/administrador/1", 
-      /*{
-        email: "email1@gmail.com",
-        hash_senha: "123456",
-      }*/
-    );
-    console.log('Resposta:', response.status);
-    return response.status
-
-  } catch (error:any) {
-    console.log("deu errado men: ", error.response.status);
-    return (error.response.status)
-  }
-}
 
 
 export default LoginForm;
