@@ -9,6 +9,7 @@ import BotaoSalvar from "@/app/components/BotaoSalvar";
 import { Field, Formik, Form, ErrorMessage, useFormik, useFormikContext } from "formik";
 import * as Yup from 'yup';
 import { useRouter } from "next/navigation";
+import api from "@/services/axios";
 
 
 function adicionarCupons() {
@@ -50,17 +51,18 @@ function adicionarCupons() {
 
           {/*Conteúdo lg */}
           <Formik
-            initialValues={{ nomeCupom: "", codigo: "", detalhes: "", validade: "" }}
+            initialValues={{ nome: "", codigo: "", PR_desconto: "", DT_validade: "" }}
             validationSchema={Yup.object({
-              nomeCupom: Yup.string().required("Bota o nome do cupom, lek!"),
+              nome: Yup.string().required("Bota o nome do cupom, lek!"),
               codigo: Yup.string().required("Epa epa, falta o codigo, colega!"),
-              detalhes: Yup.number().max(100, 'o valor maximo é 100').min(0, 'o valor minimo é 0').required('Jogador, faltou o desconto'),
-              validade: Yup.date().min(new Date(), 'A data deve ser maior que a data atual, seloko').required('E a data, amigao?'),
+              PR_desconto: Yup.number().max(100, 'o valor maximo é 100').min(0, 'o valor minimo é 0').required('Jogador, faltou o desconto'),
+              DT_validade: Yup.date().min(new Date(), 'A data deve ser maior que a data atual, seloko').required('E a data, amigao?'),
 
             })}
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
               console.log(isSubmiting);
+              postCupom(values);
               router.push('/cupons');
               setSubmitting(false);
             }}>
@@ -68,11 +70,10 @@ function adicionarCupons() {
             {({ resetForm}) => (
                 <Form>
                   <div className="hidden lg:flex">
-                    <Tabela isAdicionar nomeCupom="Luciano"></Tabela>
+                    <Tabela isAdicionar></Tabela>
                   </div>
 
-                  <div className="flex justify-around md:text-xl lg:hidden">
-                    {/**Botao salvar/cancelar*/}
+                  <div className="flex justify-around md:text-xl lg:hidden">{/*BOTAO DE CELULAR*/}
                     <BotaoSalvar nome="Salvar"></BotaoSalvar>
                     <BotaoSalvar nome="Cancelar"></BotaoSalvar>
                   </div>
@@ -95,6 +96,24 @@ function adicionarCupons() {
       </div>
     </div>
   );
+
+  async function postCupom (values:any) {
+    try {
+      const response = await api.post("/cupom", 
+        {
+          nome: values.nome,
+          codigo: values.codigo,
+          PR_desconto: Number(values.PR_desconto),
+          DT_validade: values.DT_validade
+        }
+      );
+      console.log('Resposta:', response.data);
+  
+    } catch (error:any) {
+      console.log("deu errado men: ", error.response.data);
+    }
+  }
+
 }
 
 export default adicionarCupons;

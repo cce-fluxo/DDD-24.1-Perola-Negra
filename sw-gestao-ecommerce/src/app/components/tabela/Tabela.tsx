@@ -1,15 +1,43 @@
 "use client"
 import { Field, Form, ErrorMessage } from "formik";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { date } from "yup";
-//magica
+import api from "@/services/axios";
+import getCupom from "@/app/funcoes/getCupom";
 
 interface Props {
   isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
-  nomeCupom?: string;
 }
 
-const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => { 
+
+const Tabela: React.FC<Props> = ({ isAdicionar = false }) => {
+  const [cupons, setCupons] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false); // Estado para verificar o carregamento
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true); // Inicia o carregamento
+      const data = await getCupom();
+      setCupons(data);
+      setLoading(false); // Termina o carregamento
+    })();
+  }, []);
+
+
+  const formatarData = (dataISO: string) => {
+    const data = new Date(dataISO);
+    return data.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+  };
+
+  if (loading) {
+    return <p className="text-center text-2xl mt-4">Carregando...</p>;
+  }
+
+  if (cupons.length === 0 && !isAdicionar){
+    const mensagem = <p className="text-2xl">Não há cupons disponíveis</p>
+    return mensagem
+  }
+  
   return (
     <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
       {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
@@ -35,26 +63,20 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => {
         </tr>
         </>)}
       </thead>
-      <tbody className={`${isAdicionar ? 'h-[15vh]' : ''}`}>
-        {!isAdicionar && (
-          <>
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
-            </tr>
 
-            <tr> {/* Linhas do meio da tabela */}
-              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">DDDIVOS</td> {/* b11 */}
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#123456789</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">25% de<br />desconto</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">563</td>
-              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">23/05/2023</td> {/* b1n */}
+      <tbody className={`${isAdicionar ? 'h-[15vh]' : ''}`}>
+      {!isAdicionar &&
+          cupons.map((cupom)  => (
+            <tr key={cupom.id}>
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">{cupom.nome}</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#{cupom.codigo}</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">{cupom.PR_desconto}% de<br></br> desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">-</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">
+                {formatarData(cupom.DT_validade)}
+              </td>
             </tr>
-          </>
-        )}
+          ))}
 
         {isAdicionar && (
           <>
@@ -63,12 +85,12 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => {
           <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>
 
             <Field
-              id="nomeCupom"
-              name="nomeCupom"
+              id="nome"
+              name="nome"
               placeholder="Nome"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "nomeCupom" component="div" className="text-red-500 text-sm"/>
+            <ErrorMessage name = "nome" component="div" className="text-red-500 text-sm"/>
 
           </td> {/* bn1 */}
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
@@ -85,25 +107,24 @@ const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => {
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
             
           <Field
-              id="detalhes"
-              name="detalhes"
-              placeholder="Detalhes"
+              id="PR_desconto"
+              name="PR_desconto"
+              placeholder="Desconto"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "detalhes" component="div" className="text-red-500 text-sm"/>
+            <ErrorMessage name = "PR_desconto" component="div" className="text-red-500 text-sm"/>
           </td>
           <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
           <Field
-              id="validade"
-              name="validade"
+              id="DT_validade"
+              name="DT_validade"
               type="date"
               className='w-full h-full border-b-2 focus:outline-none'
             />
-            <ErrorMessage name = "validade" component="div" className="text-red-500 text-sm"/>  
+            <ErrorMessage name = "DT_validade" component="div" className="text-red-500 text-sm"/>  
           </td> {/* bnn */}
         </tr>
           </>
-
         )}
 
       </tbody>
