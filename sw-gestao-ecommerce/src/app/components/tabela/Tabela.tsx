@@ -1,113 +1,134 @@
-"use client";
-
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import BotaoSalvar from "@/app/components/BotaoSalvar"; 
+"use client"
+import { Field, Form, ErrorMessage } from "formik";
+import React, {useEffect, useState} from "react";
+import { date } from "yup";
+import api from "@/services/axios";
+import getCupom from "@/app/funcoes/getCupom";
 
 interface Props {
-  isAdicionar?: boolean;
-  nomeCupom?: string;
-  cupons: { cupom: string; codigo: string; detalhes: string; validade: string }[]; 
-  adicionarCupom: (novoCupom: { cupom: string; codigo: string; detalhes: string; validade: string }) => void;
+  isAdicionar?: boolean; // Verifica se a tabela é da página adicionarCupons ou Cupons.
 }
 
-const validationSchema = Yup.object().shape({
-  cupom: Yup.string().required("Nome é obrigatório"),
-  codigo: Yup.string().required('Código é obrigatório'),
-  detalhes: Yup.string().required('Detalhes são obrigatórios'),
-  validade: Yup.date().required('Data de validade é obrigatória'),
-});
 
-const Tabela: React.FC<Props> = ({ isAdicionar = false, adicionarCupom }) => { 
+const Tabela: React.FC<Props> = ({ isAdicionar = false }) => {
+  const [cupons, setCupons] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false); // Estado para verificar o carregamento
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true); // Inicia o carregamento
+      const data = await getCupom();
+      setCupons(data);
+      setLoading(false); // Termina o carregamento
+    })();
+  }, []);
+
+
+  const formatarData = (dataISO: string) => {
+    const data = new Date(dataISO);
+    return data.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+  };
+
+  if (loading) {
+    return <p className="text-center text-2xl mt-4">Carregando...</p>;
+  }
+
+  if (cupons.length === 0 && !isAdicionar){
+    const mensagem = <p className="text-2xl">Não há cupons disponíveis</p>
+    return mensagem
+  }
+  
   return (
-    <Formik
-      initialValues={{ cupom: "", codigo: "", detalhes: "", validade: "" }}
-      validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
-        console.log(values); 
-        adicionarCupom(values);
-        // Limpa os inputs
-        resetForm();
-      }}
-    >
-      {({ errors, touched, submitForm }) => (
-        <Form className="flex flex-col h-screen"> {/* Adiciona flex para ocupar a tela inteira */}
-          <table className="w-[85vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
-            <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
-              {!isAdicionar && (
-                <>
-                  <tr>
-                    <th className="font-light border-none bg-[#BDBDBD]">Cupom</th>
-                    <th className="font-light border-none bg-[#BDBDBD]">Código</th>
-                    <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
-                    <th className="font-light border-none bg-[#BDBDBD]">Qt. de usos</th>
-                    <th className="font-light bg-[#BDBDBD]">Válido até</th>
-                  </tr>
-                </>
-              )}
+    <table className="w-[100vw] text-2xl text-center bg-[#F2F2F2] border-collapse">
+      {/* a1n --> elemento da linha 1 coluna n, sendo n a última linha ou coluna, sendo a (elemento Header), sendo b (elemento das células) */}
+      <thead className="sticky top-0 bg-[#BDBDBD] h-[9vh] text-xl text-white">
+      {!isAdicionar && (
+        <>
+        <tr>
+          <th className="font-light border-none bg-[#BDBDBD]">Cupom</th> {/* a11 */}
+          <th className="font-light border-none bg-[#BDBDBD]">Código</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Qt. de usos</th>
+          <th className="font-light bg-[#BDBDBD]">Válido até</th> {/* a1n */}
+        </tr>
+        </>)}
+        
+        {isAdicionar && (
+        <>
+        <tr>
+          <th className="font-light border-none bg-[#BDBDBD]">Cupom</th> {/* a11 */}
+          <th className="font-light border-none bg-[#BDBDBD]">Código</th>
+          <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
+          <th className="font-light bg-[#BDBDBD]">Válido até</th> {/* a1n */}
+        </tr>
+        </>)}
+      </thead>
 
-              {isAdicionar && (
-                <>
-                  <tr>
-                    <th className="font-light border-none bg-[#BDBDBD]">Cupom</th>
-                    <th className="font-light border-none bg-[#BDBDBD]">Código</th>
-                    <th className="font-light border-none bg-[#BDBDBD]">Detalhes</th>
-                    <th className="font-light bg-[#BDBDBD]">Válido até</th>
-                  </tr>
-                </>
-              )}
-            </thead>
-            <tbody className={`${isAdicionar ? 'h-[15vh] w-[85vw]' : ''}`}>
-              {!isAdicionar && (
-                <>
-                  <tr>
-                    <td className="border-2 py-8 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white">DDIVOS</td>
-                    <td className="border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white">#123456789</td>
-                    <td className="border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white">25% de <br />desconto</td>
-                    <td className="border-2 py-5 px-4 border-[#E0E0E0] border-b-0 bg-white">563</td>
-                    <td className="border-2 py-5 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white">23/05/2023</td>
-                  </tr>
-                </>
-              )}
+      <tbody className={`${isAdicionar ? 'h-[15vh]' : ''}`}>
+      {!isAdicionar &&
+          cupons.map((cupom)  => (
+            <tr key={cupom.id}>
+              <td className="py-5 px-14 border-2 border-[#E0E0E0] border-t-0 bg-white border-l-0">{cupom.nome}</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">#{cupom.codigo}</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">{cupom.PR_desconto}% de<br></br> desconto</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 bg-white">-</td>
+              <td className="border-2 py-5 px-4 border-[#E0E0E0] border-t-0 border-r-0 bg-white">
+                {formatarData(cupom.DT_validade)}
+              </td>
+            </tr>
+          ))}
 
-              {isAdicionar && (
-                <>
-                  <tr>
-                    <td className="border-2 border-[#E0E0E0] border-b-0 border-l-0 bg-white">
-                      <Field name="cupom" placeholder="Digite o cupom" className="w-full text-center" />
-                      {errors.cupom && touched.cupom ? <div className="text-red-500">{errors.cupom}</div> : null}
-                    </td>
-                    <td className="border-2 border-[#E0E0E0] border-b-0 bg-white">
-                      <Field name="codigo" placeholder="Digite o código" className="w-full text-center" />
-                      {errors.codigo && touched.codigo ? <div className="text-red-500">{errors.codigo}</div> : null}
-                    </td>
-                    <td className="border-2 px-0 border-[#E0E0E0] border-b-0 bg-white">
-                      <Field name="detalhes" placeholder="Insira detalhes do cupom" className="w-full text-center" />
-                      {errors.detalhes && touched.detalhes ? <div className="text-red-500">{errors.detalhes}</div> : null}
-                    </td>
-                    <td className="border-2 px-0 border-[#E0E0E0] border-b-0 border-r-0 bg-white">
-                      <Field name="validade" type="date" className="w-full text-center" />
-                      {errors.validade && touched.validade ? <div className="text-red-500">{errors.validade}</div> : null}
-                    </td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-          </table>
+        {isAdicionar && (
+          <>
+          <tr> {/* Tem que ser a ultima linha da tabela */}
+        
+          <td className={`border-2 px-14 border-[#E0E0E0] border-b-0 border-l-0 bg-white ${isAdicionar ? 'border-t-0': ''}`}>
 
-          {/* Botões Salvar/Cancelar */}
-          {isAdicionar && ( // Verificação para renderizar os botões somente se isAdicionar for true
-            <div className="flex items-end justify-end"> {/* Usando flex-grow para empurrar os botões para baixo */}
-              <div className="h-[28vw] flex gap-6">
-                <BotaoSalvar nome="Cancelar" onClick={() => console.log("Cancelar")} />
-                <BotaoSalvar nome="Salvar" onClick={submitForm} /> {/* Botão Salvar que dispara o submit */}
-              </div>
-            </div>
-          )}
-        </Form>
-      )}
-    </Formik>
+            <Field
+              id="nome"
+              name="nome"
+              placeholder="Nome"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "nome" component="div" className="text-red-500 text-sm"/>
+
+          </td> {/* bn1 */}
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+            
+          <Field
+              id="codigo"
+              name="codigo"
+              placeholder="Código"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "codigo" component="div" className="text-red-500 text-sm"/>
+
+          </td>
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+            
+          <Field
+              id="PR_desconto"
+              name="PR_desconto"
+              placeholder="Desconto"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "PR_desconto" component="div" className="text-red-500 text-sm"/>
+          </td>
+          <td className={`border-2 px-4 border-[#E0E0E0] border-b-0 border-r-0 bg-white ${isAdicionar ? 'border-t-0' : ''}`}>
+          <Field
+              id="DT_validade"
+              name="DT_validade"
+              type="date"
+              className='w-full h-full border-b-2 focus:outline-none'
+            />
+            <ErrorMessage name = "DT_validade" component="div" className="text-red-500 text-sm"/>  
+          </td> {/* bnn */}
+        </tr>
+          </>
+        )}
+
+      </tbody>
+    </table>
   );
 };
 

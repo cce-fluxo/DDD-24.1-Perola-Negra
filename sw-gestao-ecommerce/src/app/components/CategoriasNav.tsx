@@ -19,7 +19,7 @@ const CategoriasHeader: React.FC = () => {
   };
 
   return (
-    <div className="bg-white w-full py-4 px-4 sm:px-10 lg:px-20 flex flex-col sm:flex-row z-10 items-center justify-between">
+    <div className="bg-white w-full py-4 px-4 sm:px-10 lg:px-20 flex flex-col sm:flex-row z-10 items-center justify-between lg:mt-6">
       {/* Nav com categorias para tamanhos acima de md */}
       <ul className="hidden md:flex flex-wrap gap-2 sm:gap-4 md:gap-8 font-semibold w-full justify-center sm:justify-start">
         {[

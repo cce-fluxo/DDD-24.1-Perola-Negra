@@ -17,8 +17,8 @@ function Categorias({ numero, nome, editarNome }: props) {
   };
 
   return (
-    <div className="flex justify-start items-center bg-[#D9D9D9] rounded-md p-2">
-      <span className="ml-6 mr-2 pr-2 border-r-4 border-black font-bold text-sm md:text-xl">
+    <div className="flex justify-start items-center bg-[#D9D9D9] rounded-md p-2 min-w-max">
+      <span className="ml-6 mr-2 pr-3 border-r-4 border-black font-bold text-sm md:text-xl">
         {numero}
       </span>
 

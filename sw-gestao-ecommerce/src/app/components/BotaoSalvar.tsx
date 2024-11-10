@@ -1,17 +1,19 @@
-import React from 'react';
-
-interface BotaoSalvarProps {
-  nome: string; // Nome do botão
-  onClick?: () => void; // Função onClick, opcional
+interface Props {
+  nome: string;
+  tipo?: "submit" | "button" | "reset";
+  onClick?: () => void;
 }
 
-const BotaoSalvar: React.FC<BotaoSalvarProps> = ({ nome, onClick }) => {
+function BotaoSalvar({ nome, tipo = "button", onClick }: Props) {
   return (
-    <button type="button" onClick={onClick}>
+    <button
+      className="py-1 px-6 bg-neutral-500 text-white rounded-xl hover:bg-white hover:text-[#B0B0B0]"
+      type={tipo} 
+      onClick={onClick}
+    >
       {nome}
     </button>
   );
-};
+}
 
 export default BotaoSalvar;
-

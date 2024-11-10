@@ -16,7 +16,7 @@ interface props {
 
 function HeaderMobile({ titulo }: props) {
   return (
-    <div className="w-full h-[8vh] flex justify-between items-center lg:hidden">
+    <div className="w-full h-[8vh] flex justify-between items-center lg:hidden pr-6">
       {" "}
       {/**Perceba que essa header some em dispositivos lg*/}
       <div className="w-[18vw] h-full">

@@ -19,7 +19,7 @@ const ProdutoForm: React.FC = () => {
   const [quantidade, setQuantidade] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [popupVisible, setPopupVisible] = useState(false); // Estado para o Popup
+  const [popupVisible, setPopupVisible] = useState(false);
 
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +45,8 @@ const ProdutoForm: React.FC = () => {
 
 
   return (
-    <div className="mb-4 bg-neutral-100 px-5 py-12 rounded-3xl w-full flex flex-col md:flex-row justify-between md:justify-evenly gap-5 md:gap-[5%]">
-      <div className="flex justify-center items-center">
+    <div className="mb-4 bg-neutral-100 px-5 py-12 rounded-3xl w-full flex flex-col md:flex-row justify-between md:justify-evenly gap-5 md:gap-5">
+      <div className="flex justify-center items-center w-full md:w-1/3">
         <label htmlFor="image-upload" className="cursor-pointer">
           <div className="relative w-48 h-48 bg-neutral-200 rounded-lg">
             {!selectedImage && (
@@ -168,13 +168,11 @@ const ProdutoForm: React.FC = () => {
           onClose={() => setPopupVisible(false)}
           onConfirm={() => {
             setPopupVisible(false);
-            // Adicione aqui a lógica de exclusão do produto
           }}
         />
       )}
     </div>
   );
 };
-
 
 export default ProdutoForm;
