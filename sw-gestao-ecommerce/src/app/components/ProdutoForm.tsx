@@ -7,6 +7,7 @@ import Image from "next/image";
 import PopupConfirm from "./PopupProduto"; // Importe o PopupConfirm aqui
 import { Field, Formik, Form, ErrorMessage, useFormik, useFormikContext } from "formik";
 import * as Yup from 'yup';
+import api from "@/services/axios";
 
 
 const formatCurrency = (value: string) => {
@@ -97,6 +98,7 @@ const ProdutoForm: React.FC = () => {
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           console.log(isSubmiting);
+          postProduto(values);
           router.push('/produtos/categoria-1');
           setSubmitting(false);
         }}
@@ -173,6 +175,24 @@ const ProdutoForm: React.FC = () => {
       )}
     </div>
   );
+
+  async function postProduto (values:any) {
+    try {
+      const response = await api.post("/produto", 
+        {
+          nome: values.nome,
+          descricao: values.descricao,
+          valor: values.valor,
+          quantidade: Number(values.quantidade)
+        }
+      );
+      console.log('Resposta:', response.data);
+  
+    } catch (error:any) {
+      console.log("deu errado men: ", error.response.data);
+    }
+  }
+
 };
 
 export default ProdutoForm;
