@@ -1,64 +1,75 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import Categorias from "./Categorias";
+import api from "@/services/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Categorias from "./Categorias";
 
 interface props {
   togglePopUp: () => void;
 }
 
 function PopUpEditarCategorias({ togglePopUp }: props) {
-  const [categorias, setCategorias] = useState([
-    { numero: 1, nome: "Categoria 1" },
-    { numero: 2, nome: "Categoria 2" },
-    { numero: 3, nome: "Categoria 3" },
-    { numero: 4, nome: "Categoria 4" },
-  ]);
+  const [categorias, setCategorias] = useState([]);
 
-  // Validação do formulário
-  const validationSchema = Yup.object().shape({
-    categorias: Yup.array()
-      .of(
-        Yup.object().shape({
-          nome: Yup.string().required("O nome da categoria é obrigatório"),
-        })
-      )
-      .test(
-        "nome-duplicado",
-        "Nomes de categoria não podem ser duplicados",
-        (value) => {
-          const nomes = value?.map((cat) => cat.nome.toLowerCase());
-          return new Set(nomes).size === nomes?.length;
-        }
-      ),
-  });
+  // Carregar as categorias ao montar o componente
+  useEffect(() => {
+    const getCategorias = async () => {
+      try {
+        const response = await api.get("/categoria");
+        setCategorias(response.data);
+      } catch (error) {
+        console.error("Erro ao carregar categorias:", error);
+      }
+    };
+    getCategorias();
+  }, []);
 
-  // Configuração do Formik
   const formik = useFormik({
     initialValues: {
       categorias: categorias,
     },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log("Categorias salvas:", values.categorias);
-      togglePopUp(); // Fecha o popup
+    enableReinitialize: true,
+    validationSchema: Yup.object({
+      categorias: Yup.array()
+        .of(
+          Yup.object({
+            nome: Yup.string().required("O nome da categoria é obrigatório"),
+          })
+        )
+        .test(
+          "nome-duplicado",
+          "Nomes de categoria não podem ser duplicados",
+          (value) => {
+            const nomes = value?.map((cat) => cat.nome.toLowerCase());
+            return new Set(nomes).size === nomes.length;
+          }
+        ),
+    }),
+    onSubmit: async (values) => {
+      try {
+        await api.patch("/categoria", values.categorias); // Ajuste para enviar todas as categorias no formato esperado
+        console.log("Categorias salvas:", values.categorias);
+        togglePopUp(); // Fecha o popup após salvar
+      } catch (error) {
+        console.error("Erro ao salvar categorias:", error);
+      }
     },
   });
 
-  const adicionarCategoria = () => {
-    const novoNumero = formik.values.categorias.length + 1;
-    const novaCategoria = `Nova Categoria ${novoNumero}`;
-    formik.setFieldValue("categorias", [
-      ...formik.values.categorias,
-      { numero: novoNumero, nome: novaCategoria },
-    ]);
-  };
+  // Adicionar nova categoria com ID único
+  const adicionarCategoria = async () => {
+    try {
+      const response = await api.post("/categoria", { nome: `Nova Categoria` });
+      const novaCategoria = response.data; // Supondo que o backend retorne o objeto completo da nova categoria criada
 
-  const editarNomeCategoria = (index: number, novoNome: string) => {
-    const novasCategorias = formik.values.categorias.map((categoria, idx) =>
-      idx === index ? { ...categoria, nome: novoNome } : categoria
-    );
-    formik.setFieldValue("categorias", novasCategorias);
+      formik.setFieldValue("categorias", [
+        ...formik.values.categorias,
+        novaCategoria, // Adiciona nova categoria com ID e nome
+      ]);
+    } catch (error) {
+      console.error("Erro ao adicionar categoria:", error);
+    }
   };
 
   return (
@@ -75,15 +86,15 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
 
         <form
           onSubmit={formik.handleSubmit}
-          className="h-full grid  grid-rows-3 grid-flow-col gap-2 mt-3 overflow-x-scroll"
+          className="h-full grid grid-rows-3 grid-flow-col gap-2 mt-3 overflow-x-scroll"
         >
           {formik.values.categorias.map((categoria, index) => (
             <Categorias
-              key={index}
-              numero={categoria.numero}
+              key={categoria.id} // Usa o ID único
+              id={categoria.id}
               nome={categoria.nome}
-              editarNome={(novoNome: string) =>
-                editarNomeCategoria(index, novoNome)
+              editarNome={(novoNome) =>
+                formik.setFieldValue(`categorias.${index}.nome`, novoNome)
               }
             />
           ))}

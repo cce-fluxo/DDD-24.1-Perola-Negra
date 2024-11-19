@@ -1,47 +1,63 @@
-import React, { useState } from "react";
+"use client";
+import React, { use, useEffect, useState } from "react";
+import { useFormik } from "formik";
+import api from "@/services/axios";
 
 interface props {
-  numero: number;
+  id: number;
   nome: string;
   editarNome: (novoNome: string) => void;
 }
 
-function Categorias({ numero, nome, editarNome }: props) {
-  const [editando, setEditando] = useState(false);
-  const [nomeTemporario, setNomeTemporario] = useState(nome);
+function Categorias({ id, nome, editarNome }: props) {
+  const [categorias, setCategorias] = useState([]);
 
-  // Salva o novo nome e desativa o modo de edição
-  const salvarNome = () => {
-    editarNome(nomeTemporario);
-    setEditando(false);
-  };
+  const formik = useFormik({
+    initialValues: { nome: nome },
+    enableReinitialize: true,
+    onSubmit: (values) => editarNome(values.nome),
+  });
+
+  useEffect(() => {
+    const deleteCategoria = async () => {
+      try {
+        await api.delete(`/categoria/${id}`);
+        const categoriasAtualizadas = categorias.filter((cat) => cat.id !== id);
+        setCategorias(categoriasAtualizadas);
+      } catch (error) {
+        console.error("Erro ao excluir categoria:", error);
+      }
+    };
+    deleteCategoria();
+  });
 
   return (
-    <div className="flex justify-start items-center bg-[#D9D9D9] rounded-md p-2 min-w-max">
+    <div className="flex justify-start items-center bg-[#D9D9D9] rounded-md p-2 pr-4 min-w-max">
       <span className="ml-6 mr-2 pr-3 border-r-4 border-black font-bold text-sm md:text-xl">
-        {numero}
+        {id}
       </span>
 
-      {editando ? (
+      <form onSubmit={formik.handleSubmit}>
         <input
           title="Editar nome"
           type="text"
-          value={nomeTemporario}
-          onChange={(e) => setNomeTemporario(e.target.value)}
-          onBlur={salvarNome}
+          value={formik.values.nome}
+          onChange={formik.handleChange}
+          name="nome"
+          onBlur={formik.handleSubmit}
           onKeyDown={(e) => {
-            if (e.key === "Enter") salvarNome();
+            if (e.key === "Enter") formik.handleSubmit();
           }}
           className="text-sm md:text-xl font-normal bg-transparent border-none focus:outline-none"
         />
-      ) : (
-        <span
-          onDoubleClick={() => setEditando(true)}
-          className="text-sm md:text-xl font-normal cursor-pointer"
-        >
-          {nome}
-        </span>
-      )}
+      </form>
+      <div>
+        <button
+          title="Excluir categoria"
+          className="p-4 bg-[url('/icons/iconeX.png')] bg-no-repeat bg-center"
+          onClick={setCategorias}
+        ></button>
+      </div>
     </div>
   );
 }
