@@ -11,9 +11,13 @@ const Categoria1 = () => {
   const [produtos, setProdutos] = React.useState([]);
 
   async function getProdutos() {
-    const response = await api.get("/produto");
-    setProdutos(response.data);
-    console.log(response.data);
+    try {
+      const response = await api.get("/categoria/20/produtos");
+      setProdutos(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("erro de req: ", error);
+    }
   }
 
   React.useEffect(() => {

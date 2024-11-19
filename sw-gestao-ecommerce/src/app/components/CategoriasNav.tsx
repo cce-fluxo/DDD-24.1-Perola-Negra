@@ -1,12 +1,14 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BtnCinza from "./BtnCinza";
 import Image from "next/image";
+import axios from "axios";
+import api from "@/services/axios";
 
 const CategoriasHeader: React.FC = () => {
+  const [categorias, setCategorias] = React.useState([]); // Estado para armazenar as categorias
   const [dropdownOpen, setDropdownOpen] = useState(false); // Estado para controlar o dropdown
   const currentPath = usePathname();
 
@@ -18,17 +20,26 @@ const CategoriasHeader: React.FC = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  // Carregar as categorias da API
+  async function getCategorias() {
+    try {
+      const response = await api.get("/categoria");
+      setCategorias(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    getCategorias();
+  }, []);
+
   return (
     <div className="bg-white w-full py-4 px-4 sm:px-10 lg:px-20 flex flex-col sm:flex-row z-10 items-center justify-between lg:mt-6">
       {/* Nav com categorias para tamanhos acima de md */}
       <ul className="hidden md:flex flex-wrap gap-2 sm:gap-4 md:gap-8 font-semibold w-full justify-center sm:justify-start">
-        {[
-          "categoria-1",
-          "categoria-2",
-          "categoria-3",
-          "categoria-4",
-          "categoria-5",
-        ].map((categoria) => (
+        {categorias.map((categoria) => (
           <li
             key={categoria}
             className={
@@ -37,9 +48,7 @@ const CategoriasHeader: React.FC = () => {
                 : "text-black"
             }
           >
-            <Link href={`/produtos/${categoria}`}>
-              {`Categoria ${categoria.split("-")[1]}`}
-            </Link>
+            <Link href={`/produtos/${categoria.nome}`}>{categoria.nome}</Link>
           </li>
         ))}
       </ul>
@@ -58,13 +67,7 @@ const CategoriasHeader: React.FC = () => {
         {/* Dropdown de categorias */}
         {dropdownOpen && (
           <ul className="absolute top-32 left-4 bg-white shadow-lg rounded-md p-4 w-3/4 z-20">
-            {[
-              "categoria-1",
-              "categoria-2",
-              "categoria-3",
-              "categoria-4",
-              "categoria-5",
-            ].map((categoria) => (
+            {categorias.map((categoria) => (
               <li
                 key={categoria}
                 className={
@@ -73,20 +76,16 @@ const CategoriasHeader: React.FC = () => {
                     : "text-black"
                 }
               >
-                <Link href={`/produtos/${categoria}`}>
-                  {`Categoria ${categoria.split("-")[1]}`}
-                </Link>
+                <Link href={`/produtos/${categoria}`}>{categoria}</Link>
               </li>
             ))}
           </ul>
         )}
-
-        {/* Botão cinza para editar categoria */}
       </div>
+
+      {/* Botão cinza para editar categoria */}
       <div>
-        <div>
-          <BtnCinza texto="Editar Categoria" rota={"/editar-categoria"} />
-        </div>
+        <BtnCinza texto="Editar Categoria" rota={"/editar-categoria"} />
       </div>
     </div>
   );
