@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../../../components/Header";
-import ProdutoForm from "../../../../components/ProdutoForm";
+import EditarProdutoForm from "../../../../components/EditarProdutoForm";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 
 const EditarProduto: React.FC = () => {
@@ -14,7 +14,7 @@ const EditarProduto: React.FC = () => {
         <Header titulo="LOGO" bg="white"></Header>
       </div>
       <div className="pt-8 px-12 justify-center">
-        <ProdutoForm></ProdutoForm>
+        <EditarProdutoForm idProduto={1}></EditarProdutoForm>
       </div>
     </div>
   );

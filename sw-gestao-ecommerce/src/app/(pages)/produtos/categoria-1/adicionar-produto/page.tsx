@@ -15,8 +15,6 @@ const AdicionarProduto: React.FC = () => {
       </div>
       <div className="pt-10 px-12 justify-center">
         <ProdutoForm></ProdutoForm>
-        <ProdutoForm></ProdutoForm>
-        <ProdutoForm></ProdutoForm>
       </div>
     </div>
   );

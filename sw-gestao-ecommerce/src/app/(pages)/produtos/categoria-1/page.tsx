@@ -34,7 +34,7 @@ const Categoria1 = () => {
         <TituloCategoria titulo="Categoria 1" />
         <div className="flex flex-wrap w-11/12 mx-auto justify-center">
           <Produto
-            nome="Nome"
+            nome = "Nome"
             descricao="Parte para descrição do prato Lörem ipsum prerad, prosam. Semisofal rafase bötning, inklus..."
             preco={"50,97"}
             imagem="/images/placeholder.png"
@@ -43,6 +43,7 @@ const Categoria1 = () => {
           {produtos.map((produto) => (
             <Produto
               key={produto.id}
+              id={produto.id}
               nome={produto.nome}
               descricao={produto.descricao}
               preco={produto.preco}
