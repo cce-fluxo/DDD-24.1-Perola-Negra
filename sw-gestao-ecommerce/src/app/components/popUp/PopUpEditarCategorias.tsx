@@ -2,15 +2,18 @@
 import React, { useState, useEffect } from "react";
 import Categorias from "./Categorias";
 import api from "@/services/axios";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+
+interface Categoria {
+  id: number;
+  nome: string;
+}
 
 interface props {
   togglePopUp: () => void;
 }
 
 function PopUpEditarCategorias({ togglePopUp }: props) {
-  const [categorias, setCategorias] = useState([]);
+  const [categorias, setCategorias] = useState<Categoria[]>([]); // Define o tipo do estado
 
   // Carregar as categorias ao montar o componente
   useEffect(() => {
@@ -25,51 +28,41 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
     getCategorias();
   }, []);
 
-  const formik = useFormik({
-    initialValues: {
-      categorias: categorias,
-    },
-    enableReinitialize: true,
-    validationSchema: Yup.object({
-      categorias: Yup.array()
-        .of(
-          Yup.object({
-            nome: Yup.string().required("O nome da categoria é obrigatório"),
-          })
-        )
-        .test(
-          "nome-duplicado",
-          "Nomes de categoria não podem ser duplicados",
-          (value) => {
-            const nomes = value?.map((cat) => cat.nome.toLowerCase());
-            return new Set(nomes).size === nomes.length;
-          }
-        ),
-    }),
-    onSubmit: async (values) => {
-      try {
-        await api.patch("/categoria", values.categorias); // Ajuste para enviar todas as categorias no formato esperado
-        console.log("Categorias salvas:", values.categorias);
-        togglePopUp(); // Fecha o popup após salvar
-      } catch (error) {
-        console.error("Erro ao salvar categorias:", error);
-      }
-    },
-  });
-
-  // Adicionar nova categoria com ID único
   const adicionarCategoria = async () => {
     try {
-      const response = await api.post("/categoria", { nome: `Nova Categoria` });
-      const novaCategoria = response.data; // Supondo que o backend retorne o objeto completo da nova categoria criada
-
-      formik.setFieldValue("categorias", [
-        ...formik.values.categorias,
-        novaCategoria, // Adiciona nova categoria com ID e nome
-      ]);
+      const response = await api.post("/categoria", { nome: "Nova Categoria" });
+      const novaCategoria: Categoria = response.data;
+      setCategorias((prevCategorias) => [...prevCategorias, novaCategoria]); // Atualiza o estado corretamente
     } catch (error) {
       console.error("Erro ao adicionar categoria:", error);
     }
+  };
+
+  const salvarCategorias = async () => {
+    try {
+      const promises = categorias.map((categoria) =>
+        api.patch(`/categoria/${categoria.id}`, { nome: categoria.nome })
+      );
+      await Promise.all(promises); // Aguarda todas as requisições PATCH serem concluídas
+      console.log("Categorias atualizadas com sucesso.");
+      togglePopUp(); // Fecha o popup
+    } catch (error) {
+      console.error("Erro ao salvar categorias:", error);
+    }
+  };
+
+  const atualizarCategoria = (id: number, novoNome: string) => {
+    setCategorias((prevCategorias) =>
+      prevCategorias.map((categoria) =>
+        categoria.id === id ? { ...categoria, nome: novoNome } : categoria
+      )
+    );
+  };
+
+  const deletarCategoria = (id: number) => {
+    setCategorias((prevCategorias) =>
+      prevCategorias.filter((categoria) => categoria.id !== id)
+    );
   };
 
   return (
@@ -84,18 +77,14 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
           ></button>
         </div>
 
-        <form
-          onSubmit={formik.handleSubmit}
-          className="h-full grid grid-rows-3 grid-flow-col gap-2 mt-3 overflow-x-scroll"
-        >
-          {formik.values.categorias.map((categoria, index) => (
+        <div className="h-full grid grid-rows-3 grid-flow-col gap-2 mt-3 overflow-x-scroll">
+          {categorias.map((categoria) => (
             <Categorias
-              key={categoria.id} // Usa o ID único
+              key={categoria.id}
               id={categoria.id}
               nome={categoria.nome}
-              editarNome={(novoNome) =>
-                formik.setFieldValue(`categorias.${index}.nome`, novoNome)
-              }
+              atualizarNome={atualizarCategoria}
+              deletarCategoria={deletarCategoria}
             />
           ))}
 
@@ -106,19 +95,12 @@ function PopUpEditarCategorias({ togglePopUp }: props) {
           >
             + Adicionar categoria
           </button>
-        </form>
-
-        {formik.errors.categorias &&
-          typeof formik.errors.categorias === "string" && (
-            <div className="text-red-500 text-center">
-              {formik.errors.categorias}
-            </div>
-          )}
+        </div>
 
         <div className="flex justify-center h-[15%] items-center">
           <button
-            type="submit"
-            onClick={formik.handleSubmit}
+            type="button"
+            onClick={salvarCategorias}
             className="py-1 px-7 rounded-3xl bg-black text-white mt-4"
           >
             Salvar
