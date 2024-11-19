@@ -9,18 +9,23 @@ import api from "@/services/axios";
 import { useParams } from "next/navigation";
 
 const CategoriaPage = () => {
-  const { categoriaSlug } = useParams(); // Captura o slug da categoria na URL
+  const { categoriaSlug } = useParams();
+  // Captura o slug da categoria na URL
   const [produtos, setProdutos] = React.useState([]);
   const [categoria, setCategoria] = React.useState(null);
 
   async function getCategoriaData() {
     try {
       // Obter informações da categoria
-      const categoriaResponse = await api.get(`/categoria/20`); // mudar 20 para ${categoriaSlug}
+      console.log("categoriaSlug:", categoriaSlug); // Confirme o valor retornado
+
+      const categoriaResponse = await api.get(`/categoria/${categoriaSlug}`); // ${categoriaSlug}
       setCategoria(categoriaResponse.data);
 
       // Obter produtos da categoria
-      const produtosResponse = await api.get(`/categoria/20/produtos`); // mudar 20 para ${categoriaSlug}
+      const produtosResponse = await api.get(
+        `/categoria/${categoriaSlug}/produtos`
+      );
       setProdutos(produtosResponse.data);
     } catch (error) {
       console.error("Erro ao carregar dados da categoria:", error);
@@ -63,7 +68,7 @@ const CategoriaPage = () => {
                 nome={produto.nome}
                 descricao={produto.descricao}
                 preco={produto.preco}
-                imagem={produto.imagem || "/images/placeholder.png"}
+                imagem={produto.img_principal || "/images/placeholder.png"}
                 variant="secondary"
               />
             ))

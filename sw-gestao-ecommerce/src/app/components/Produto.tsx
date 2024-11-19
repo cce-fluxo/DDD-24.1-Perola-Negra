@@ -29,7 +29,7 @@ const Produto: React.FC<ProdutoProps> = ({
 
   return (
     <div className="bg-white w-full md:w-1/2 gap-5 py-9 px-16 flex row justify-end">
-      <div className="relative w-56 h-56 flex-shrink-0">
+      <div className="relative w-56 h-56 ">
         <div className="relative w-full h-full aspect-square">
           <Image
             src={imagem}
@@ -42,7 +42,7 @@ const Produto: React.FC<ProdutoProps> = ({
         {variant === "secondary" && (
           <Link href={"/produtos/editar-produto"}>
             <Link href={currentPath.concat("/editar-produto")}>
-              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-center text-black">
+              <div className="absolute bottom-0 left-0 w-full bg-zinc-500 bg-opacity-80 text-center text-black">
                 Editar produto
               </div>
             </Link>
