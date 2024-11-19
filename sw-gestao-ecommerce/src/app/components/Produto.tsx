@@ -43,7 +43,7 @@ const Produto: React.FC<ProdutoProps> = ({
           />
         </div>
         {variant === "secondary" && (
-          <Link href={`/produtos/editar-produto?id=${id}`} passHref>
+          <Link href={`/produtos/categoria-1/editar-produto/${id}`} passHref>
             <button className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-center text-white">
               Editar produto
             </button>

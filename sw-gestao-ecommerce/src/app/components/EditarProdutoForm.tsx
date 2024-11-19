@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import api from "@/services/axios";
 
 interface Props{
-    idProduto: number,
+    idProduto: number;
 }
 
 const formatCurrency = (value: string) => {
@@ -19,7 +19,7 @@ const formatCurrency = (value: string) => {
 };
 
 
-const EditarProdutoForm: React.FC = ({idProduto}) => {
+const EditarProdutoForm: React.FC<Props> = ({idProduto}) => {
   const [qtd_estoque, setQtd_estoque] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

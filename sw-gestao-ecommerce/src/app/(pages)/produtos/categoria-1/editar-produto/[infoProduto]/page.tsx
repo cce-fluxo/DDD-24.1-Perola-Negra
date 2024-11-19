@@ -1,10 +1,15 @@
 import React from "react";
-import Header from "../../../../components/Header";
-import EditarProdutoForm from "../../../../components/EditarProdutoForm";
+import Header from "@/app/components/Header";
+import EditarProdutoForm from "@/app/components/EditarProdutoForm";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 
+interface parametros {
+    params: number;
+}
 
-function EditarProduto() {
+export default function EditarProduto({params}:parametros) {
+
+    console.log("ola", params.infoProduto);
   return (
     <div>
       <HeaderMobile titulo="LOGO"></HeaderMobile>
@@ -15,10 +20,8 @@ function EditarProduto() {
         <Header titulo="LOGO" bg="white"></Header>
       </div>
       <div className="pt-8 px-12 justify-center">
-        <EditarProdutoForm idProduto={1}></EditarProdutoForm>
+        <EditarProdutoForm idProduto={params.infoProduto}></EditarProdutoForm>
       </div>
     </div>
   )
 }
-
-export default EditarProduto
