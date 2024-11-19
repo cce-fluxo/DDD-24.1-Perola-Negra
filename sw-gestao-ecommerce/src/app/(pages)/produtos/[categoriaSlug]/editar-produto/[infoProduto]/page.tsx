@@ -1,9 +1,14 @@
 import React from "react";
-import Header from "../../../../components/Header";
-import ProdutoForm from "../../../../components/ProdutoForm";
+import Header from "@/app/components/Header";
+import EditarProdutoForm from "@/app/components/EditarProdutoForm";
 import HeaderMobile from "@/app/components/HeaderMobile/HeaderMobile";
 
-const AdicionarProduto: React.FC = () => {
+interface parametros {
+  params: number;
+}
+
+export default function EditarProduto({ params }: parametros) {
+  console.log("ola", params.infoProduto);
   return (
     <div>
       <HeaderMobile titulo="LOGO"></HeaderMobile>
@@ -13,11 +18,9 @@ const AdicionarProduto: React.FC = () => {
         {/**Header para dispositivos lg*/}
         <Header titulo="LOGO" bg="white"></Header>
       </div>
-      <div className="pt-10 px-12 justify-center">
-        <ProdutoForm></ProdutoForm>
+      <div className="pt-8 px-12 justify-center">
+        <EditarProdutoForm idProduto={params.infoProduto}></EditarProdutoForm>
       </div>
     </div>
   );
-};
-
-export default AdicionarProduto;
+}

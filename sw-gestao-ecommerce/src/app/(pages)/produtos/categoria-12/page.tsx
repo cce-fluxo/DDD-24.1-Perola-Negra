@@ -38,10 +38,15 @@ const Categoria1 = () => {
       <CategoriasNav />
       <div className="">
         <TituloCategoria titulo="Categoria 1" />
+<<<<<<< HEAD:sw-gestao-ecommerce/src/app/(pages)/produtos/categoria-12/page.tsx
         <div className="flex flex-wrap w-11/12 mx-auto justify-start">
+=======
+        <div className="flex flex-wrap w-11/12 mx-auto justify-center">
+>>>>>>> be8c1e79e132a01640c20a94b5fde776a03909f2:sw-gestao-ecommerce/src/app/(pages)/produtos/categoria-1/page.tsx
           {produtos.map((produto) => (
             <Produto
               key={produto.id}
+              id={produto.id}
               nome={produto.nome}
               descricao={produto.descricao}
               preco={produto.preco}

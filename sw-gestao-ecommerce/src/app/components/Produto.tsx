@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 
 interface ProdutoProps {
+  id: number;
   nome: string;
   descricao: string;
   preco: string;
@@ -15,6 +16,7 @@ interface ProdutoProps {
 }
 
 const Produto: React.FC<ProdutoProps> = ({
+  id,
   nome,
   descricao,
   preco,
@@ -40,12 +42,10 @@ const Produto: React.FC<ProdutoProps> = ({
           />
         </div>
         {variant === "secondary" && (
-          <Link href={"/produtos/editar-produto"}>
-            <Link href={currentPath.concat("/editar-produto")}>
-              <div className="absolute bottom-0 left-0 w-full bg-zinc-500 bg-opacity-80 text-center text-black">
-                Editar produto
-              </div>
-            </Link>
+          <Link href={`/produtos/categoria-1/editar-produto/${id}`} passHref>
+            <button className="absolute bottom-0 left-0 w-full bg-black bg-opacity-30 text-center text-white">
+              Editar produto
+            </button>
           </Link>
         )}
         {variant === "select" && (
