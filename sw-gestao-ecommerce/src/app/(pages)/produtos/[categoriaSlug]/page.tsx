@@ -64,12 +64,14 @@ const CategoriaPage = () => {
           {produtos.length > 0 ? (
             produtos.map((produto) => (
               <Produto
+                id={produto.id}
                 key={produto.id}
                 nome={produto.nome}
                 descricao={produto.descricao}
                 preco={produto.preco}
                 imagem={produto.img_principal || "/images/placeholder.png"}
                 variant="secondary"
+                slug={`${categoriaSlug}`}
               />
             ))
           ) : (

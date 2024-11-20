@@ -6,7 +6,7 @@ const Produtos: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/produtos/categoria-1");
+    router.replace("/produtos/Blusas");
   }, [router]);
 
   return null; // Não há necessidade de renderizar nada, pois estamos redirecionando.

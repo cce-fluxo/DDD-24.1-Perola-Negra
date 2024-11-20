@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       "static.ecosweb.com.br", // Adicione os domínios das imagens externas
       "static.zara.net",
+      "scontent.cdninstagram.com",
     ],
   },
 };
