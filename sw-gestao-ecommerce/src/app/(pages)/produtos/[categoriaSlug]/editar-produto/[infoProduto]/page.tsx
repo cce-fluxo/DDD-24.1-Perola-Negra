@@ -8,7 +8,6 @@ interface parametros {
 }
 
 export default function EditarProduto({ params }: parametros) {
-  console.log("ola", params.infoProduto);
   return (
     <div>
       <HeaderMobile titulo="LOGO"></HeaderMobile>

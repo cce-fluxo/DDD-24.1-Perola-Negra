@@ -2,13 +2,29 @@
 
 import React from "react";
 import Image from "next/image";
+import api from "@/services/axios";
+import { useRouter } from "next/navigation";
+
 interface PopupConfirmProps {
   // Lógica que diz que sozinho o popup não faz nada precisa ajeitar isso em cada página
   onClose: () => void;
   onConfirm: () => void;
+  idProduto: number;
 }
+
+async function deletarProduto (idProduto: number) {
+  try {
+    const response = await api.delete(`/produto/${idProduto}`);
+    console.log('Resposta:', response.data);
+
+  } catch (error:any) {
+    console.log("deu errado :/ ", error.response.data);
+  }
+}
+
 // Layout normalmente
-const PopupConfirm: React.FC<PopupConfirmProps> = ({ onClose, onConfirm }) => {
+const PopupConfirm: React.FC<PopupConfirmProps> = ({ onClose, onConfirm, idProduto }) => {
+  const router = useRouter();
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -35,7 +51,10 @@ const PopupConfirm: React.FC<PopupConfirmProps> = ({ onClose, onConfirm }) => {
               NÃO
             </button>
             <button
-              onClick={onConfirm}
+              onClick={async () => {
+                onConfirm;
+                await deletarProduto(idProduto);
+                router.push("/produtos/Blusas")}} //Podemos mudar essa rota depois (colocar ela pra ir pra rota anterior e nao para Blusas)
               className="py-4 px-12 bg-black text-white text-3xl font-bold border-4 border-white rounded-full w-full max-w-[250px]"
             >
               SIM

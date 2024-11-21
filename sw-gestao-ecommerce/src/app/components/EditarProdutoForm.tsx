@@ -45,7 +45,7 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
                 // TRATAMENTOS (Lucas mentiu nao era uma linha, ou somos burros para nao fazer em uma linha :/)
     // Convertendo o preco em numero:
     const precoFormatado = Number(values.preco.replace("R$", "") 
-    .replace(".", '') // Remove os pontos (milhares)
+    .replace(".", '') // Remove os pontos de milhares - o Supabase entende 1.000 (mil) = 1(um) e 1000 (mil) = 1000 (mil))
     .replace(",", ".") // Substitui a vírgula por ponto (vírgula como separador decimal)
     .trim());
     console.log(precoFormatado);
@@ -71,7 +71,7 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
     } catch (error: any) {
       console.log("Deu errado men:", error.response?.data || error.message);
     }
-  }  
+  }
 
   React.useEffect(() => {
     getProdutos();
@@ -237,6 +237,7 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
 
       {popupVisible && (
         <PopupConfirm
+          idProduto = {idProduto}
           onClose={() => setPopupVisible(false)}
           onConfirm={() => {
             setPopupVisible(false);
