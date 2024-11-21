@@ -41,6 +41,34 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
     console.log(response.data);
   }
 
+  async function patchProduto(idProduto: number, values: any) {
+                // TRATAMENTOS (Lucas mentiu nao era uma linha, ou somos burros para nao fazer em uma linha :/)
+    // Convertendo o preco em numero:
+    const precoFormatado = Number(values.preco.replace("R$", "").replace(",", ".").trim());
+  
+    // Pegando somente os atributos de values que podem ser alterados na pagina:
+    const valuesUtilizados = {
+      nome: values.nome,
+      descricao: values.descricao,
+      preco: precoFormatado,
+      qtd_estoque: Number(values.qtd_estoque),
+      // img_principal: values.img_principal, Nao passa a imagem principal, pois ainda nao sabemos alterar ela
+    };
+  
+    // Fazendo um "body" dinamico (Verifica se o atributo foi alterado):
+    const body = Object.fromEntries(
+      Object.entries(valuesUtilizados).filter(([, value]) => value !== "" && value != 0)
+    );
+  
+    // Agora o "body" estara com os valores que nao sao vazios
+    try {
+      const response = await api.patch(`/produto/${idProduto}`, body);
+      console.log("Resposta:", response.data);
+    } catch (error: any) {
+      console.log("Deu errado men:", error.response?.data || error.message);
+    }
+  }  
+
   React.useEffect(() => {
     getProdutos();
   }, []);
@@ -112,18 +140,18 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
           favoritado: false,
         }}
         validationSchema={Yup.object({
-          nome: Yup.string().required("Insira o nome do produto"),
-          descricao: Yup.string().required("Insira a descrição do produto"),
-          preco: Yup.string().required("Insira o preço do produto"),
+          nome: Yup.string()/*.required("Insira o nome do produto")*/,
+          descricao: Yup.string()/*.required("Insira a descrição do produto")*/,
+          preco: Yup.string()/*.required("Insira o preço do produto")*/,
           qtd_estoque: Yup.number()
-            .typeError("Quantidade deve ser um número")
-            .required("Insira a quantidade do produto")
-            .min(1, "Quantidade mínima é 1"),
+            .typeError("Quantidade deve ser um número").min(1, "Quantidade mínima é 1")
+            /*.required("Insira a quantidade do produto")*/,
         })}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           console.log(isSubmiting);
-          router.push("/produtos/categoria-1");
+          patchProduto(idProduto, values);
+          router.push("/produtos/Blusas");
           setSubmitting(false);
         }}
       >
