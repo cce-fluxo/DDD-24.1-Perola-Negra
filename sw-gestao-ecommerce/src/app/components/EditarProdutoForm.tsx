@@ -44,7 +44,11 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
   async function patchProduto(idProduto: number, values: any) {
                 // TRATAMENTOS (Lucas mentiu nao era uma linha, ou somos burros para nao fazer em uma linha :/)
     // Convertendo o preco em numero:
-    const precoFormatado = Number(values.preco.replace("R$", "").replace(",", ".").trim());
+    const precoFormatado = Number(values.preco.replace("R$", "") 
+    .replace(".", '') // Remove os pontos (milhares)
+    .replace(",", ".") // Substitui a vírgula por ponto (vírgula como separador decimal)
+    .trim());
+    console.log(precoFormatado);
   
     // Pegando somente os atributos de values que podem ser alterados na pagina:
     const valuesUtilizados = {
@@ -59,7 +63,7 @@ const EditarProdutoForm: React.FC<Props> = ({ idProduto }) => {
     const body = Object.fromEntries(
       Object.entries(valuesUtilizados).filter(([, value]) => value !== "" && value != 0)
     );
-  
+    console.log(body);
     // Agora o "body" estara com os valores que nao sao vazios
     try {
       const response = await api.patch(`/produto/${idProduto}`, body);
