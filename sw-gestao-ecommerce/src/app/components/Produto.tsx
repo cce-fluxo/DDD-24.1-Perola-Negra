@@ -66,7 +66,7 @@ const Produto: React.FC<ProdutoProps> = ({
       <div className="flex flex-col justify-between">
         <h1 className="font-bold text-2xl">{nome}</h1>
         <p className="text-lg">{descricao}</p>
-        <p className="text-lg">R${preco}</p>
+        <p className="text-lg">R${Number(preco).toFixed(2).toString().replace(".", ",")}</p>
       </div>
     </div>
   );
